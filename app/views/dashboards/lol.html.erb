@@ -1,0 +1,3 @@
+<% if session[:user_id] != 1234 %>
+<%= controller.redirect_to '/' %>
+<% end %>

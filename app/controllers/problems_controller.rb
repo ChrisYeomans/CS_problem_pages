@@ -10,7 +10,7 @@ class ProblemsController < ApplicationController
   		redirect_to "/login"
   	end
   end
-  def destroy_login
+  def logout
   	session.clear
   	redirect_to root_url
   end

@@ -23,6 +23,9 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Past Problems</a>
           </li>
+          <% if session[:user_id] == 1234 %>
+            <%= render html: '<li class="navbar-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>'.html_safe %>
+          <% end %>
         </ul>
       </div>
     </nav>
