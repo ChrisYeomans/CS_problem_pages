@@ -1,3 +1,3 @@
-<% if not session[:auth] %>
+<% if not session[:admin] %>
 <%= controller.redirect_to '/' %>
 <% end %>

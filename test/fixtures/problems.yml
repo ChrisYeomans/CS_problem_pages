@@ -4,10 +4,12 @@ one:
   title: MyString
   body: MyText
   is_current: 1
+  is_hidden: 1
   test_cases: MyText
 
 two:
   title: MyString
   body: MyText
   is_current: 1
+  is_hidden: 1
   test_cases: MyText

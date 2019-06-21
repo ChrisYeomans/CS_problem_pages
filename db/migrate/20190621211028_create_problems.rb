@@ -4,6 +4,7 @@ class CreateProblems < ActiveRecord::Migration[5.2]
       t.string :title
       t.text :body
       t.integer :is_current
+      t.integer :is_hidden
       t.text :test_cases
 
       t.timestamps

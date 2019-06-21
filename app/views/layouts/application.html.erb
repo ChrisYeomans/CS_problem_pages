@@ -25,7 +25,7 @@
           <li class="nav-item">
             <a class="nav-link" href="/past_problems">Past Problems</a>
           </li>
-          <% if session[:auth] %>
+          <% if session[:admin] %>
             <%= render html: '<li class="navbar-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>'.html_safe %>
           <% end %>
         </ul>

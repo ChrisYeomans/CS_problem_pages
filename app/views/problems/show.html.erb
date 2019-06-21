@@ -1,8 +1,7 @@
 <div class="text-center">
 	<h1><%= @problem.title %></h1>
 	<p><%= @problem.body %></p>
-	<p><%= @problem.test_cases %></p>
-	<% if session[:auth] %>
+	<% if session[:admin] %>
 		<%= render "manage_post_buttons" %>
 	<% end %>
 </div>

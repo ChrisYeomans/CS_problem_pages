@@ -1,4 +1,4 @@
-<% if not session[:auth] %>
+<% if not session[:admin] %>
 <%= controller.redirect_to '/' %>
 <% end %>
 <h1 class="text-center">Dashboard</h1>

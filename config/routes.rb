@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   get "/index", to: 'problems#index'
   root 'problems#index'
 
-  # login and logout roots
-  get "/login", to: "problems#login"
-  post "/login", to: "problems#new_login"
-  get "/logout", to: "problems#logout"
+  # login and logout backdoors
+  get "/back_in", to: "problems#back_in"
+  post "/back_in", to: "problems#enter_back_in"
+  get "/back_out", to: "problems#back_out"
 
   # problem routes
   get "/past_problems", to: "problems#past_problems"
@@ -23,6 +23,9 @@ Rails.application.routes.draw do
 
     # manage problems
     get "/dashboard/manage_problems", to: "dashboards#manage_problems"
+    post "/problems/:id/pst", to: "problems#make_past"
+    post "/problems/:id/curr", to: "problems#make_current"
+    post "/problems/:id/hdn", to: "problems#make_hidden"
 
     get "/dashboard/set_current_problem", to: "dashboards#set_current_problem"
     get "/dashboard/manage_users", to: "dashboards#manage_users"
