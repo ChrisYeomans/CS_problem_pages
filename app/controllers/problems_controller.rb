@@ -10,7 +10,30 @@ class ProblemsController < ApplicationController
     @problem = Problem.find(params[:id])
   end
 
-  # Controls logged users with a session, one password
+  def create
+    @problem = Problem.new(params.require(:problem).permit(:title, :body, :test_cases, :is_current))
+    @problem.save
+    redirect_to @problem
+  end
+
+  def update
+    @problem = Problem.find(params[:id])
+    @problem.save
+    redirect_to @problem
+  end
+
+  def destroy
+    @problem = Problem.find(params[:id])
+    @problem.destroy
+
+    redirect_to problems_path
+  end
+
+  def edit
+    @problem = Problem.find(params[:id])
+  end
+
+  # Controls logged admin with a session, one password
   # will add hashing later
   def new_login
     if session[:auth]

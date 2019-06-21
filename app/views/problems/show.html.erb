@@ -2,4 +2,7 @@
 	<h1><%= @problem.title %></h1>
 	<p><%= @problem.body %></p>
 	<p><%= @problem.test_cases %></p>
+	<% if session[:auth] %>
+		<%= render "manage_post_buttons" %>
+	<% end %>
 </div>

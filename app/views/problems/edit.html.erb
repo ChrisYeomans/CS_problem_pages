@@ -2,9 +2,12 @@
 <%= controller.redirect_to '/' %>
 <% end %>
 
-<h1 class="text-center">Create Problem</h1>
+<% if not session[:auth] %>
+<%= controller.redirect_to '/' %>
+<% end %>
+<h1 class="text-center">Edit Problem</h1>
 <div class="container text-center">
-	<%= form_for :problem, url: problems_path do |f| %>
+	<%= form_for :problem, url: problem_path(@problem), method: :patch do |f| %>
 		<%= f.label(:title, "Title") %><br />
 		<%= f.text_field(:title, size: "98x2") %>
 		<br /><br />

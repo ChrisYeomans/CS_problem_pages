@@ -23,7 +23,6 @@ Rails.application.routes.draw do
 
     # manage problems
     get "/dashboard/manage_problems", to: "dashboards#manage_problems"
-    post "/dashboard/manage_problems", to: "dashboards#delete_problem"
 
     get "/dashboard/set_current_problem", to: "dashboards#set_current_problem"
     get "/dashboard/manage_users", to: "dashboards#manage_users"
