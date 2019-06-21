@@ -1,3 +1,10 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'problems/index'
+  root 'problems#index'
+
+  get "/login", to: "problems#login"
+  post "/login", to: "problems#new_login"
+  get "/logout", to: "problems#logout"
+  post "/logout", to: "problems#destroy_login"
+
 end
