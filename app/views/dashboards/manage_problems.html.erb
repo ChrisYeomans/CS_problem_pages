@@ -1,0 +1,10 @@
+<% if not session[:auth] %>
+<%= controller.redirect_to '/' %>
+<% end %>
+
+<h1 class="text-center p-1">Manage Problems</h1>
+<% @problems.each do |problem| %>
+	<h3 class="text-center">
+		<%= problem.id %>. <%= link_to problem.title, problem_path(problem), :class => "text-success" %>
+	</h3>
+<% end %>

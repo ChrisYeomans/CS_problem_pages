@@ -1,3 +1,10 @@
-<% if session[:user_id] != 1234 %>
+<% if not session[:auth] %>
 <%= controller.redirect_to '/' %>
 <% end %>
+<h1 class="text-center">Dashboard</h1>
+<div class="container jumbotron p-5 text-center">
+	<a class="btn btn-primary" href="/dashboard/create_problem" role="button">Create Problem</a>
+	<a class="btn btn-primary" href="/dashboard/manage_problems" role="button">Manage Problems</a>
+	<a class="btn btn-primary" href="/dashboard/set_current_problem" role="button">Set Current Problem</a>
+	<a class="btn btn-primary" href="/dashboard/manage_users" role="button">Manage Users</a>
+</div>
