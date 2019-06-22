@@ -1,10 +1,7 @@
-<% if not session[:auth] %>
+<% if not session[:admin] %>
 <%= controller.redirect_to '/' %>
 <% end %>
 
-<% if not session[:auth] %>
-<%= controller.redirect_to '/' %>
-<% end %>
 <h1 class="text-center">Edit Problem</h1>
 <div class="container text-center">
 	<%= form_for :problem, url: problem_path(@problem), method: :patch do |f| %>
@@ -19,6 +16,9 @@
 		<br />
 		<%= f.check_box(:is_current) %>
 		<%= f.label(:is_current, "Make this the problem of the week") %>
+		<br />
+		<%= f.check_box(:is_hidden) %>
+		<%= f.label(:is_hidden, "Make this hidden") %>
 		<br />
 		<%= f.submit "Submit" %>
 	<% end %>

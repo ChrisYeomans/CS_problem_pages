@@ -26,8 +26,8 @@ Rails.application.routes.draw do
     post "/problems/:id/pst", to: "problems#make_past"
     post "/problems/:id/curr", to: "problems#make_current"
     post "/problems/:id/hdn", to: "problems#make_hidden"
+    post "/problems/:id/not_curr", to: "problems#make_not_current"
 
-    get "/dashboard/set_current_problem", to: "dashboards#set_current_problem"
     get "/dashboard/manage_users", to: "dashboards#manage_users"
 
 end

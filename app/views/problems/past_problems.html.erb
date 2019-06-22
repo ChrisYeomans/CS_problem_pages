@@ -1,9 +1,9 @@
 <h1 class="text-center p-1">Past Problems</h1>
 
 <% @problems.each do |problem| %>
-	<% if not problem.is_hidden %>
-		<%= render html: '<h3 class="text-center">'.html_safe %>
+	<% if problem.is_hidden == 0 %>
+		<h3 class="text-center">
 			<%= problem.id %>. <%= link_to problem.title, problem_path(problem), :class => "text-success" %>
-		<%= render html: '</h3>'.html_safe %>
+		</h3>
 	<% end %>
 <% end %>

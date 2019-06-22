@@ -7,10 +7,13 @@
 	<h3 class="text-center">
 		<%= problem.id %>. <%= link_to problem.title, problem_path(problem), :class => "text-success" %>
 	</h3>
-	<% if problem.is_hidden %>
+	<% if problem.is_hidden == 1 %>
 		<%= render html: '<p class="text-center">Hidden</p>'.html_safe %>
 	<% else %>
 		<%= render html: '<p class="text-center">Not Hidden</p>'.html_safe %>
+	<% end %>
+	<% if problem.is_current == 1 %>
+		<%= render html: '<p class="text-center">Current</p>'.html_safe %>
 	<% end %>
 	<br />
 <% end %>

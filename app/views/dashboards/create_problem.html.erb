@@ -17,6 +17,9 @@
 		<%= f.check_box(:is_current) %>
 		<%= f.label(:is_current, "Make this the problem of the week") %>
 		<br />
+		<%= f.check_box(:is_hidden) %>
+		<%= f.label(:is_hidden, "Make this hidden") %>
+		<br />
 		<%= f.submit "Submit" %>
 	<% end %>
 </div>

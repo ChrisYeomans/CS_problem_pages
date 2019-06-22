@@ -8,19 +8,23 @@ class ProblemsController < ApplicationController
     @problems = Problem.all
   end
 
+  def current_problem
+    @problems = Problem.all
+  end
+
   def show
     @problem = Problem.find(params[:id])
   end
 
   def create
-    @problem = Problem.new(params.require(:problem).permit(:title, :body, :test_cases, :is_current, :is_hidden))
-    @problem.is_hidden = true
+    @problem = Problem.new(problem_params)
     @problem.save
     redirect_to @problem
   end
 
   def update
     @problem = Problem.find(params[:id])
+    @problem.update(problem_params)
     @problem.save
     redirect_to @problem
   end
@@ -62,21 +66,37 @@ class ProblemsController < ApplicationController
   # some post modification methods
   def make_past
     @problem = Problem.find(params[:id])
-    @problem.update_attributes(is_current: false, is_hidden: false)
-    redirect_to @problem
+    @problem.is_hidden = false
+    @problem.save
+    redirect_to "/dashboard/manage_problems"
   end
 
   def make_current
+    Problem.all.each do |p|
+      p.is_current = false
+      p.save
+    end
     @problem = Problem.find(params[:id])
-    @problem.update_attributes(is_current: true)
-    @problem.update_attributes(is_hidden: true)
-    redirect_to @problem
+    @problem.is_current = true
+    @problem.save
+    redirect_to "/dashboard/manage_problems"
+  end
+
+  def make_not_current
+    @problem = Problem.find(params[:id])
+    @problem.is_current = false
+    @problem.save
+    redirect_to "/dashboard/manage_problems"
   end
 
   def make_hidden
     @problem = Problem.find(params[:id])
-    @problem.update_attributes(is_current: false)
-    @problem.update_attributes(is_hidden: true)
-    redirect_to @problem
+    @problem.is_hidden = true
+    @problem.save
+    redirect_to "/dashboard/manage_problems"
+  end
+
+  def problem_params
+    params.require(:problem).permit(:title, :body, :test_cases, :is_current, :is_hidden)
   end
 end
