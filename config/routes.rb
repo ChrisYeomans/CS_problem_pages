@@ -1,23 +1,36 @@
 Rails.application.routes.draw do
+  # It's funny to hear ruby talking about.... "routes"
+
   # index root and get
   get '/', to: "problems#index"
   get "/index", to: 'problems#index'
   root 'problems#index'
 
-  # login and logout backdoors
-  get "/back_in", to: "problems#back_in"
-  post "/back_in", to: "problems#enter_back_in"
-  get "/back_out", to: "problems#back_out"
-
   # problem routes
+  resources :problems
   get "/past_problems", to: "problems#past_problems"
   get "/current_problem", to: "problems#current_problem"
+
+  # user routes
+  resources :users
+  get "/user/new", to: "users#new"
+  post "/user/new", to: "users#new_user"
+  get "/login", to: "users#login"
+
+    # user settings
+    get "/user/:id/settings", to: "users#settings"
+    post "/user/:id/settings", to: "users#update"
+    get "/users/:id/change_pw", to: "users#change_pw"
+    post "/users/:id/change_pw", to: "users#update_pw"
+
+  # session routes
+  post "/login", to: "sessions#create"
+  post "/logout", to: "sessions#destroy"
 
   # dashboard routes
   get "/dashboard", to: "dashboards#index"
 
     # create problem
-    resources :problems
     get "/dashboard/create_problem", to: "dashboards#create_problem"
     post "/dashboard/create_problem", to: "dashboards#add_problem_to_database"
 
@@ -28,6 +41,13 @@ Rails.application.routes.draw do
     post "/problems/:id/hdn", to: "problems#make_hidden"
     post "/problems/:id/not_curr", to: "problems#make_not_current"
 
+    # manage users
     get "/dashboard/manage_users", to: "dashboards#manage_users"
+
+
+  # login and logout backdoors
+  get "/back_in", to: "problems#back_in"
+  post "/back_in", to: "problems#enter_back_in"
+  get "/back_out", to: "problems#back_out"
 
 end

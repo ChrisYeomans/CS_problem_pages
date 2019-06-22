@@ -1,25 +1,25 @@
-<% if not session[:admin] %>
+<% if not admin_status %>
 <%= controller.redirect_to '/' %>
+<% else %>
+	<h1 class="text-center">Edit Problem</h1>
+	<div class="container text-center">
+		<%= form_for :problem, url: problem_path(@problem), method: :patch do |f| %>
+			<%= f.label(:title, "Title") %><br />
+			<%= f.text_field(:title, size: "98x2") %>
+			<br /><br />
+			<%= f.label(:body, "Problem Statement") %><br />
+			<%= f.text_area(:body, size: "100x15") %>
+			<br />
+			<%= f.label(:test_cases, "Test Cases, seperate test cases with a line containing 3 dashes, '---'") %><br />
+			<%= f.text_area(:test_cases, size: "100x15") %>
+			<br />
+			<%= f.check_box(:is_current) %>
+			<%= f.label(:is_current, "Make this the problem of the week") %>
+			<br />
+			<%= f.check_box(:is_hidden) %>
+			<%= f.label(:is_hidden, "Make this hidden") %>
+			<br />
+			<%= f.submit "Submit" %>
+		<% end %>
+	</div>
 <% end %>
-
-<h1 class="text-center">Edit Problem</h1>
-<div class="container text-center">
-	<%= form_for :problem, url: problem_path(@problem), method: :patch do |f| %>
-		<%= f.label(:title, "Title") %><br />
-		<%= f.text_field(:title, size: "98x2") %>
-		<br /><br />
-		<%= f.label(:body, "Problem Statement") %><br />
-		<%= f.text_area(:body, size: "100x15") %>
-		<br />
-		<%= f.label(:test_cases, "Test Cases, seperate test cases with a line containing 3 dashes, '---'") %><br />
-		<%= f.text_area(:test_cases, size: "100x15") %>
-		<br />
-		<%= f.check_box(:is_current) %>
-		<%= f.label(:is_current, "Make this the problem of the week") %>
-		<br />
-		<%= f.check_box(:is_hidden) %>
-		<%= f.label(:is_hidden, "Make this hidden") %>
-		<br />
-		<%= f.submit "Submit" %>
-	<% end %>
-</div>

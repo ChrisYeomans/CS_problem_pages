@@ -1,0 +1,25 @@
+<h1 class="text-center">New User</h1>
+<div class="container text-center">
+	<%= form_for :user, url: user_new_path do |f| %>
+        <% @user.errors.full_messages.each do |msg| %>
+            <div class="alert alert-danger">
+            	<%= msg %>
+            </div>
+        <% end %>
+
+		<%= f.label(:name, "Username") %><br />
+		<%= f.text_field(:name, size: "40x2") %>
+		<br />
+		<%= f.label(:email, "Email") %><br />
+		<%= f.text_field(:email, size: "40x2") %>
+		<br />
+		<%= f.label(:password, "Password") %><br />
+		<%= f.password_field(:password) %>
+		<br />
+	    <%= f.label(:password_confirmation, "Repeat Password") %><br />
+	    <%= f.password_field(:password_confirmation) %>
+		<br /><br />
+		<%= f.submit "Sign Me Up!", class: "btn btn-primary" %>
+
+	<% end %>
+</div>

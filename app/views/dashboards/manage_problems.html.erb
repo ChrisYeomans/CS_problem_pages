@@ -1,19 +1,21 @@
-<% if not session[:admin] %>
-<%= controller.redirect_to '/' %>
-<% end %>
+<% if not admin_status %>
+	<%= controller.redirect_to '/' %>
+<% else %>
 
-<h1 class="text-center p-1">Manage Problems</h1>
-<% @problems.each do |problem| %>
-	<h3 class="text-center">
-		<%= problem.id %>. <%= link_to problem.title, problem_path(problem), :class => "text-success" %>
-	</h3>
-	<% if problem.is_hidden == 1 %>
-		<%= render html: '<p class="text-center">Hidden</p>'.html_safe %>
-	<% else %>
-		<%= render html: '<p class="text-center">Not Hidden</p>'.html_safe %>
+	<h1 class="text-center p-1">Manage Problems</h1>
+	<% @problems.each do |problem| %>
+		<h3 class="text-center">
+			<%= problem.id %>. <%= link_to problem.title, problem_path(problem), :class => "text-success" %>
+		</h3>
+		<% if problem.is_hidden == 1 %>
+			<p class="text-center">Hidden</p>
+		<% else %>
+			<p class="text-center">Not Hidden</p>
+		<% end %>
+		<% if problem.is_current == 1 %>
+			<p class="text-center">Current</p>	
+		<% end %>
+		<br />
 	<% end %>
-	<% if problem.is_current == 1 %>
-		<%= render html: '<p class="text-center">Current</p>'.html_safe %>
-	<% end %>
-	<br />
+
 <% end %>

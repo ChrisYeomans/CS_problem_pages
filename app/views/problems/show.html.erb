@@ -1,7 +1,7 @@
 <div class="text-center">
 	<h1><%= @problem.title %></h1>
 	<p><%= @problem.body %></p>
-	<% if session[:admin] %>
+	<% if admin_status %>
 		<%= render "manage_post_buttons" %>
 	<% end %>
 </div>

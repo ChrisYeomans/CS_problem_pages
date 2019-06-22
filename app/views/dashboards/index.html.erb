@@ -1,10 +1,12 @@
-<% if not session[:admin] %>
-<%= controller.redirect_to '/' %>
-<% end %>
+<% if not admin_status %>
+	<%= controller.redirect_to '/' %>
+<% else %>
 
-<h1 class="text-center">Dashboard</h1>
-<div class="container jumbotron p-5 text-center">
-	<a class="btn btn-primary" href="/dashboard/create_problem" role="button">Create Problem</a>
-	<a class="btn btn-primary" href="/dashboard/manage_problems" role="button">Manage Problems</a>
-	<a class="btn btn-primary" href="/dashboard/manage_users" role="button">Manage Users</a>
-</div>
+	<h1 class="text-center">Dashboard</h1>
+	<div class="container jumbotron p-5 text-center">
+		<a class="btn btn-primary" href="/dashboard/create_problem" role="button">Create Problem</a>
+		<a class="btn btn-primary" href="/dashboard/manage_problems" role="button">Manage Problems</a>
+		<a class="btn btn-primary" href="/dashboard/manage_users" role="button">Manage Users</a>
+	</div>
+
+<% end %>

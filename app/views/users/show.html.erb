@@ -1,0 +1,6 @@
+<div class="text-center">
+	<h1><%= @user.name %></h1>
+	<% if @user.is_admin == 1 %><strong>Admin</strong><% end %>
+	<p><%= @user.email %></p>
+	<p><%= @user.password %></p>
+</div>

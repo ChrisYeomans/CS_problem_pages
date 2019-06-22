@@ -1,0 +1,26 @@
+<% if (not current_user) || (current_user.id != @user.id) %>
+	<% controller.redirect_to '/' %>
+<% else %>
+
+	<div class="text-center">
+		<h1>Settings</h1>
+		<%= form_for :user, url: user_path(current_user), method: :patch do |f| %>
+			<%= f.label(:name, "Username") %><br />
+			<%= f.text_field(:name, size: "40x2") %>
+			<br />
+			<%= f.label(:email, "Email") %><br />
+			<%= f.text_field(:email, size: "40x2") %>
+			<br /><br />
+			<%= f.submit "Save", class: "btn btn-primary" %>
+		<% end %>
+		<br />
+		<%= link_to "Change Password", user_path(current_user)+"/change_pw",
+					method: :get, 
+					:class => "btn btn-primary" %>
+		<%= link_to "Delete Account", user_path(current_user),
+					method: :delete,
+					data: {confirm: "Are you sure?"}, 
+					:class => "btn btn-danger" %>
+	</div>
+
+<% end %>

@@ -1,0 +1,21 @@
+<% if not current_user %>
+	<% controller.redirect_to '/' %>
+<% else %>
+	<div class="text-center">
+		<h1>Change Password</h1>
+	    <% if flash[:notice] %>
+	        <div class="alert alert-danger">
+	        	<%= flash[:notice] %>
+	        </div>
+    	<% end %>
+		<%= form_for :user, url: user_path(current_user)+'/change_pw', method: :post do |f| %>
+			<%= f.label(:password, "Password") %><br />
+			<%= f.password_field(:password) %>
+			<br />
+		    <%= f.label(:password_confirmation, "Repeat Password") %><br />
+		    <%= f.password_field(:password_confirmation) %>
+		    <br /><br />
+			<%= f.submit "Change Password", class: "btn btn-primary" %>
+		<% end %>
+	</div>
+<% end %>

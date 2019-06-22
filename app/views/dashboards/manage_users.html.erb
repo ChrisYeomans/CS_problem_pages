@@ -1,3 +1,14 @@
-<% if not session[:admin] %>
-<%= controller.redirect_to '/' %>
+<% if not admin_status %>
+	<%= controller.redirect_to '/' %>
+<% else %>
+
+	<h1 class="text-center p-1">Manage Users</h1>
+	<br />
+	<% @users.each do |user| %>
+		<h3 class="text-center">
+			<%= user.id %>. <%= link_to user.name, user_path(user), :class => "text-success" %>
+		</h3>
+		<% if user.is_admin == 1 %><p class="text-center"><strong>Admin</strong></p><% end %>
+	<% end %>
+
 <% end %>

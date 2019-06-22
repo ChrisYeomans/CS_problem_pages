@@ -1,8 +1,20 @@
 # Current state of the project
 
-* Problems have create, edit, delete and display done
-* A a basic dashboard with basic authentication, password 1234 at /login
+## DONE:
+* Basic layout
+* Problems have create, edit, delete and display
+* A basic dashboard
 
-* Currently working on is_hidden and is_current attributes for problems and displaying them appropriatley but updating values does not seem to be working as I would hope, some debugging to be done on that.
+## IN PROGRESS
+* User accounts, create, login, edit, delete and display - chris
 
-* Soon will be working on a proper user system
+## TODO:
+* Add admin controls to user accounts
+* Improve db constraints
+* Make tests
+* Tidy up code
+* Make layout nicer, add more visual content
+* Add score and avatars to users
+* Add stats to dashboard
+
+
