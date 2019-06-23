@@ -1,0 +1,17 @@
+<%= link_to "Make Admin", user_path(@user)+"/make_admin",
+					method: :post,
+					data: {confirm: "Are you sure?"}, 
+					:class => "btn btn-primary" %>
+<%= link_to "Make Not Admin", user_path(@user)+"/make_not_admin",
+					method: :post,
+					data: {confirm: "Are you sure?"}, 
+					:class => "btn btn-primary" %>
+<br /><br />
+<%= link_to "Reset Password", user_path(@user)+"/reset_password",
+					method: :post,
+					data: {confirm: "Are you sure?"}, 
+					:class => "btn btn-primary" %>
+<%= link_to "Delete User", user_path(@user)+"/delete_user",
+					method: :post,
+					data: {confirm: "Are you sure?"}, 
+					:class => "btn btn-danger" %>

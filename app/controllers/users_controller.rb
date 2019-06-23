@@ -53,6 +53,40 @@ class UsersController < ApplicationController
     redirect_to @user
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    session.clear
+    redirect_to '/'
+  end
+
+  def make_admin
+    @user = User.find(params[:id])
+    @user.is_admin = 1
+    @user.save
+    redirect_to @user
+  end
+
+  def make_not_admin
+    @user = User.find(params[:id])
+    @user.is_admin = 0
+    @user.save
+    redirect_to @user
+  end
+
+  def reset_password
+    @user = User.find(params[:id])
+    @user.password = Digest::SHA256.new << "1234"
+    @user.save
+    redirect_to @user
+  end
+
+  def delete_user
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to '/'
+  end
+
   def user_params
     params.require(:user).permit(:name, :email, :password, :is_admin)
   end

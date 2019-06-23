@@ -43,7 +43,10 @@ Rails.application.routes.draw do
 
     # manage users
     get "/dashboard/manage_users", to: "dashboards#manage_users"
-
+    post "/users/:id/make_admin", to: "users#make_admin"
+    post "/users/:id/make_not_admin", to: "users#make_not_admin"
+    post "/users/:id/reset_password", to: "users#reset_password"
+    post "/users/:id/delete_user", to: "users#delete_user"
 
   # login and logout backdoors
   get "/back_in", to: "problems#back_in"

@@ -1,6 +1,7 @@
-<% if not current_user %>
+<% if (not current_user) || (current_user.id != @user.id) %>
 	<% controller.redirect_to '/' %>
 <% else %>
+
 	<div class="text-center">
 		<h1>Change Password</h1>
 	    <% if flash[:notice] %>
@@ -18,4 +19,5 @@
 			<%= f.submit "Change Password", class: "btn btn-primary" %>
 		<% end %>
 	</div>
+
 <% end %>

@@ -3,4 +3,7 @@
 	<% if @user.is_admin == 1 %><strong>Admin</strong><% end %>
 	<p><%= @user.email %></p>
 	<p><%= @user.password %></p>
+	<% if admin_status %>
+		<%= render "manage_user_buttons" %>
+	<% end %>
 </div>
