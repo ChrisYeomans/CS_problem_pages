@@ -18,7 +18,7 @@
 * Come up with name
 * Make layout nicer, add more visual content
 * Make settings instanced
-* Add search bars; users, problems
+* Add search bars and pagination; users, problems
 * Add score and avatars to users
 * Add stats to dashboard
 * Find and Hook up grading system

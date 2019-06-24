@@ -2,8 +2,6 @@ require 'digest/sha2'
 
 class ProblemsController < ApplicationController
   def index
-    @problems = Problem.all
-    render 'past_problems'
   end
 
   def past_problems

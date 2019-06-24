@@ -3,13 +3,20 @@
 one:
   title: MyString
   body: MyText
-  is_current: 1
+  is_current: 0
   is_hidden: 1
   test_cases: MyText
 
 two:
   title: MyString
   body: MyText
-  is_current: 1
+  is_current: 0
   is_hidden: 1
   test_cases: MyText
+
+hello_world:
+  title: "Hello World"
+  body: "Write a problem that outputs 'Hello World!'"
+  is_current: 1
+  is_hidden: 0
+  test_cases: "Hello World"

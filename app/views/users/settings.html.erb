@@ -4,6 +4,11 @@
 
 	<div class="text-center">
 		<h1>Settings</h1>
+		<% @user.errors.full_messages.each do |msg| %>
+            <div class="alert alert-danger">
+            	<%= msg %>
+            </div>
+        <% end %>
 		<%= form_for :user, url: user_path(current_user), method: :patch do |f| %>
 			<%= f.label(:name, "Username") %><br />
 			<%= f.text_field(:name, size: "40x2") %>

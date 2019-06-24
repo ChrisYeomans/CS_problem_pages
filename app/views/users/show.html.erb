@@ -1,4 +1,9 @@
 <div class="text-center">
+    <% if flash[:notice] %>
+		<div class="alert alert-danger">
+			<%= flash[:notice] %>
+		</div>
+	<% end %>
 	<h1><%= @user.name %></h1>
 	<% if @user.is_admin == 1 %><strong>Admin</strong><% end %>
 	<p><%= @user.email %></p>

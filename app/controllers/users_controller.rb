@@ -45,6 +45,7 @@ class UsersController < ApplicationController
     if params[:user][:password] == params[:user][:password_confirmation]
       @user.password = Digest::SHA256.new << params[:user][:password]
       @user.save
+      flash[:notice] = "Password changed successfully"
       redirect_to @user
     else
       flash[:notice] = 'Passwords do not match'
@@ -55,8 +56,12 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
-    @user.save
-    redirect_to @user
+    if @user.save
+      flash[:notice] = "Saved data successfully"
+      redirect_to @user
+    else
+      render "settings"
+    end
   end
 
   def destroy
