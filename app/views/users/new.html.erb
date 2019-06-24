@@ -1,21 +1,28 @@
 <h1 class="text-center">New User</h1>
 <div class="container text-center">
 	<%= form_for :user, url: user_new_path do |f| %>
-        <% @user.errors.full_messages.each do |msg| %>
-            <div class="alert alert-danger">
-            	<%= msg %>
-            </div>
-        <% end %>
+		<% if @user %>
+	        <% @user.errors.full_messages.each do |msg| %>
+	            <div class="alert alert-danger">
+	            	<%= msg %>
+	            </div>
+	        <% end %>
+	    <% end %>
+       	<% if flash[:notice] %>
+	        <div class="alert alert-danger">
+	        	<%= flash[:notice] %>
+	        </div>
+    	<% end %>
 
 		<%= f.label(:name, "Username") %><br />
 		<%= f.text_field(:name, size: "40x2") %>
-		<br />
+		<br /><br />
 		<%= f.label(:email, "Email") %><br />
-		<%= f.text_field(:email, size: "40x2") %>
-		<br />
+		<%= f.email_field(:email, size: "40x2") %>
+		<br /><br />
 		<%= f.label(:password, "Password") %><br />
 		<%= f.password_field(:password) %>
-		<br />
+		<br /><br />
 	    <%= f.label(:password_confirmation, "Repeat Password") %><br />
 	    <%= f.password_field(:password_confirmation) %>
 		<br /><br />

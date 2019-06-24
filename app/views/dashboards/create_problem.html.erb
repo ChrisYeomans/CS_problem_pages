@@ -4,6 +4,13 @@
 
 	<h1 class="text-center">Create Problem</h1>
 	<div class="container text-center">
+		<% if @problem %>
+	        <% @problem.errors.full_messages.each do |msg| %>
+	            <div class="alert alert-danger">
+	            	<%= msg %>
+	            </div>
+	        <% end %>
+	    <% end %>
 		<%= form_for :problem, url: problems_path do |f| %>
 			<%= f.label(:title, "Title") %><br />
 			<%= f.text_field(:title, size: "98x2") %>

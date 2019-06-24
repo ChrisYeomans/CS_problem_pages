@@ -48,9 +48,4 @@ Rails.application.routes.draw do
     post "/users/:id/reset_password", to: "users#reset_password"
     post "/users/:id/delete_user", to: "users#delete_user"
 
-  # login and logout backdoors
-  get "/back_in", to: "problems#back_in"
-  post "/back_in", to: "problems#enter_back_in"
-  get "/back_out", to: "problems#back_out"
-
 end

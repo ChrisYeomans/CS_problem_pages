@@ -17,6 +17,7 @@
 * Tidy up code, also maybe add variable titles
 * Come up with name
 * Make layout nicer, add more visual content
+* Make settings instanced
 * Add search bars; users, problems
 * Add score and avatars to users
 * Add stats to dashboard

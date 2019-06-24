@@ -1,16 +1,22 @@
 require 'digest/sha2'
 
 class UsersController < ApplicationController
+  @user = User.new
   def new_user
-  	@user = User.new(user_params)
-	  @user.is_admin = 0 # make users not admin by default
-    # hash password because duh
-  	@user.password = Digest::SHA256.new << @user.password
-  	if @user.save
-  		redirect_to @user
-	  else
-		  render 'new'
-	  end
+    if params[:user][:password] != params[:user][:password_confirmation]
+      flash.now[:notice] = "Passwords do not match"
+      render 'new'
+    else
+      @user = User.new(user_params)
+  	  @user.is_admin = 0 # make users not admin by default
+      # hash password because duh
+      @user.password = Digest::SHA256.new << @user.password
+    	if @user.save
+    		redirect_to @user
+  	  else
+  		  render 'new'
+  	  end
+    end
   end
 
   def new

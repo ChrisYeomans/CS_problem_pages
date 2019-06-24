@@ -2,6 +2,8 @@ require 'digest/sha2'
 
 class ProblemsController < ApplicationController
   def index
+    @problems = Problem.all
+    render 'past_problems'
   end
 
   def past_problems
@@ -18,8 +20,12 @@ class ProblemsController < ApplicationController
 
   def create
     @problem = Problem.new(problem_params)
-    @problem.save
-    redirect_to @problem
+
+    if @problem.save
+      redirect_to @problem
+    else
+      render '/dashboards/create_problem'
+    end
   end
 
   def update
@@ -77,15 +83,4 @@ class ProblemsController < ApplicationController
     params.require(:problem).permit(:title, :body, :test_cases, :is_current, :is_hidden)
   end
 
-  def enter_back_in
-    if session[:admin]
-      redirect_to root_url
-    elsif Digest::SHA256.new << params[:password] == "3cb1b9f7a3bc532712b7597206ed4ab6c3d5db6fe09dba41e600be3883057fab"
-      session.clear
-      session[:admin] = true
-      redirect_to root_url
-    else
-      redirect_to "/back_in"
-    end
-  end
 end
