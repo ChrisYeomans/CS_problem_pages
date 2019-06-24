@@ -18,8 +18,4 @@ class ProblemsControllerTest < ActionDispatch::IntegrationTest
   	assert_response :success, "Didnt get current_problem"
   end
 
-  test "should get show with an id of 1" do
-    get user_path(User.find(1))
-    assert_response :success, "Didn't get show with an id of one"
-  end
 end
