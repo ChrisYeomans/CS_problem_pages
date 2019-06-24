@@ -90,7 +90,7 @@ class UsersController < ApplicationController
   def delete_user
     @user = User.find(params[:id])
     @user.destroy
-    redirect_to '/'
+    redirect_to '/dashboard/manage_users'
   end
 
   def user_params
