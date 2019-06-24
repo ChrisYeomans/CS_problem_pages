@@ -7,12 +7,12 @@
 * User accounts, create, login, edit, delete and display
 * Changing displayed content based on user status; logged in, not logged in or admin
 * Add admin controls to user accounts
+* Fix parameter and db constraints
 
 ## IN PROGRESS:
-* Fix parameter and db constraints - chris
+* Make tests - chris
 
 ## TODO:
-* Make tests
 * Get better password hashing algorithm, bcrypt?
 * Tidy up code, also maybe add variable titles
 * Come up with name
