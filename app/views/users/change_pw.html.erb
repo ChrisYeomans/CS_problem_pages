@@ -4,6 +4,13 @@
 
 	<div class="text-center">
 		<h1>Change Password</h1>
+		<% if @user %>
+	        <% @user.errors.full_messages.each do |msg| %>
+	            <div class="alert alert-danger">
+	            	<%= msg %>
+	            </div>
+	        <% end %>
+	    <% end %>
 	    <% if flash[:notice] %>
 	        <div class="alert alert-danger">
 	        	<%= flash[:notice] %>

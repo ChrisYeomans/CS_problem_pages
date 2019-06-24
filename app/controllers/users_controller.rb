@@ -1,22 +1,13 @@
-require 'digest/sha2'
-
 class UsersController < ApplicationController
   @user = User.new
   def new_user
-    if params[:user][:password] != params[:user][:password_confirmation]
-      flash.now[:notice] = "Passwords do not match"
-      render 'new'
-    else
-      @user = User.new(user_params)
-  	  @user.is_admin = 0 # make users not admin by default
-      # hash password because duh
-      @user.password = Digest::SHA256.new << @user.password
-    	if @user.save
-    		redirect_to @user
-  	  else
-  		  render 'new'
-  	  end
-    end
+    @user = User.new(user_params)
+	  @user.is_admin = 0 # make users not admin by default
+  	if @user.save
+  		redirect_to @user
+	  else
+		  render 'new'
+	  end
   end
 
   def new
@@ -42,13 +33,10 @@ class UsersController < ApplicationController
 
   def update_pw
     @user = User.find(params[:id])
-    if params[:user][:password] == params[:user][:password_confirmation]
-      @user.password = Digest::SHA256.new << params[:user][:password]
-      @user.save
+    if @user.save
       flash[:notice] = "Password changed successfully"
       redirect_to @user
     else
-      flash[:notice] = 'Passwords do not match'
       render 'change_pw'
     end
   end
@@ -87,9 +75,15 @@ class UsersController < ApplicationController
 
   def reset_password
     @user = User.find(params[:id])
-    @user.password = Digest::SHA256.new << "1234"
-    @user.save
-    redirect_to @user
+    @user.password = "1234"
+    @user.password_confirmation = "1234"
+    if @user.save
+      flash[:notice] = "Password reset successfully"
+      redirect_to @user
+    else
+      flash[:notice] = "Password not reset"
+      redirect_to "/dashboard/manage_users"
+    end
   end
 
   def delete_user
@@ -99,6 +93,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :is_admin)
+    params.require(:user).permit(:name, :email, :password, :is_admin, :password_confirmation)
   end
 end

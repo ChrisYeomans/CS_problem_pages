@@ -1,5 +1,3 @@
-require 'digest/sha2'
-
 class ProblemsController < ApplicationController
   def index
   end
