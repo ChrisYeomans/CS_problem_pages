@@ -1,7 +1,8 @@
 <% if (not current_user) || (current_user.id != @user.id) %>
 	<% controller.redirect_to '/' %>
 <% else %>
-
+	
+	<% @title="Change Password" %>
 	<div class="text-center">
 		<h1>Change Password</h1>
 		<% if @user %>
@@ -11,11 +12,6 @@
 	            </div>
 	        <% end %>
 	    <% end %>
-	    <% if flash[:notice] %>
-	        <div class="alert alert-danger">
-	        	<%= flash[:notice] %>
-	        </div>
-    	<% end %>
 		<%= form_for :user, url: user_path(current_user)+'/change_pw', method: :post do |f| %>
 			<%= f.label(:password, "Password") %><br />
 			<%= f.password_field(:password) %>

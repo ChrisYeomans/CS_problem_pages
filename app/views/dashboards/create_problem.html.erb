@@ -1,7 +1,8 @@
 <% if not admin_status %>
 	<%= controller.redirect_to '/' %>
 <% else %>
-
+	
+	<% @title="Creata Problem" %>
 	<h1 class="text-center">Create Problem</h1>
 	<div class="container text-center">
 		<% if @problem %>

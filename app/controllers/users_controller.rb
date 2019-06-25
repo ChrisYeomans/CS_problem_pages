@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
-  @user = User.new
+
+  # called by post of /user/new
   def new_user
     @user = User.new(user_params)
 	  @user.is_admin = 0 # make users not admin by default
   	if @user.save
-  		redirect_to @user
+      flash[:succ] = "Successfully created a new user, please login"
+  		redirect_to "/login"
 	  else
 		  render 'new'
 	  end
@@ -31,10 +33,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  # post of change_pw
   def update_pw
     @user = User.find(params[:id])
     if @user.save
-      flash[:notice] = "Password changed successfully"
+      flash[:succ] = "Password changed successfully"
       redirect_to @user
     else
       render 'change_pw'
@@ -45,18 +48,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update(user_params)
     if @user.save
-      flash[:notice] = "Saved data successfully"
+      flash[:succ] = "Saved data successfully"
       redirect_to @user
     else
       render "settings"
     end
-  end
-
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-    session.clear
-    redirect_to '/'
   end
 
   def make_admin
@@ -78,7 +74,7 @@ class UsersController < ApplicationController
     @user.password = "1234"
     @user.password_confirmation = "1234"
     if @user.save
-      flash[:notice] = "Password reset successfully"
+      flash[:succ] = "Password reset successfully"
       redirect_to @user
     else
       flash[:notice] = "Password not reset"

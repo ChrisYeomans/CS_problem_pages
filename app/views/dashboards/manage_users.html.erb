@@ -2,6 +2,7 @@
 	<%= controller.redirect_to '/' %>
 <% else %>
 
+	<% @title="Manage users" %>
 	<h1 class="text-center p-1">Manage Users</h1>
 	<br />
 	<% @users.each do |user| %>

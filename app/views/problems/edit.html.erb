@@ -1,6 +1,7 @@
 <% if not admin_status %>
 <%= controller.redirect_to '/' %>
 <% else %>
+	<% @title="Edit Problem" %>
 	<h1 class="text-center">Edit Problem</h1>
 	<div class="container text-center">
 		<%= form_for :problem, url: problem_path(@problem), method: :patch do |f| %>

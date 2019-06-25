@@ -1,12 +1,7 @@
+<% @title="Login" %>
 <h1 class="text-center">Login</h1>
 <div class="container text-center">
 	<%= form_for(:session, url: login_path) do |f| %>
-
-        <% if flash[:notice] %>
-	        <div class="alert alert-danger">
-	        	<%= flash[:notice] %>
-	        </div>
-	    <% end %>
 
 	    <%= f.label(:name, "Username") %><br />
 	    <%= f.text_field(:name, size: "40x2") %>

@@ -1,6 +1,8 @@
+<% @title="Signup" %>
 <h1 class="text-center">New User</h1>
 <div class="container text-center">
 	<%= form_for :user, url: user_new_path do |f| %>
+
 		<% if @user %>
 	        <% @user.errors.full_messages.each do |msg| %>
 	            <div class="alert alert-danger">
@@ -8,11 +10,6 @@
 	            </div>
 	        <% end %>
 	    <% end %>
-       	<% if flash[:notice] %>
-			<div class="alert alert-danger">
-				<%= flash[:notice] %>
-			</div>
-    	<% end %>
 
 		<%= f.label(:name, "Username") %><br />
 		<%= f.text_field(:name, size: "40x2") %>

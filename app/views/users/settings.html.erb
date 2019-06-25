@@ -1,7 +1,8 @@
 <% if (not current_user) || (current_user.id != @user.id) %>
 	<% controller.redirect_to '/' %>
 <% else %>
-
+	
+	<% @title=@user.name + " Settings" %>
 	<div class="text-center">
 		<h1>Settings</h1>
 		<% @user.errors.full_messages.each do |msg| %>

@@ -8,15 +8,16 @@
 * Changing displayed content based on user status; logged in, not logged in or admin
 * Add admin controls to user accounts
 * Fix parameter and db constraints
+* Make tests
+* Get better password hashing algorithm, bcrypt?
+* Tidy up code and add variable titles
+* Add favicon
 
 ## IN PROGRESS:
-* Make tests - chris
+* Make layout nicer, add more visual content - chris
 
 ## TODO:
-* Get better password hashing algorithm, bcrypt?
-* Tidy up code, also maybe add variable titles
 * Come up with name
-* Make layout nicer, add more visual content
 * Make settings instanced
 * Add search bars and pagination; users, problems
 * Add score and avatars to users

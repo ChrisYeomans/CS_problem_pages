@@ -2,6 +2,7 @@
 	<%= controller.redirect_to '/' %>
 <% else %>
 
+	<% @title="Manage Problems" %>
 	<h1 class="text-center p-1">Manage Problems</h1>
 	<% @problems.each do |problem| %>
 		<h3 class="text-center">
