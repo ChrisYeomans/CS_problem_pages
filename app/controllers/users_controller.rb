@@ -36,6 +36,7 @@ class UsersController < ApplicationController
   # post of change_pw
   def update_pw
     @user = User.find(params[:id])
+    @user.update(user_params)
     if @user.save
       flash[:succ] = "Password changed successfully"
       redirect_to @user
