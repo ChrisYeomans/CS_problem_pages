@@ -5,7 +5,7 @@
 	<% @problems.all.each do |problem| %>
 		<% if problem.is_current == 1 %>
 			<h3><%= problem.title %></h3>
-			<p><%= problem.body %></p>
+			<%= render plain: @markdown.render(problem.body).html_safe %>
 			<% break %>
 		<% end %>
 	<% end%>

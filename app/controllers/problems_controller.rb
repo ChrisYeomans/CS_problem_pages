@@ -9,6 +9,7 @@ class ProblemsController < ApplicationController
   # it find one with is_current == 1. There should only be
   # one problem like this
   def current_problem
+    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
     @problems = Problem.all
   end
 
