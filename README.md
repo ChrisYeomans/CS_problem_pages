@@ -12,12 +12,12 @@
 * Get better password hashing algorithm, bcrypt?
 * Tidy up code and add variable titles
 * Add favicon
+* Add Markdown and LaTeX support to problems
 
 ## IN PROGRESS:
 * Make layout nicer, add more visual content - chris
 
 ## TODO:
-* Add Markdown and LaTeX support to problems
 * Come up with name
 * Make settings instanced
 * Make custom error pages
