@@ -22,6 +22,7 @@
 * Add search bars and pagination; users, problems
 * Add score and avatars to users
 * Add stats to dashboard
+* Add TOC plus TOC bar w/ cookie
 * Find and Hook up grading system
 * Add page for solutions and discussion of previous weeks problem
 * Make more tests
