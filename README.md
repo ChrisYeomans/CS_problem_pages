@@ -20,6 +20,7 @@
 * Add Markdown and LaTeX support to problems
 * Come up with name
 * Make settings instanced
+* Make custom error pages
 * Add search bars and pagination; users, problems
 * Add score and avatars to users
 * Add stats to dashboard
