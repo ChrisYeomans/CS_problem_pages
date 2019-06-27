@@ -1,23 +1,36 @@
 <% @title="Past Problems" %>
 <h1 class="text-center p-1">Past Problems</h1>
 
-<% @problems.each do |problem| %>
-	<% if problem.is_hidden == 0 %>
-		<div class="container card border border-dark">
-			<div class="card-body row text-center">	
-				<div class="col-sm-5 text-left">
-						<%= link_to problem.title, problem_path(problem), :class => "text-success" %>
-				</div>
-				<div class="col-sm-3">
-					Average Score: 0%
-				</div>
-				<div class="col-sm-2">
-					Points: 0
-				</div>
-				<div class="col-sm-2">
-					Completed: false
-				</div>
-			</div>
-		</div>
-	<% end %>
-<% end %>
+<div class="table-responsive-md">
+	<table class="table table-striped table-hover">
+		<thead>
+			<tr class="text-center">
+				<th scope="col" class="text-left">Problem</th>
+				<th scope="col">Average Score</th>
+				<th scope="col">Points</th>
+				<th scope="col">Completed</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<% @problems.each do |problem| %>
+				<% if problem.is_hidden == 0 %>
+					<tr class="text-center">
+						<th scope="row" class="text-left">
+							<%= link_to problem.title, problem_path(problem), :class => "text-success" %>
+						</th>
+						<td scope="row">
+							0%
+						</td>
+						<td scope="row">
+							0
+						</td>
+						<td scope="row">
+							false
+						</td>
+					</tr>
+				<% end %>
+			<% end %>
+		</tbody>
+	</table>
+</div>

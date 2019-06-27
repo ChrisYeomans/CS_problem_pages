@@ -17,6 +17,7 @@
 * Make layout nicer, add more visual content - chris
 
 ## TODO:
+* Add Markdown and LaTeX support to problems
 * Come up with name
 * Make settings instanced
 * Add search bars and pagination; users, problems
@@ -24,9 +25,9 @@
 * Add stats to dashboard
 * Add TOC plus TOC bar w/ cookie
 * Find and Hook up grading system
+* Add dark mode
 * Add page for solutions and discussion of previous weeks problem
 * Make more tests
-* Add Markdown and LaTeX support to problems
 * Add live competition support
 * Improve dashboard
 * Make even more tests
