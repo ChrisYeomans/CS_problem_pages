@@ -1,3 +1,5 @@
+require 'redcarpet'
+
 class ProblemsController < ApplicationController
   def past_problems
     @problems = Problem.all
@@ -11,6 +13,7 @@ class ProblemsController < ApplicationController
   end
 
   def show
+    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
     @problem = Problem.find(params[:id])
   end
 
