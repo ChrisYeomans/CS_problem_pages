@@ -1,4 +1,10 @@
 require 'redcarpet'
+require 'rouge'
+require 'rouge/plugins/redcarpet'
+
+class CustomRender < Redcarpet::Render::HTML
+  include Rouge::Plugins::Redcarpet
+end
 
 class ProblemsController < ApplicationController
   def past_problems
@@ -9,12 +15,12 @@ class ProblemsController < ApplicationController
   # it find one with is_current == 1. There should only be
   # one problem like this
   def current_problem
-    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+    @markdown = Redcarpet::Markdown.new(CustomRender, md_arguments)
     @problems = Problem.all
   end
 
   def show
-    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+    @markdown = Redcarpet::Markdown.new(CustomRender, md_arguments)
     @problem = Problem.find(params[:id])
   end
 
@@ -101,6 +107,19 @@ class ProblemsController < ApplicationController
 
   def problem_params
     params.require(:problem).permit(:title, :body, :test_cases, :is_current, :is_hidden)
+  end
+
+  def md_arguments
+    {
+      autolink: true,
+      tables: true,
+      autolink: true,
+      fenced_code_blocks: true,
+      lax_spacing: true,
+      no_intra_emphasis: true,
+      strikethrough: true,
+      superscript: true
+    }
   end
 
 end

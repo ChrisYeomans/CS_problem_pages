@@ -1,7 +1,9 @@
 <% @title=@problem.title %>
 <div class="text-center">
 	<h1><%= @problem.title %></h1>
-	<%= render plain: @markdown.render(@problem.body).html_safe %>
+	<div class="text-left">
+		<%= render plain: @markdown.render(@problem.body).html_safe %>
+	</div>
 	<% if admin_status %>
 		<%= render "manage_post_buttons" %>
 	<% end %>

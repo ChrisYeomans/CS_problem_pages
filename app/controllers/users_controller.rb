@@ -19,6 +19,7 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
+    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
   end
 
   def login
@@ -90,7 +91,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :is_admin, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :is_admin, :password_confirmation, :bio)
   end
 
 end

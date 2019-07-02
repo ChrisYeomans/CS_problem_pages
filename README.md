@@ -12,7 +12,8 @@
 * Get better password hashing algorithm, bcrypt?
 * Tidy up code and add variable titles
 * Add favicon
-* Add Markdown and LaTeX support to problems
+* Add Markdown support to problems
+* Add code highlighting to problems
 
 ## IN PROGRESS:
 * Make layout nicer, add more visual content - chris
@@ -27,6 +28,7 @@
 * Add TOC plus TOC bar w/ cookie
 * Find and Hook up grading system
 * Add dark mode
+* Add LaTeX support to problems
 * Add page for solutions and discussion of previous weeks problem
 * Make more tests
 * Add live competition support
