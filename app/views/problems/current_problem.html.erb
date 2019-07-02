@@ -1,7 +1,7 @@
 <% @title="Problem Of The Week" %>
 <h1 class="text-center p-1">Problem Of The Week</h1>
 
-<div class="text-center p-4">
+<div class="text-left p-4">
 	<% @problems.all.each do |problem| %>
 		<% if problem.is_current == 1 %>
 			<h3><%= problem.title %></h3>

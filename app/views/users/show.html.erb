@@ -5,11 +5,26 @@
         	<%= msg %>
         </div>
     <% end %>
-	<h1><%= @user.name %></h1>
-	<% if @user.is_admin == 1 %><strong>Admin</strong><% end %>
-	<p><%= @user.email %></p>
-	<% if @user.bio %><%= render plain: @markdown.render(@user.bio).html_safe %><% end %>
-	<% if admin_status %>
-		<%= render "manage_user_buttons" %>
-	<% end %>
+</div>
+<div class="row">
+	<div class="text-left col-sm-8">
+		<h1><%= @user.name %></h1>
+		<% if @user.is_admin == 1 %><strong>Admin</strong><% end %>
+		<br /><br /><br />
+		<h3>Total Score: 0</h3>
+		<br /><br />
+		<h3>Rank 0/0</h3>
+		<br /><br />
+		<% if @user.bio %>
+			<h3>Bio:</h3>
+			<%= render plain: @markdown.render(@user.bio).html_safe %>
+		<% end %>
+		<% if admin_status %>
+			<%= render "manage_user_buttons" %>
+		<% end %>
+		<br /><br />
+	</div>
+	<div class="col-sm-4" style="background-color: red">
+		Picture
+	</div>
 </div>

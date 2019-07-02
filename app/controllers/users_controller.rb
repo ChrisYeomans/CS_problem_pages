@@ -1,3 +1,11 @@
+require 'redcarpet'
+require 'rouge'
+require 'rouge/plugins/redcarpet'
+
+class CustomRender < Redcarpet::Render::HTML
+  include Rouge::Plugins::Redcarpet
+end
+
 class UsersController < ApplicationController
 
   # called by post of /user/new
@@ -19,7 +27,7 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
-    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+    @markdown = Redcarpet::Markdown.new(CustomRender, md_arguments)
   end
 
   def login
@@ -94,4 +102,16 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password, :is_admin, :password_confirmation, :bio)
   end
 
+  def md_arguments
+    {
+      autolink: true,
+      tables: true,
+      autolink: true,
+      fenced_code_blocks: true,
+      lax_spacing: true,
+      no_intra_emphasis: true,
+      strikethrough: true,
+      superscript: true
+    }
+  end
 end
