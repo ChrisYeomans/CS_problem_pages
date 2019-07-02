@@ -36,8 +36,8 @@ class UsersController < ApplicationController
   # post of change_pw
   def update_pw
     @user = User.find(params[:id])
-    @user.update(user_params)
-    if @user.save
+
+    if @user.update_attributes(user_params)
       flash[:succ] = "Password changed successfully"
       redirect_to @user
     else
@@ -47,8 +47,8 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    if @user.save
+
+    if @user.update_attributes(user_params)
       flash[:succ] = "Saved data successfully"
       redirect_to @user
     else
@@ -72,14 +72,14 @@ class UsersController < ApplicationController
 
   def reset_password
     @user = User.find(params[:id])
-    @user.password = "1234"
-    @user.password_confirmation = "1234"
+    @user.password = "123456"
+    @user.password_confirmation = "123456"
     if @user.save
       flash[:succ] = "Password reset successfully"
       redirect_to @user
     else
       flash[:notice] = "Password not reset"
-      redirect_to "/dashboard/manage_users"
+      redirect_to @user
     end
   end
 
@@ -92,4 +92,5 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password, :is_admin, :password_confirmation)
   end
+
 end

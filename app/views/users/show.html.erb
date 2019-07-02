@@ -1,5 +1,10 @@
 <% @title=@user.name %>
 <div class="text-center">
+	<% @user.errors.full_messages.each do |msg| %>
+        <div class="alert alert-danger">
+        	<%= msg %>
+        </div>
+    <% end %>
 	<h1><%= @user.name %></h1>
 	<% if @user.is_admin == 1 %><strong>Admin</strong><% end %>
 	<p><%= @user.email %></p>
