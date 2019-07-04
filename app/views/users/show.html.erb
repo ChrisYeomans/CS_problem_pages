@@ -19,6 +19,8 @@
 			<h3>Bio:</h3>
 			<%= render plain: @markdown.render(@user.bio).html_safe %>
 		<% end %>
+		<%= link_to "Edit Profile", '/user/'+current_user.id.to_s+'/settings' %>
+		<br /><br />
 		<% if admin_status %>
 			<%= render "manage_user_buttons" %>
 		<% end %>
