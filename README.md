@@ -36,9 +36,9 @@
 * Make even more tests
 * Add training problems
 
-## Running the server in dev enviornment:
-Clone the repo
+## Dowloading and Running the server in dev enviornment:
 ```bash
+git clone https://github.com/ChrisYeomans/CS_problem_pages.git
 cd CS_problem_pages
 bundler install
 rake db:migrate
