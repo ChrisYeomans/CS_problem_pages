@@ -35,3 +35,12 @@
 * Improve dashboard
 * Make even more tests
 * Add training problems
+
+## Running the server in dev enviornment:
+Clone the repo
+```bash
+cd CS_problem_pages
+bundler install
+rake db:migrate
+rails server
+```
