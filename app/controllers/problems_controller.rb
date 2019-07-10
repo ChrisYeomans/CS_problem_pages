@@ -79,13 +79,19 @@ class ProblemsController < ApplicationController
   def make_current
     # need to make all other problems not current
     Problem.all.each do |p|
-      p.is_current = false
-      p.save
+      p.is_current = 0
+      if p.save
+      else
+        flash[:notice] = "Error making resetting other current problems to 0"
+      end
     end
     @problem = Problem.find(params[:id])
     @problem.is_current = true
-    @problem.save
-    flash[:succ] = "Problem is now the problem of the week"
+    if @problem.save
+      flash[:succ] = "Problem is now the problem of the week"
+    else
+      flash[:notice] = "Error making problem the problem of the week"
+    end
     redirect_to "/dashboard/manage_problems"
   end
 
