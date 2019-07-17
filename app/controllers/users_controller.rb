@@ -7,11 +7,13 @@ class CustomRender < Redcarpet::Render::HTML
 end
 
 class UsersController < ApplicationController
+  include UsersHelper
 
   # called by post of /user/new
   def new_user
     @user = User.new(user_params)
 	  @user.is_admin = 0 # make users not admin by default
+    @user.problem_list = p_list
   	if @user.save
       flash[:succ] = "Successfully created a new user, please login"
   		redirect_to "/login"
@@ -96,6 +98,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     redirect_to '/dashboard/manage_users'
+  end
+
+  def update_users
+    update_users_problems
   end
 
   def user_params

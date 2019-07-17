@@ -7,6 +7,8 @@ class CustomRender < Redcarpet::Render::HTML
 end
 
 class ProblemsController < ApplicationController
+  include UsersHelper
+
   def past_problems
     @problems = Problem.all
   end
@@ -39,6 +41,8 @@ class ProblemsController < ApplicationController
       end
 
       flash[:succ] = "Problem Created"
+      # make the users problem_list entry update
+      update_users_problems
       redirect_to @problem
     else
       render '/dashboards/create_problem'

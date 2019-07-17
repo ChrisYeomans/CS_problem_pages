@@ -47,5 +47,6 @@ Rails.application.routes.draw do
     post "/users/:id/make_not_admin", to: "users#make_not_admin"
     post "/users/:id/reset_password", to: "users#reset_password"
     post "/users/:id/delete_user", to: "users#delete_user"
+    post "/update_users", to: "users#update_users"
 
 end
