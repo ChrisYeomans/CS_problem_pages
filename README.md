@@ -14,11 +14,13 @@
 * Add favicon
 * Add Markdown support to problems
 * Add code highlighting to problems
+* Find grading system - ljudge
 
 ## IN PROGRESS:
-* Make layout nicer, add more visual content - chris
+* Hook up grading system, ljudge - chris
 
 ## TODO:
+* Make layout nicer, add more visual content
 * Come up with name
 * Make settings instanced
 * Make custom error pages
@@ -26,7 +28,6 @@
 * Add score and avatars to users
 * Add stats to dashboard
 * Add TOC plus TOC bar w/ cookie
-* Find and Hook up grading system
 * Add dark mode
 * Add LaTeX support to problems
 * Add page for solutions and discussion of previous weeks problem
