@@ -15,6 +15,7 @@
 * Add Markdown support to problems
 * Add code highlighting to problems
 * Find grading system - ljudge
+* Add some migrations and the relevant funtions in preperation for grading system
 
 ## IN PROGRESS:
 * Hook up grading system, ljudge - chris
