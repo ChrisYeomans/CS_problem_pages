@@ -53,8 +53,11 @@
 
 ## Dowloading and Running the server in dev enviornment:
 First you need to get all compilers/interpreters for the languages in the Supported Languages List
+
 Next you need to install [lrun](https://github.com/quark-zju/lrun)
+
 Finally clone this repo and set it up as follows:
+
 ```bash
 git clone https://github.com/ChrisYeomans/CS_problem_pages.git
 cd CS_problem_pages
