@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   get "/past_problems", to: "problems#past_problems"
   get "/current_problem", to: "problems#current_problem"
 
+  # submission routes
+  resources :submissions
+
   # user routes
   resources :users
   get "/user/new", to: "users#new"

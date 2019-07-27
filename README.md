@@ -14,11 +14,12 @@
 * Add favicon
 * Add Markdown support to problems
 * Add code highlighting to problems
-* Find grading system - ljudge
+* Find grading system - lrun(sandboxing)
 * Add some migrations and the relevant funtions in preperation for grading system
+* Hook up grading system, lrun
 
 ## IN PROGRESS:
-* Hook up grading system, ljudge - chris
+* Add submission create page and stuff - chris
 
 ## TODO:
 * Make layout nicer, add more visual content
@@ -38,7 +39,22 @@
 * Make even more tests
 * Add training problems
 
+## Supported Languages
+* Python3
+* Python
+* C
+* Java6 - Java11
+* C++11
+* C++14
+* C++17
+* Ruby
+* Go
+* V
+
 ## Dowloading and Running the server in dev enviornment:
+First you need to get all compilers/interpreters for the languages in the Supported Languages List
+Next you need to install [lrun](https://github.com/quark-zju/lrun)
+Finally clone this repo and set it up as follows:
 ```bash
 git clone https://github.com/ChrisYeomans/CS_problem_pages.git
 cd CS_problem_pages

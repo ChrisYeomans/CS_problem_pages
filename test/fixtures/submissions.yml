@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  code: MyText
+  language: MyString
+  extension: MyString
+  problem_id: 1
+  user_id: 1
+  test_cases_passed: 1
+
+two:
+  code: MyText
+  language: MyString
+  extension: MyString
+  problem_id: 1
+  user_id: 1
+  test_cases_passed: 1

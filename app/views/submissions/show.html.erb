@@ -1,0 +1,3 @@
+<% @title=@problem.title %>
+<h3 class="text-center">Submission: <%= @submission.id %></h3>
+<%= render plain: @markdown.render("```#{@submission.language}\n#{@submission.code}```").html_safe %>
