@@ -1,3 +1,17 @@
+<% if (not admin_status) and (current_user.id != @submission.user_id) %>
+	<%= controller.redirect_to '/' %>
+<% else %>
+
 <% @title=@problem.title %>
 <h3 class="text-center">Submission: <%= @submission.id %></h3>
-<%= render plain: @markdown.render("```#{@submission.language}\n#{@submission.code}```").html_safe %>
+<%= render plain: @markdown.render("```#{@submission.extension}\n#{@submission.code}\n```").html_safe %>
+<p>Passed: <%= @submission.test_cases_passed %>/<%= @problem.number_of_test_cases %> Test Cases
+<br /><br />Test Case Results:<br />
+<%= @submission.results %>
+</p>
+
+<% if admin_status %>
+	<%= render "manage_submission_buttons" %>
+<% end %>
+
+<% end %>

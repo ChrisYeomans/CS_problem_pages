@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   # submission routes
   resources :submissions
+  post "/submissions/:id/resubmit", to: "submissions#resubmit"
 
   # user routes
   resources :users
@@ -35,7 +36,6 @@ Rails.application.routes.draw do
 
     # create problem
     get "/dashboard/create_problem", to: "dashboards#create_problem"
-    post "/dashboard/create_problem", to: "dashboards#add_problem_to_database"
 
     # manage problems
     get "/dashboard/manage_problems", to: "dashboards#manage_problems"

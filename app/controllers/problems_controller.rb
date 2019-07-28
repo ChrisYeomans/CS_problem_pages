@@ -1,6 +1,7 @@
 require 'redcarpet'
 require 'rouge'
 require 'rouge/plugins/redcarpet'
+require 'json'
 
 class CustomRender < Redcarpet::Render::HTML
   include Rouge::Plugins::Redcarpet
@@ -28,7 +29,8 @@ class ProblemsController < ApplicationController
 
   def create
     @problem = Problem.new(problem_params)
-
+    @problem.number_of_test_cases = @problem.test_cases.split('---').length
+    
     if @problem.save
       # if its current we need to make all other problems not current
       if @problem.is_current
@@ -58,8 +60,13 @@ class ProblemsController < ApplicationController
   def update
     @problem = Problem.find(params[:id])
     @problem.update(problem_params)
-    @problem.save
-    flash[:succ] = "Problem updated successfully"
+    @problem.number_of_test_cases = @problem.test_cases.split('---').length
+
+    if @problem.save
+      flash[:succ] = "Problem updated successfully"
+    else
+      flash[:notice] = "Error saving problem"
+    end
     redirect_to @problem
   end
 

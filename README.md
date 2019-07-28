@@ -17,12 +17,16 @@
 * Find grading system - lrun(sandboxing)
 * Add some migrations and the relevant funtions in preperation for grading system
 * Hook up grading system, lrun
+* Add submission create page and stuff
 
-## IN PROGRESS:
-* Add submission create page and stuff - chris
+## IN PROGRESS: 
+* Add tle and mle to judging function - chris
 
 ## TODO:
+* Add edit page to submissions
+* Make sure judging function works with no input
 * Make layout nicer, add more visual content
+* Improve problem create, specifically test cases
 * Come up with name
 * Make settings instanced
 * Make custom error pages

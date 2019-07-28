@@ -1,6 +1,11 @@
 module SubmissionsHelper
 	def test_cases(language_extension, language, submission_id, test_cases, use_lrun=true, max_cpu_time="2", max_memory="512m")
 		# some setup stuff
+		test_case_hash = {}
+	    test_cases.split("---").each do |tc|
+	      t, c = tc.split("***")
+	      test_case_hash[t] = c
+	    end
 		file_name = "#{submission_id}.#{language_extension}"
 		make_file(file_name, submission_id)
 		compile_command = ""
@@ -20,8 +25,13 @@ module SubmissionsHelper
 				# code runs on the server.
 				run_command = "lrun --pass-exitcode --basic-devices false --max-rtprio 0 --max-nfile 256 --max-nprocess 2048 --nice 0 --remount-dev false --umount-outside false --no-new-privs true --interval 0.02 --reset-env false --isolate-process true --network false --max-cpu-time #{max_cpu_time} --max-memory #{max_memory} #{run_command}"
 			end
-			test_cases.each do |test_case, output|
-				out = `echo #{test_case} | #{run_command} 2> err_#{submission_id}.txt`
+			test_case_hash.each do |test_case, output|
+				out = `echo '#{test_case}' | #{run_command} 2> err_#{submission_id}.txt`
+				
+				# this removes weird hidden characters
+				output = output.strip().split(' ').map(&:strip).join(' ')
+				out = out.strip().split(' ').map(&:strip).join(' ')
+				
 				if not File.zero?("err_#{submission_id}.txt")
 					out_arr << "Runtime Error"
 				elsif out.strip() == output.strip()
@@ -37,7 +47,7 @@ module SubmissionsHelper
 		end
 
 		# leave the campsite how you found it; scout's code
-		System("rm #{submission_id}*")
+		system("rm #{submission_id}*")
 
 		return test_cases_passed, out_arr
 	end
