@@ -13,10 +13,10 @@
 	        <% end %>
 	    <% end %>
 		<%= form_for :user, url: user_path(current_user)+'/change_pw', method: :post do |f| %>
-			<%= f.label(:password, "Password") %><br />
+			<%= f.label(:password, "New Password") %><br />
 			<%= f.password_field(:password) %>
-			<br />
-		    <%= f.label(:password_confirmation, "Repeat Password") %><br />
+			<br /><br />
+		    <%= f.label(:password_confirmation, "Repeat New Password") %><br />
 		    <%= f.password_field(:password_confirmation) %>
 		    <br /><br />
 			<%= f.submit "Change Password", class: "btn btn-primary" %>

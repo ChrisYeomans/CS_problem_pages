@@ -52,4 +52,7 @@ Rails.application.routes.draw do
     post "/users/:id/delete_user", to: "users#delete_user"
     post "/update_users", to: "users#update_users"
 
+    # manage submissions
+    get "/dashboard/manage_submissions", to: "dashboards#manage_submissions"
+
 end

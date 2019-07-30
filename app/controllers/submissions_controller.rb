@@ -25,10 +25,13 @@ class SubmissionsController < ApplicationController
 		@submission.user_id = current_user.id
 
 		if @submission.save
-			@submission.test_cases_passed, @submission.results = test_cases(@submission.extension, @submission.language, @submission.id, Problem.find(@submission.problem_id).test_cases, use_lrun=false)
-			@submission.verdict = (@submission.test_cases_passed == Problem.find(@submission.problem_id).number_of_test_cases)
-			@submission.save
-			flash[:succ] = "Successfull Submission"
+			Thread.new do
+				@submission.test_cases_passed, @submission.results = test_cases(@submission.extension, @submission.language, @submission.id, Problem.find(@submission.problem_id).test_cases, use_lrun=false)
+				@submission.verdict = (@submission.test_cases_passed == Problem.find(@submission.problem_id).number_of_test_cases)
+				@submission.save
+				flash[:succ] = "Successfull Submission"
+			end
+
 			redirect_to @submission
 		else
 			flash[:notice] = "Error in submitting"
@@ -40,21 +43,26 @@ class SubmissionsController < ApplicationController
 		@submission = Submission.find(params[:id])
 	end
 
+	def update
+		@submission = Submission.find(params[:id])
+		@submission.update(submission_params)
+		resubmit
+	end
+
 	def destroy
 		@submission = Submission.find(params[:id])
 		@submission.destroy
 		flash[:succ] = "Submission Destroyed"
-		redirect_to submissions_path
+		redirect_to "/dashboard/manage_submissions"
 	end
 
 	def resubmit
 		@submission = Submission.find(params[:id])
-		@submission.test_cases_passed, @submission.results = test_cases(@submission.extension, @submission.language, @submission.id, Problem.find(@submission.problem_id).test_cases, use_lrun=false)
-		@submission.verdict = (@submission.test_cases_passed == Problem.find(@submission.problem_id).number_of_test_cases)
-		if @submission.save
-			flash[:succ] = "Re-Submitted"
-		else
-			flash[:notice] = "Error not Re-Submitted"
+		flash[:succ] = "Resubmitting"
+		Thread.new do
+			@submission.test_cases_passed, @submission.results = test_cases(@submission.extension, @submission.language, @submission.id, Problem.find(@submission.problem_id).test_cases, use_lrun=false)
+			@submission.verdict = (@submission.test_cases_passed == Problem.find(@submission.problem_id).number_of_test_cases)
+			@submission.save
 		end
 		redirect_to @submission
 	end

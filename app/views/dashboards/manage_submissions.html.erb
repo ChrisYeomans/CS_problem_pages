@@ -1,0 +1,39 @@
+<% if not admin_status %>
+	<%= controller.redirect_to '/' %>
+<% else %>
+<% @title="Manage Submissions" %>
+<div class="table-responsive-md">
+	<table class="table table-striped table-hover">
+		<thead>
+			<tr class="text-center">
+				<th scope="col" class="text-left">Submission ID</th>
+				<th scope="col">Problem</th>
+				<th scope="col">Verdict</th>
+				<th scope="col">User</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<% @submissions.each do |submission| %>
+				<tr class="text-center">
+					<th scope="row" class="text-left">
+						<%= link_to submission.id, submission %>
+					</th>
+					<td scope="row">
+						<% @problem = Problem.find(submission.problem_id) %>
+						<%= link_to @problem.title, @problem %>
+					</td>
+					<td scope="row">
+						<%= submission.verdict %>
+					</td>
+					<td scope="row">
+						<% @user = User.find(submission.user_id) %>
+						<%= link_to @user.name, @user %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+
+<% end %>
