@@ -26,21 +26,31 @@ module SubmissionsHelper
 				run_command = "lrun --pass-exitcode --basic-devices false --max-rtprio 0 --max-nfile 256 --max-nprocess 2048 --nice 0 --remount-dev false --umount-outside false --no-new-privs true --interval 0.02 --reset-env false --isolate-process true --network false --max-cpu-time #{max_cpu_time} --max-memory #{max_memory} #{run_command}"
 			end
 			test_case_hash.each do |test_case, output|
-				out = `echo '#{test_case}' | #{run_command} 2> err_#{submission_id}.txt`
-				
-				# this removes weird hidden characters
-				output = output.strip().split(' ').map(&:strip).join(' ')
-				out = out.strip().split(' ').map(&:strip).join(' ')
-				
-				if not File.zero?("err_#{submission_id}.txt")
+				out = `echo '#{test_case}' | #{run_command} 2> /dev/null 3> info_#{submission_id}.txt`
+
+				# processing lrun run info
+				info = File.read("info_#{submission_id}.txt").split('\n')
+				if info[4] != "EXITCODE 0"
 					out_arr << "Runtime Error"
-				elsif out.strip() == output.strip()
-					test_cases_passed += 1
-					out_arr << "Success"
+				elsif info[6] != "EXCEED   none"
+					if info[6].split(' ')[1] == "CPU_TIME"
+						out_arr << "Time Limit Exceeded"
+					elsif info[6].split(' ')[1] == "MEMORY"
+						out_arr << "Memory Limit Exceeded"
+					end
 				else
-					out_arr << "Wrong Answer"
+					# this removes weird hidden characters
+					output = output.strip().split(' ').map(&:strip).join(' ')
+					out = out.strip().split(' ').map(&:strip).join(' ')
+
+					if out.strip() == output.strip()
+						test_cases_passed += 1
+						out_arr << "Success"
+					else
+						out_arr << "Wrong Answer"
+					end
 				end
-				system("rm err_#{submission_id}.txt")
+				system("rm err_#{submission_id}.txt info_#{submission_id}.txt")
 			end
 		else
 			return "Compile Error"
