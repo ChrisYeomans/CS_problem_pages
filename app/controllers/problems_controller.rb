@@ -123,7 +123,7 @@ class ProblemsController < ApplicationController
   end
 
   def problem_params
-    params.require(:problem).permit(:title, :body, :test_cases, :is_current, :is_hidden)
+    params.require(:problem).permit(:title, :body, :test_cases, :cpu_time, :memory, :is_current, :is_hidden)
   end
 
   def md_arguments

@@ -23,13 +23,13 @@ class SubmissionsController < ApplicationController
 	def create
 		@submission = Submission.new(submission_params)
 		@submission.user_id = current_user.id
-
+		flash[:succ] = "Submitted please wait the reload to update results"
 		if @submission.save
 			Thread.new do
-				@submission.test_cases_passed, @submission.results = test_cases(@submission.extension, @submission.language, @submission.id, Problem.find(@submission.problem_id).test_cases, use_lrun=false)
-				@submission.verdict = (@submission.test_cases_passed == Problem.find(@submission.problem_id).number_of_test_cases)
+				@problem = Problem.find(@submission.problem_id)
+				@submission.test_cases_passed, @submission.results = test_cases(@submission.extension, @submission.language, @submission.id, @problem.test_cases, use_lrun=true, max_cpu_time=@problem.cpu_time, max_memory=@problem.memory)
+				@submission.verdict = (@submission.test_cases_passed == @problem.number_of_test_cases)
 				@submission.save
-				flash[:succ] = "Successfull Submission"
 			end
 
 			redirect_to @submission
@@ -58,10 +58,11 @@ class SubmissionsController < ApplicationController
 
 	def resubmit
 		@submission = Submission.find(params[:id])
-		flash[:succ] = "Resubmitting"
+		flash[:succ] = "Re-submitting, please wait then reload the page to update results"
 		Thread.new do
-			@submission.test_cases_passed, @submission.results = test_cases(@submission.extension, @submission.language, @submission.id, Problem.find(@submission.problem_id).test_cases, use_lrun=false)
-			@submission.verdict = (@submission.test_cases_passed == Problem.find(@submission.problem_id).number_of_test_cases)
+			@problem = Problem.find(@submission.problem_id)
+			@submission.test_cases_passed, @submission.results = test_cases(@submission.extension, @submission.language, @submission.id, @problem.test_cases, use_lrun=true, max_cpu_time=@problem.cpu_time, max_memory=@problem.memory)
+			@submission.verdict = (@submission.test_cases_passed == @problem.number_of_test_cases)
 			@submission.save
 		end
 		redirect_to @submission

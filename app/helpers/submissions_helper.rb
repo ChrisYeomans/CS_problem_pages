@@ -23,19 +23,20 @@ module SubmissionsHelper
 			if use_lrun
 				# lots of flags to ensure no malicious
 				# code runs on the server.
-				run_command = "lrun --pass-exitcode --basic-devices false --max-rtprio 0 --max-nfile 256 --max-nprocess 2048 --nice 0 --remount-dev false --umount-outside false --no-new-privs true --interval 0.02 --reset-env false --isolate-process true --network false --max-cpu-time #{max_cpu_time} --max-memory #{max_memory} #{run_command}"
+				run_command = "lrun --basic-devices false --max-rtprio 0 --max-nfile 256 --max-nprocess 2048 --nice 0 --remount-dev false --umount-outside false --no-new-privs true --interval 0.02 --reset-env false --isolate-process true --network false --max-cpu-time #{max_cpu_time} --max-memory #{max_memory} #{run_command}"
 			end
 			test_case_hash.each do |test_case, output|
 				out = `echo '#{test_case}' | #{run_command} 2> /dev/null 3> info_#{submission_id}.txt`
 
 				# processing lrun run info
-				info = File.read("info_#{submission_id}.txt").split('\n')
+				info = File.read("info_#{submission_id}.txt").split("\n")
+				puts info, "yolo"
 				if info[4] != "EXITCODE 0"
 					out_arr << "Runtime Error"
 				elsif info[6] != "EXCEED   none"
-					if info[6].split(' ')[1] == "CPU_TIME"
+					if info[6].split(" ")[1] == "CPU_TIME"
 						out_arr << "Time Limit Exceeded"
-					elsif info[6].split(' ')[1] == "MEMORY"
+					elsif info[6].split(" ")[1] == "MEMORY"
 						out_arr << "Memory Limit Exceeded"
 					end
 				else
@@ -50,7 +51,7 @@ module SubmissionsHelper
 						out_arr << "Wrong Answer"
 					end
 				end
-				system("rm err_#{submission_id}.txt info_#{submission_id}.txt")
+				#system("rm err_#{submission_id}.txt info_#{submission_id}.txt")
 			end
 		else
 			return "Compile Error"

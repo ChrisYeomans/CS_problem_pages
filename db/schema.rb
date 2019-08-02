@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_28_185032) do
+ActiveRecord::Schema.define(version: 2019_08_02_104550) do
 
   create_table "problems", force: :cascade do |t|
     t.string "title"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 2019_07_28_185032) do
     t.datetime "updated_at", null: false
     t.integer "score"
     t.integer "number_of_test_cases"
+    t.string "memory"
+    t.string "cpu_time"
   end
 
   create_table "submissions", force: :cascade do |t|
