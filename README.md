@@ -27,7 +27,7 @@
 * Rewrite languages switch with a hash map
 
 ## IN PROGRESS: 
-* Make submission pages for problems, :id in url - chris
+* Add upload option when making a submission - chris
 
 ## TODO:
 * Add submission side bit to problems for logged-in users

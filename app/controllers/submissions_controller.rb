@@ -25,6 +25,7 @@ class SubmissionsController < ApplicationController
 		@submission.user_id = current_user.id
 		@user = User.find(@submission.user_id)
 		@problem = Problem.find(@submission.problem_id)
+		@submission.extension = get_extension(@submission.language)
 
 		flash[:succ] = "Submitted please wait then reload to update results"
 		if @submission.save
@@ -61,6 +62,8 @@ class SubmissionsController < ApplicationController
 	def update
 		@submission = Submission.find(params[:id])
 		@submission.update(submission_params)
+		@submission.extension = get_extension(@submission.language)
+		@submission.save
 		resubmit
 	end
 

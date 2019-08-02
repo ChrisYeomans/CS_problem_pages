@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2019_08_02_104550) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "problems", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -50,4 +53,5 @@ ActiveRecord::Schema.define(version: 2019_08_02_104550) do
     t.integer "score"
     t.string "problem_list"
   end
+
 end

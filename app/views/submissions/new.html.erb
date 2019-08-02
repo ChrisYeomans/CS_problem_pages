@@ -17,7 +17,7 @@
 			<%= f.text_area(:code, size: "100x15") %>
 			<br />
 			<%= f.label(:problem_id, "Select Problem") %>
-			<%= f.select(:problem_id, Problem.all.collect {|a| [a.title]}) %>
+			<%= f.select(:problem_id, Problem.all.collect {|a| [a.title, a.id]}) %>
 			<br />
 			<%= f.label(:language, "Select Language") %>
 			<%= f.select(:language, get_language_list) %>
