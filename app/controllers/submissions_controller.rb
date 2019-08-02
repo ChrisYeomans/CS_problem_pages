@@ -21,7 +21,7 @@ class SubmissionsController < ApplicationController
 	end
 
 	def create
-		@submission = Submission.new(submission_params)
+		@submission = Submission.new(submission_params_with_problem_id)
 		@submission.user_id = current_user.id
 		@user = User.find(@submission.user_id)
 		@problem = Problem.find(@submission.problem_id)
@@ -101,6 +101,10 @@ class SubmissionsController < ApplicationController
 	end
 
 	def submission_params
+		params.require(:submission).permit(:code, :language)
+	end
+
+	def submission_params_with_problem_id
 		params.require(:submission).permit(:problem_id, :code, :language)
 	end
 

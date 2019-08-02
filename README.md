@@ -27,11 +27,12 @@
 * Rewrite languages switch with a hash map
 
 ## IN PROGRESS: 
-* Add submission side bit to problems for logged-in users - chris
+* Make submission pages for problems, :id in url - chris
 
 ## TODO:
+* Add submission side bit to problems for logged-in users
 * Make users with the same score have the same rank
-* Add file upload opetion fr subissions
+* Add file upload option for subissions
 * Make layout nicer, add more visual content
 * Come up with name
 * Add avatars to users

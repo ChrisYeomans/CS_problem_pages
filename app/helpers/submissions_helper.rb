@@ -99,7 +99,10 @@ module SubmissionsHelper
 		# },
 		#
 		# Note: If you are adding an interpreted language
-		# just leave compile_command with an empty string, "" 
+		# just leave compile_command with an empty string, ""
+		# Also if a language is added here it will be added
+		# to the dropdown automatically as the dropdown gets
+		# its list of languages from get_language_list below. 
 		{
 			"python3" => {
 				"extension" => "py",

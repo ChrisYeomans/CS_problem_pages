@@ -7,6 +7,7 @@
 		<thead>
 			<tr class="text-center">
 				<th scope="col" class="text-left">Submission ID</th>
+				<th scope="col">Language</th>
 				<th scope="col">Problem</th>
 				<th scope="col">Verdict</th>
 				<th scope="col">User</th>
@@ -19,6 +20,9 @@
 					<th scope="row" class="text-left">
 						<%= link_to submission.id, submission %>
 					</th>
+					<td scope="row">
+						<%= submission.language %>
+					</td>
 					<td scope="row">
 						<% @problem = Problem.find(submission.problem_id) %>
 						<%= link_to @problem.title, @problem %>
