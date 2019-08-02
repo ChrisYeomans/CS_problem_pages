@@ -3,7 +3,14 @@
 <% else %>
 
 <% @title=@problem.title %>
-<h3 class="text-center">Submission ID: <%= @submission.id %></h3><h3 class="text-center">Problem: <%= Problem.find(@submission.problem_id).title %></h3><h3 class="text-center">User: <%= User.find(@submission.user_id).name %></h3><h3 class="text-center">Verdict: <%= @submission.verdict %></h3><br /><br />
+<h3 class="text-center">Submission ID: <%= @submission.id %></h3>
+<h3 class="text-center">Problem: <%= Problem.find(@submission.problem_id).title %></h3>
+<h3 class="text-center">User: <%= User.find(@submission.user_id).name %></h3>
+<h3 class="text-center">Verdict: <%= @submission.verdict %></h3>
+<% if @submission.test_cases_passed %>
+<h3 class="text-center">Score: <%= ((@submission.test_cases_passed/@problem.number_of_test_cases)*@problem.score).floor %></h3>
+<% end %>
+<br /><br />
 <%= render plain: @markdown.render("```#{@submission.extension}\n#{@submission.code}\n```").html_safe %>
 <p>Passed: <%= @submission.test_cases_passed %>/<%= @problem.number_of_test_cases %> Test Cases
 <br /><br />Test Case Results:<br />

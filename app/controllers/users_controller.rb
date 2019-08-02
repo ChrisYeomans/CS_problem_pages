@@ -13,7 +13,8 @@ class UsersController < ApplicationController
   def new_user
     @user = User.new(user_params)
 	  @user.is_admin = 0 # make users not admin by default
-    @user.problem_list = p_list
+    @user.problem_list = p_list # p_list defined in UsersHelper
+    @user.score = 0 # needs to be a default score to add to
   	if @user.save
       flash[:succ] = "Successfully created a new user, please login"
   		redirect_to "/login"
@@ -30,6 +31,14 @@ class UsersController < ApplicationController
   def show
   	@user = User.find(params[:id])
     @markdown = Redcarpet::Markdown.new(CustomRender, md_arguments)
+    @ordered_users = User.order(:score).reverse_order
+    @ordered_users.each_with_index do |u, i|
+      if u.id.to_i == params[:id].to_i
+        @rank = i + 1
+        puts "doing rank", @rank
+        break
+      end
+    end  
   end
 
   def login

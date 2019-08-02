@@ -34,6 +34,7 @@ module UsersHelper
 				@problems.each do |p|
 					if !list.key?(p.title)
 						list[p.title] = default
+						list[p.title][:score] = p.score
 					end
 				end
 				user.problem_list = list.to_json

@@ -4,7 +4,7 @@ class DashboardsController < ApplicationController
 	end
 
 	def manage_users
-		@users = User.all
+		@users = User.order(:score).reverse_order
 	end
 
 	def manage_submissions

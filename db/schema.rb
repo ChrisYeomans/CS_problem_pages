@@ -50,5 +50,4 @@ ActiveRecord::Schema.define(version: 2019_08_02_104550) do
     t.integer "score"
     t.string "problem_list"
   end
-
 end

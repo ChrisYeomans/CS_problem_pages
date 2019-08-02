@@ -60,7 +60,7 @@ module SubmissionsHelper
 				system("rm info_#{submission_id}.txt")
 			end
 		else
-			return "Compile Error"
+			out_arr << "Compile Error"
 		end
 
 		# leave the campsite how you found it; scout's code

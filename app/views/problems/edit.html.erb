@@ -20,6 +20,9 @@
 			<%= f.label(:memory, "Max CPU Memory - default 512m") %><br />
 			<%= f.text_field(:memory, size: "49x2") %>
 			<br />
+			<%= f.label(:score, "Score") %><br />
+			<%= f.text_field(:score, size: "49x2") %>
+			<br />
 			<%= f.check_box(:is_current) %>
 			<%= f.label(:is_current, "Make this the problem of the week") %>
 			<br />

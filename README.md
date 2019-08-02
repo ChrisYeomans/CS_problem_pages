@@ -27,6 +27,9 @@
 * Add score and avatars to users - chris
 
 ## TODO:
+* Make users with the same score have the same rank
+* Add submission side bit to problems for logged-in users
+* Add file upload opetion fr subissions
 * Make layout nicer, add more visual content
 * Come up with name
 * Add more supported languages

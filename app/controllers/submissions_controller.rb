@@ -1,6 +1,7 @@
 require 'redcarpet'
 require 'rouge'
 require 'rouge/plugins/redcarpet'
+require 'json'
 
 class CustomRender < Redcarpet::Render::HTML
   include Rouge::Plugins::Redcarpet
@@ -23,14 +24,29 @@ class SubmissionsController < ApplicationController
 	def create
 		@submission = Submission.new(submission_params)
 		@submission.user_id = current_user.id
-		flash[:succ] = "Submitted please wait the reload to update results"
+		@user = User.find(@submission.user_id)
+		@problem = Problem.find(@submission.problem_id)
+
+		flash[:succ] = "Submitted please wait then reload to update results"
 		if @submission.save
-			Thread.new do
-				@problem = Problem.find(@submission.problem_id)
+			#Thread.new do
 				@submission.test_cases_passed, @submission.results = test_cases(@submission.extension, @submission.language, @submission.id, @problem.test_cases, use_lrun=true, max_cpu_time=@problem.cpu_time, max_memory=@problem.memory)
 				@submission.verdict = (@submission.test_cases_passed == @problem.number_of_test_cases)
 				@submission.save
-			end
+
+				# update user total score
+				score = ((@submission.test_cases_passed/@problem.number_of_test_cases)*@problem.score).floor
+				@user.score += score
+				
+				# need to updated user problem_list
+				# to reflect what happened
+				lst = JSON.parse(@user.problem_list)
+				lst[@problem.title]["attempted"] += 1
+				lst[@problem.title]["score"] = score
+				lst[@problem.title]["got_all_points"] = @submission.verdict
+				@user.problem_list = lst.to_json
+				@user.save
+			#end
 
 			redirect_to @submission
 		else
@@ -58,13 +74,31 @@ class SubmissionsController < ApplicationController
 
 	def resubmit
 		@submission = Submission.find(params[:id])
+		@problem = Problem.find(@submission.problem_id)
+		@user = User.find(@submission.user_id)
+		score = ((@submission.test_cases_passed/@problem.number_of_test_cases)*@problem.score).floor
+
 		flash[:succ] = "Re-submitting, please wait then reload the page to update results"
-		Thread.new do
-			@problem = Problem.find(@submission.problem_id)
+		#Thread.new do
 			@submission.test_cases_passed, @submission.results = test_cases(@submission.extension, @submission.language, @submission.id, @problem.test_cases, use_lrun=true, max_cpu_time=@problem.cpu_time, max_memory=@problem.memory)
 			@submission.verdict = (@submission.test_cases_passed == @problem.number_of_test_cases)
 			@submission.save
-		end
+
+
+			# need to updated user problem_list
+			# to reflect what happened
+			lst = JSON.parse(@user.problem_list)
+			lst[@problem.title]["attempted"] += 1
+			past_score = lst[@problem.title]["score"]
+			if past_score < score
+				lst[@problem.title]["score"] = score
+				@user.score -= past_score
+				@user.score += score
+			end
+			lst[@problem.title]["got_all_points"] = @submission.verdict
+			@user.problem_list = lst.to_json
+			@user.save
+		#end
 		redirect_to @submission
 	end
 
