@@ -22,6 +22,10 @@ class SubmissionsController < ApplicationController
 
 	def create
 		@submission = Submission.new(submission_params_with_problem_id)
+		if not params[:submission][:upload].nil?
+			puts "in upload check"
+			@submission.code = params[:submission][:upload].read
+		end
 		@submission.user_id = current_user.id
 		@user = User.find(@submission.user_id)
 		@problem = Problem.find(@submission.problem_id)

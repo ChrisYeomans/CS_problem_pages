@@ -25,14 +25,14 @@
 * Add score to users
 * Make settings instanced
 * Rewrite languages switch with a hash map
+* Add submission bit to problems for logged-in users
+* Add upload option when making a submission
 
 ## IN PROGRESS: 
-* Add upload option when making a submission - chris
+* Add OAuth buttons to sign-up and log-in - chris
 
 ## TODO:
-* Add submission side bit to problems for logged-in users
 * Make users with the same score have the same rank
-* Add file upload option for subissions
 * Make layout nicer, add more visual content
 * Come up with name
 * Add avatars to users
@@ -55,9 +55,7 @@
 * Python
 * C
 * Java6 - Java11
-* C++11
-* C++14
-* C++17
+* C++11, 14 and 17
 * Ruby
 * Go
 * V

@@ -13,11 +13,15 @@
 	        <% end %>
 	    <% end %>
 		<%= form_for :submission, url: submission_path(@submission), method: :patch do |f| %>
-			<%= f.label(:problem_id, "Problem ID") %><br />
-			<%= f.text_field(:problem_id, size: "98x2") %>
-			<br /><br />
 			<%= f.label(:code, "Submission Code") %><br />
 			<%= f.text_area(:code, size: "100x15") %>
+			<br /><br /><br />
+			<%= f.label(:upload, "Upload File") %>
+			<%= f.file_field(:upload) %>
+			<br /><br /><br />
+			<% default = params[:prob_id] || 1 %>
+			<%= f.label(:problem_id, "Select Problem") %>
+			<%= f.select(:problem_id, Problem.all.collect {|a| [a.title, a.id]}, :selected => [Problem.find(default).title, default]) %>
 			<br />
 			<%= f.label(:language, "Select Language") %>
 			<%= f.select(:language, get_language_list) %>
