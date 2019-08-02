@@ -18,20 +18,21 @@
 * Add some migrations and the relevant funtions in preperation for grading system
 * Hook up grading system, lrun
 * Add submission create page and stuff
-
-## IN PROGRESS: 
-* Add tle and mle to judging function - chris
-
-## TODO:
+* Add tle and mle to judging function
 * Add edit page to submissions
 * Make sure judging function works with no input
-* Make layout nicer, add more visual content
 * Improve problem create, specifically test cases
+
+## IN PROGRESS: 
+* Add score and avatars to users - chris
+
+## TODO:
+* Make layout nicer, add more visual content
 * Come up with name
+* Add more supported languages
 * Make settings instanced
 * Make custom error pages
 * Add search bars and pagination; users, problems
-* Add score and avatars to users
 * Add stats to dashboard
 * Add TOC plus TOC bar w/ cookie
 * Add dark mode

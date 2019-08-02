@@ -1,6 +1,12 @@
 module SubmissionsHelper
 	def test_cases(language_extension, language, submission_id, test_cases, use_lrun=true, max_cpu_time="2", max_memory="512m")
 		# some setup stuff
+
+		# test cases come split into cases with
+		# three dashes, '---' and the input and
+		# output within each test case is split
+		# into input and output by three stars, 
+		# '***'
 		test_case_hash = {}
 	    test_cases.split("---").each do |tc|
 	      t, c = tc.split("***")
@@ -58,7 +64,7 @@ module SubmissionsHelper
 		end
 
 		# leave the campsite how you found it; scout's code
-		system("rm #{submission_id}*")
+		system("rm *#{submission_id}*")
 
 		return test_cases_passed, out_arr
 	end
