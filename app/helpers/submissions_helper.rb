@@ -51,7 +51,7 @@ module SubmissionsHelper
 						out_arr << "Wrong Answer"
 					end
 				end
-				#system("rm err_#{submission_id}.txt info_#{submission_id}.txt")
+				system("rm info_#{submission_id}.txt")
 			end
 		else
 			return "Compile Error"
