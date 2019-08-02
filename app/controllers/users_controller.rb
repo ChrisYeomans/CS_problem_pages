@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   end
 
   def settings
-    @user = User.find(params[:id]) 
+    @user = current_user
   end
 
   def change_pw

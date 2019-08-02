@@ -22,18 +22,20 @@
 * Add edit page to submissions
 * Make sure judging function works with no input
 * Improve problem create, specifically test cases
+* Add score to users
+* Make settings instanced
+* Rewrite languages switch with a hash map
 
 ## IN PROGRESS: 
-* Add score and avatars to users - chris
+* Add submission side bit to problems for logged-in users - chris
 
 ## TODO:
 * Make users with the same score have the same rank
-* Add submission side bit to problems for logged-in users
 * Add file upload opetion fr subissions
 * Make layout nicer, add more visual content
 * Come up with name
+* Add avatars to users
 * Add more supported languages
-* Make settings instanced
 * Make custom error pages
 * Add search bars and pagination; users, problems
 * Add stats to dashboard

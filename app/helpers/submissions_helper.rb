@@ -1,7 +1,5 @@
 module SubmissionsHelper
-	def test_cases(language_extension, language, submission_id, test_cases, use_lrun=true, max_cpu_time="2", max_memory="512m")
-		# some setup stuff
-
+	def test_cases(language, submission_id, test_cases, use_lrun=true, max_cpu_time="2", max_memory="512m")
 		# test cases come split into cases with
 		# three dashes, '---' and the input and
 		# output within each test case is split
@@ -12,15 +10,15 @@ module SubmissionsHelper
 	      t, c = tc.split("***")
 	      test_case_hash[t] = c
 	    end
-		file_name = "#{submission_id}.#{language_extension}"
+
+	    # some setup stuff
+	    language_extension = get_extension(language)
+	    file_name = "#{submission_id}.#{language_extension}"
+	    run_command, compile_command = get_language_bits(language, file_name, submission_id)
 		make_file(file_name, submission_id)
-		compile_command = ""
-		run_command = ""
 		compiled = true
 		test_cases_passed = 0
 		out_arr = []
-
-		run_command, compile_command = get_commands(language, file_name, submission_id)
 
 		if not compile_command.empty?
 			compiled = system(compile_command)
@@ -36,7 +34,6 @@ module SubmissionsHelper
 
 				# processing lrun run info
 				info = File.read("info_#{submission_id}.txt").split("\n")
-				puts info, "yolo"
 				if info[4] != "EXITCODE 0"
 					out_arr << "Runtime Error"
 				elsif info[6] != "EXCEED   none"
@@ -69,10 +66,21 @@ module SubmissionsHelper
 		return test_cases_passed, out_arr
 	end
 
-	def get_commands(language, file_name, submission_id)
-		compile_command = ""
-		run_command = ""
+	def get_language_bits(language, file_name, submission_id)
+		hsh = languages_hash(file_name, submission_id)
 
+		run_command = hsh[language]["run_command"]
+		compile_command = hsh[language]["compile_command"]
+
+		return run_command, compile_command
+	end
+
+	def get_extension(language)
+		hsh = languages_hash("none", -1)
+		return hsh[language]["extension"]
+	end
+
+	def languages_hash(file_name, submission_id)
 		# fairly obvious how to add a new language
 		# for compiled commands use 1> /dev/null 2>&1
 		# to redirect stderr and stdout to the trash as we
@@ -81,55 +89,98 @@ module SubmissionsHelper
 		# and there is measures to deal with that.
 		# otherwise add the relevant flags to make it run
 		# properly at good speed without taking up a tonne
-		# of time to compile. 
-		case language.downcase
-		when "python3"
-			run_command = "python3 #{file_name}"
-		when "python2", "python"
-			run_command = "python #{file_name}"
-		when "c"
-			compile_command = "gcc #{file_name} -o #{submission_id}.out 1> /dev/null 2>&1"
-			run_command = "./#{submission_id}.out"
-		when "java6"
-			compile_command = "javac --release 6 #{file_name} 1> /dev/null 2>&1"
-			run_command = "java #{submission_id}"
-		when "java7"
-			compile_command = "javac --release 7 #{file_name} 1> /dev/null 2>&1"
-			run_command = "java #{submission_id}"
-		when "java8"
-			compile_command = "javac --release 8 #{file_name} 1> /dev/null 2>&1"
-			run_command = "java #{submission_id}"
-		when "java9"
-			compile_command = "javac --release 9 #{file_name} 1> /dev/null 2>&1"
-			run_command = "java #{submission_id}"
-		when "java10"
-			compile_command = "javac --release 10 #{file_name} 1> /dev/null 2>&1"
-			run_command = "java #{submission_id}"
-		when "java11"
-			compile_command = "javac --release 11 #{file_name} 1> /dev/null 2>&1"
-			run_command = "java #{submission_id}"
-		when "cpp11", "c++11", "cc11"
-			compile_command = "g++ #{file_name} -O2 -std=c++11 -o #{submission_id}.out 1> /dev/null 2>&1"
-			run_command = "./#{submission_id}.out"
-		when "cpp14", "c++14", "cc14"
-			compile_command = "g++ #{file_name} -O2 -std=c++14 -o #{submission_id}.out 1> /dev/null 2>&1"
-			run_command = "./#{submission_id}.out"
-		when "cpp17", "c++17", "cc17"
-			compile_command = "g++ #{file_name} -O2 -std=c++17 -o #{submission_id}.out 1> /dev/null 2>&1"
-			run_command = "./#{submission_id}.out"
-		when "ruby"
-			run_command = "ruby #{file_name}"
-		when "go", "golang"
-			compile_command = "go build #{file_name}"
-			run_command = "./#{submission_id}"
-		when "v", "vlang"
-			compile_command = "v -prod -o #{submission_id}.out #{file_name}"
-			run_command = "./#{submission_id}.out"
-		else
-			return "Unsupported Language", ""
-		end
+		# of time to compile.
+		# The format for adding a new language is as follows:
+		#
+		# "language_name" => {
+		#     "extension" => "language-extension",
+		#     "run_command" => "command to run file",
+		#     "compile_command" => "command to compile file"
+		# },
+		#
+		# Note: If you are adding an interpreted language
+		# just leave compile_command with an empty string, "" 
+		{
+			"python3" => {
+				"extension" => "py",
+				"run_command" => "python3 #{file_name}",
+				"compile_command" => ""
+			},
+			"python2" => {
+				"extension" => "py",
+				"run_command" => "python #{file_name}",
+				"compile_command" => ""
+			},
+			"java6" => {
+				"extension" => "java",
+				"run_command" => "java #{file_name}",
+				"compile_command" =>"javac --release 6 #{file_name} 1> /dev/null 2>&1"
+			},
+			"java7" => {
+				"extension" => "java",
+				"run_command" => "java #{file_name}",
+				"compile_command" =>"javac --release 7 #{file_name} 1> /dev/null 2>&1"
+			},
+			"java8" => {
+				"extension" => "java",
+				"run_command" => "java #{file_name}",
+				"compile_command" =>"javac --release 8 #{file_name} 1> /dev/null 2>&1"
+			},
+			"java9" => {
+				"extension" => "java",
+				"run_command" => "java #{file_name}",
+				"compile_command" =>"javac --release 9 #{file_name} 1> /dev/null 2>&1"
+			},
+			"java10" => {
+				"extension" => "java",
+				"run_command" => "java #{file_name}",
+				"compile_command" =>"javac --release 10 #{file_name} 1> /dev/null 2>&1"
+			},
+			"java11" => {
+				"extension" => "java",
+				"run_command" => "java #{file_name}",
+				"compile_command" =>"javac --release 11 #{file_name} 1> /dev/null 2>&1"
+			},
+			"c" => {
+				"extension" => "c",
+				"run_command" => "./#{submission_id}.out",
+				"compile_command" => "gcc #{file_name} -o #{submission_id}.out 1> /dev/null 2>&1"
+			},
+			"cpp11" => {
+				"extension" => "cpp",
+				"run_command" => "./#{submission_id}.out",
+				"compile_command" => "g++ #{file_name} -O2 -std=c++11 -o #{submission_id}.out 1> /dev/null 2>&1"
+			},
+			"cpp14" => {
+				"extension" => "cpp",
+				"run_command" => "./#{submission_id}.out",
+				"compile_command" => "g++ #{file_name} -O2 -std=c++14 -o #{submission_id}.out 1> /dev/null 2>&1"
+			},
+			"cpp17" => {
+				"extension" => "cpp",
+				"run_command" => "./#{submission_id}.out",
+				"compile_command" => "g++ #{file_name} -O2 -std=c++17 -o #{submission_id}.out 1> /dev/null 2>&1"
+			},
+			"ruby" => {
+				"extension" => "rb",
+				"run_command" => "ruby #{file_name}",
+				"compile_command" => ""
+			},
+			"go" => {
+				"extension" => "go",
+				"run_command" => "go build #{file_name}",
+				"compile_command" => "./#{file_name}"
+			}
+		}
+	end
 
-		return run_command, compile_command
+	def get_language_list
+		out = []
+		hsh = languages_hash("none", -1)
+		hsh.each do |n, o|
+			out << n
+		end
+		return out
 	end
 
 	def make_file(file_name, submission_id)

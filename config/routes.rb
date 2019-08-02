@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get "/login", to: "users#login"
 
     # user settings
-    get "/user/:id/settings", to: "users#settings"
+    get "/user/settings", to: "users#settings"
     post "/user/:id/settings", to: "users#update"
     get "/users/:id/change_pw", to: "users#change_pw"
     post "/users/:id/change_pw", to: "users#update_pw"

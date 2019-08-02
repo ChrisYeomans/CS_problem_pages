@@ -8,7 +8,6 @@ class CustomRender < Redcarpet::Render::HTML
 end
 
 class SubmissionsController < ApplicationController
-	include SessionsHelper
 	include SubmissionsHelper
 
 	def index
@@ -29,8 +28,8 @@ class SubmissionsController < ApplicationController
 
 		flash[:succ] = "Submitted please wait then reload to update results"
 		if @submission.save
-			#Thread.new do
-				@submission.test_cases_passed, @submission.results = test_cases(@submission.extension, @submission.language, @submission.id, @problem.test_cases, use_lrun=true, max_cpu_time=@problem.cpu_time, max_memory=@problem.memory)
+			Thread.new do
+				@submission.test_cases_passed, @submission.results = test_cases(@submission.language, @submission.id, @problem.test_cases, use_lrun=true, max_cpu_time=@problem.cpu_time, max_memory=@problem.memory)
 				@submission.verdict = (@submission.test_cases_passed == @problem.number_of_test_cases)
 				@submission.save
 
@@ -46,7 +45,7 @@ class SubmissionsController < ApplicationController
 				lst[@problem.title]["got_all_points"] = @submission.verdict
 				@user.problem_list = lst.to_json
 				@user.save
-			#end
+			end
 
 			redirect_to @submission
 		else
@@ -76,14 +75,13 @@ class SubmissionsController < ApplicationController
 		@submission = Submission.find(params[:id])
 		@problem = Problem.find(@submission.problem_id)
 		@user = User.find(@submission.user_id)
-		score = ((@submission.test_cases_passed/@problem.number_of_test_cases)*@problem.score).floor
-
 		flash[:succ] = "Re-submitting, please wait then reload the page to update results"
-		#Thread.new do
-			@submission.test_cases_passed, @submission.results = test_cases(@submission.extension, @submission.language, @submission.id, @problem.test_cases, use_lrun=true, max_cpu_time=@problem.cpu_time, max_memory=@problem.memory)
+		Thread.new do
+			@submission.test_cases_passed, @submission.results = test_cases(@submission.language, @submission.id, @problem.test_cases, use_lrun=true, max_cpu_time=@problem.cpu_time, max_memory=@problem.memory)
 			@submission.verdict = (@submission.test_cases_passed == @problem.number_of_test_cases)
 			@submission.save
 
+			score = ((@submission.test_cases_passed/@problem.number_of_test_cases)*@problem.score).floor
 
 			# need to updated user problem_list
 			# to reflect what happened
@@ -98,12 +96,12 @@ class SubmissionsController < ApplicationController
 			lst[@problem.title]["got_all_points"] = @submission.verdict
 			@user.problem_list = lst.to_json
 			@user.save
-		#end
+		end
 		redirect_to @submission
 	end
 
 	def submission_params
-		params.require(:submission).permit(:problem_id, :code, :language, :extension)
+		params.require(:submission).permit(:problem_id, :code, :language)
 	end
 
 	def md_arguments
