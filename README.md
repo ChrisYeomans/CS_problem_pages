@@ -27,20 +27,21 @@
 * Rewrite languages switch with a hash map
 * Add submission bit to problems for logged-in users
 * Add upload option when making a submission
+* Add avatars to users(using gravatar)
 
 ## IN PROGRESS: 
-* Add OAuth buttons to sign-up and log-in - chris
+* Add stats to dashboard - chris
 
 ## TODO:
+* Add stats to past_problems
 * Make users with the same score have the same rank
 * Make layout nicer, add more visual content
 * Come up with name
-* Add avatars to users
 * Add more supported languages
 * Make custom error pages
 * Add search bars and pagination; users, problems
-* Add stats to dashboard
 * Add TOC plus TOC bar w/ cookie
+* Add OAuth buttons to sign-up and log-in
 * Add dark mode
 * Add LaTeX support to problems
 * Add page for solutions and discussion of previous weeks problem
