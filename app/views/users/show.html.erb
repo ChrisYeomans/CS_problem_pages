@@ -26,7 +26,7 @@
 		<% end %>
 		<br /><br />
 	</div>
-	<div class="col-sm-4" style="background-color: red">
-		Picture
+	<div class="col-sm-4">
+		<%= image_tag @user.gravatar_url(:rating => "PG", :default => "mm", :size => "350x350") %>
 	</div>
 </div>
