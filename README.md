@@ -28,13 +28,14 @@
 * Add submission bit to problems for logged-in users
 * Add upload option when making a submission
 * Add avatars to users(using gravatar)
+* Add stats to dashboard
+* Fix problem score dupe
+* Improve dashboard
 
 ## IN PROGRESS: 
-* Add stats to dashboard - chris
+* Fill in dummy numbers - chris
 
 ## TODO:
-* Fix problem score dup
-* Fill in dummy numbers
 * Make users with the same score have the same rank
 * Make layout nicer, add more visual content
 * Come up with name
@@ -48,7 +49,6 @@
 * Add page for solutions and discussion of previous weeks problem
 * Make more tests
 * Add live competition support
-* Improve dashboard
 * Make even more tests
 * Add training problems
 

@@ -32,25 +32,33 @@ class SubmissionsController < ApplicationController
 
 		flash[:succ] = "Submitted please wait then reload to update results"
 		if @submission.save
-			Thread.new do
+			#Thread.new do
 				@submission.test_cases_passed, @submission.results = test_cases(@submission.language, @submission.id, @problem.test_cases, use_lrun=true, max_cpu_time=@problem.cpu_time, max_memory=@problem.memory)
 				@submission.verdict = (@submission.test_cases_passed == @problem.number_of_test_cases)
 				@submission.save
 
-				# update user total score
 				score = ((@submission.test_cases_passed/@problem.number_of_test_cases)*@problem.score).floor
-				@user.score += score
-				@problem.total_user_score
 				
-				# need to updated user problem_list
+				# need to update user problem_list
 				# to reflect what happened
 				lst = JSON.parse(@user.problem_list)
+				if lst[@problem.title]["attempted"] == 0
+					@problem.users_attempted += 1
+				end
 				lst[@problem.title]["attempted"] += 1
-				lst[@problem.title]["score"] = score
+				past_score = lst[@problem.title]["score"]
+				if past_score < score
+					lst[@problem.title]["score"] = score
+					@user.score -= past_score
+					@user.score += score
+					@problem.total_user_score -= past_score
+					@problem.total_user_score += score
+				end
 				lst[@problem.title]["got_all_points"] = @submission.verdict
 				@user.problem_list = lst.to_json
+				@problem.save
 				@user.save
-			end
+			#end
 
 			redirect_to @submission
 		else
@@ -104,6 +112,7 @@ class SubmissionsController < ApplicationController
 			end
 			lst[@problem.title]["got_all_points"] = @submission.verdict
 			@user.problem_list = lst.to_json
+			@problem.save
 			@user.save
 		end
 		redirect_to @submission

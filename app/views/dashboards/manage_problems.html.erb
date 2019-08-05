@@ -24,7 +24,7 @@
 						<% end %>
 					</td>
 					<td scope="row">
-						<%= problem.users_attempted != 0 ? problem.total_user_score*100/problem.users_attempted : 0 %>%
+						<%= problem.users_attempted != 0 ? problem.total_user_score*100/(problem.users_attempted*problem.score) : 0 %>%
 					</td>
 					<td scope="row">
 						<%= problem.score %>
