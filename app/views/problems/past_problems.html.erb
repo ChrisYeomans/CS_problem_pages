@@ -20,13 +20,21 @@
 							<%= link_to problem.title, problem_path(problem), :class => "text-success" %>
 						</th>
 						<td scope="row">
-							0%
+							<%= problem.users_attempted != 0 ? problem.total_user_score*100/(problem.users_attempted*problem.score) : 0 %>%
 						</td>
 						<td scope="row">
-							0
+							<%= problem.score %>
 						</td>
 						<td scope="row">
-							false
+						<% if current_user %>
+							<% if @lst[problem.title]["got_all_points"] == 1%>
+								True
+								<% else %>
+								False
+								<% end %>
+						<% else %>
+							False
+						<% end %>
 						</td>
 					</tr>
 				<% end %>

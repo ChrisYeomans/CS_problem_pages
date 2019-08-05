@@ -12,6 +12,9 @@ class ProblemsController < ApplicationController
 
   def past_problems
     @problems = Problem.all
+    if current_user
+      @lst = JSON.parse(current_user.problem_list)
+    end
   end
 
   # The page for this loops through all the problems until
