@@ -64,14 +64,48 @@
 ## Dowloading and Running the server in dev enviornment:
 First you need to get all compilers/interpreters for the languages in the Supported Languages List
 
-Next you need to install [lrun](https://github.com/quark-zju/lrun)
+Next you need to install ruby, for this I use [rbenv](https://github.com/rbenv/rbenv), and bundler on ubuntu do:
+```bash
+git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+~/.rbenv/bin/rbenv init
+mkdir -p "$(rbenv root)"/plugins
+git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
+rbenv install 2.5.1
+gem install bundler
+```
+
+Next you need to install postresql and add the current user to the db, as this is the db that this site uses, on ubuntu do:
+```bash
+sudo apt install postgresql postgresql-contrib libpq-dev
+sudo su - postgres
+createuser --interactive --pwprompt
+```
+For role here enter your username and whatever password you want
+Also enter y when prompted Shall the new role be a superuser? (y/n)
+```bash
+exit
+```
+
+Next you need to install NodeJS, on ubuntu do:
+```bash
+sudo apt install nodejs
+```
+
+Next you need to install [lrun](https://github.com/quark-zju/lrun) and add the account running it to the lrun group, on ubuntu do:
+```bash
+git clone https://github.com/quark-zju/lrun.git
+cd lrun
+make install
+sudo gpasswd -a username lrun
+```
+Now restart for the user group to be updated
 
 Finally clone this repo and set it up as follows:
-
 ```bash
 git clone https://github.com/ChrisYeomans/CS_problem_pages.git
 cd CS_problem_pages
-bundler install
-rake db:migrate
-rails server
+bundle
+rake db:setup
+rails s
 ```
