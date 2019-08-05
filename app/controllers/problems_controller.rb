@@ -30,6 +30,8 @@ class ProblemsController < ApplicationController
   def create
     @problem = Problem.new(problem_params)
     @problem.number_of_test_cases = @problem.test_cases.split('---').length
+    @problem.total_user_score = 0
+    @problem.users_attempted = 0
     
     if @problem.save
       # if its current we need to make all other problems not current
@@ -61,6 +63,12 @@ class ProblemsController < ApplicationController
     @problem = Problem.find(params[:id])
     @problem.update(problem_params)
     @problem.number_of_test_cases = @problem.test_cases.split('---').length
+    if @problem.total_user_score.nil? 
+      @problem.total_user_score = 0
+    end
+    if @problem.users_attempted.nil? 
+      @problem.users_attempted = 0
+    end
 
     if @problem.save
       flash[:succ] = "Problem updated successfully"

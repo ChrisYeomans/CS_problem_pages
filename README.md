@@ -33,7 +33,8 @@
 * Add stats to dashboard - chris
 
 ## TODO:
-* Add stats to past_problems
+* Fix problem score dup
+* Fill in dummy numbers
 * Make users with the same score have the same rank
 * Make layout nicer, add more visual content
 * Come up with name

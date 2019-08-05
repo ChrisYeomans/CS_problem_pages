@@ -8,8 +8,30 @@
 		<a class="btn btn-primary" href="/dashboard/create_problem" role="button">Create Problem</a>
 		<a class="btn btn-primary" href="/dashboard/manage_problems" role="button">Manage Problems</a>
 		<a class="btn btn-primary" href="/dashboard/manage_users" role="button">Manage Users</a>
-		<%= link_to "Update Users", "/update_users", method: :post, :class => "btn btn-primary" %>
 		<a class="btn btn-primary" href="/dashboard/manage_submissions" role="button">Manage Submissions</a>
+		<br /><br />
+		<%= link_to "Update Users", "/update_users", method: :post, :class => "btn btn-primary" %>
+	</div>
+
+	<div class="row text-center">
+		<div class="col-sm-4">
+			Number of Users: <%= User.count %>
+		</div>
+		<div class="col-sm-4">
+			Average Score: <%= User.average(:score) %>
+		</div>
+		<div class="col-sm-4">
+			Number of Problems: <%= Problem.count %>
+		</div>
+	</div>
+	<br /><br />
+	<div class="row text-center">
+		<div class="col-sm-6">	 
+			Total Problem Score: <%= Problem.sum(:score) %>
+		</div>
+		<div class="col-sm-6">	 
+			Highest Score User: <%= User.maximum(:score) %> <%= User.find_by(:score => User.maximum(:score)).name %>
+		</div>
 	</div>
 
 <% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_03_121536) do
+ActiveRecord::Schema.define(version: 2019_08_04_201555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 2019_08_03_121536) do
     t.integer "number_of_test_cases"
     t.string "memory"
     t.string "cpu_time"
+    t.integer "total_user_score"
+    t.integer "users_attempted"
   end
 
   create_table "submissions", force: :cascade do |t|

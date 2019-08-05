@@ -23,7 +23,6 @@ class SubmissionsController < ApplicationController
 	def create
 		@submission = Submission.new(submission_params_with_problem_id)
 		if not params[:submission][:upload].nil?
-			puts "in upload check"
 			@submission.code = params[:submission][:upload].read
 		end
 		@submission.user_id = current_user.id
@@ -41,6 +40,7 @@ class SubmissionsController < ApplicationController
 				# update user total score
 				score = ((@submission.test_cases_passed/@problem.number_of_test_cases)*@problem.score).floor
 				@user.score += score
+				@problem.total_user_score
 				
 				# need to updated user problem_list
 				# to reflect what happened
@@ -99,6 +99,8 @@ class SubmissionsController < ApplicationController
 				lst[@problem.title]["score"] = score
 				@user.score -= past_score
 				@user.score += score
+				@problem.total_user_score -= past_score
+				@problem.total_user_score += score
 			end
 			lst[@problem.title]["got_all_points"] = @submission.verdict
 			@user.problem_list = lst.to_json
