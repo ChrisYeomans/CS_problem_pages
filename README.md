@@ -31,13 +31,15 @@
 * Add stats to dashboard
 * Fix problem score dupe
 * Improve dashboard
+* Fill in dummy numbers
+* Make layout nicer, add more visual content
 
 ## IN PROGRESS: 
-* Fill in dummy numbers - chris
+* Add visuals for running test cases - chris
 
 ## TODO:
+* Speed tweaks
 * Make users with the same score have the same rank
-* Make layout nicer, add more visual content
 * Come up with name
 * Add more supported languages
 * Make custom error pages

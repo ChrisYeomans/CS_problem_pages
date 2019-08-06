@@ -32,7 +32,7 @@ class SubmissionsController < ApplicationController
 
 		flash[:succ] = "Submitted please wait then reload to update results"
 		if @submission.save
-			#Thread.new do
+			Thread.new do
 				@submission.test_cases_passed, @submission.results = test_cases(@submission.language, @submission.id, @problem.test_cases, use_lrun=true, max_cpu_time=@problem.cpu_time, max_memory=@problem.memory)
 				@submission.verdict = (@submission.test_cases_passed == @problem.number_of_test_cases)
 				@submission.save
@@ -58,7 +58,7 @@ class SubmissionsController < ApplicationController
 				@user.problem_list = lst.to_json
 				@problem.save
 				@user.save
-			#end
+			end
 
 			redirect_to @submission
 		else
