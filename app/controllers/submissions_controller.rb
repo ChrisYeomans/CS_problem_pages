@@ -18,6 +18,21 @@ class SubmissionsController < ApplicationController
 		@submission = Submission.find(params[:id])
 		@problem = Problem.find(@submission.problem_id)
 		@markdown = Redcarpet::Markdown.new(CustomRender, md_arguments)
+		#Thread.new do 
+		#	while @submission.results.count != @problem.number_of_test_cases do
+		#		
+		#	end
+		#end
+	end
+
+	def results
+		@submission = Submission.find(params[:id])
+		@problem = Problem.find(@submission.problem_id)
+		@res = @submission.results
+		respond_to do |format|
+			format.js {}
+		end
+		#render js: "$('results').html('<%= j render(:partial => 'results').html_safe %>');"
 	end
 
 	def create

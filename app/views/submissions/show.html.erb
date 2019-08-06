@@ -13,8 +13,11 @@
 <br /><br />
 <%= render plain: @markdown.render("```#{@submission.extension}\n#{@submission.code}\n```").html_safe %>
 <p>Passed: <%= @submission.test_cases_passed %>/<%= @problem.number_of_test_cases %> Test Cases
-<br /><br />Test Case Results:<br />
-<%= @submission.results %>
+<br /><br />Test Case Results:<br /> <!-- Make this update with ajax -->
+<%= link_to "Update Results", submission_path(@submission) + "/update_results", remote: true, method: :patch %>
+<div class="result_div">
+	
+</div>
 </p>
 
 <% if admin_status %>

@@ -22,11 +22,11 @@
 			<%= f.label(:test_cases, "Test Cases, seperate inut and output with a line containing 3 stars, '***'. Seperate test cases with a line containing 3 dashes, '---'") %><br />
 			<%= f.text_area(:test_cases, size: "100x15") %>
 			<br />
-			<%= f.label(:cpu_time, "Max CPU Time - default 2s") %><br />
-			<%= f.text_field(:cpu_time, size: "49x2") %>
+			<%= f.label(:cpu_time, "Max CPU Time") %><br />
+			<%= f.text_field(:cpu_time, size: "49x2", :value => "2") %>
 			<br />
-			<%= f.label(:memory, "Max CPU Memory - default 512m") %><br />
-			<%= f.text_field(:memory, size: "49x2") %>
+			<%= f.label(:memory, "Max CPU Memory") %><br />
+			<%= f.text_field(:memory, size: "49x2", :value => '512m') %>
 			<br />
 			<%= f.label(:score, "Score") %><br />
 			<%= f.text_field(:score, size: "49x2") %>
