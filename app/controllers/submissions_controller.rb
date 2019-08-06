@@ -18,11 +18,6 @@ class SubmissionsController < ApplicationController
 		@submission = Submission.find(params[:id])
 		@problem = Problem.find(@submission.problem_id)
 		@markdown = Redcarpet::Markdown.new(CustomRender, md_arguments)
-		#Thread.new do 
-		#	while @submission.results.count != @problem.number_of_test_cases do
-		#		
-		#	end
-		#end
 	end
 
 	def results
@@ -41,6 +36,7 @@ class SubmissionsController < ApplicationController
 			@submission.code = params[:submission][:upload].read
 		end
 		@submission.user_id = current_user.id
+		@submission.test_cases_passed = 0
 		@user = User.find(@submission.user_id)
 		@problem = Problem.find(@submission.problem_id)
 		@submission.extension = get_extension(@submission.language)
@@ -50,9 +46,10 @@ class SubmissionsController < ApplicationController
 			Thread.new do
 				@submission.test_cases_passed, @submission.results = test_cases(@submission.language, @submission.id, @problem.test_cases, use_lrun=true, max_cpu_time=@problem.cpu_time, max_memory=@problem.memory)
 				@submission.verdict = (@submission.test_cases_passed == @problem.number_of_test_cases)
+				score = ((@submission.test_cases_passed/@problem.number_of_test_cases)*@problem.score).floor
+				@submission.score = score
 				@submission.save
 
-				score = ((@submission.test_cases_passed/@problem.number_of_test_cases)*@problem.score).floor
 				
 				# need to update user problem_list
 				# to reflect what happened
@@ -109,9 +106,10 @@ class SubmissionsController < ApplicationController
 		Thread.new do
 			@submission.test_cases_passed, @submission.results = test_cases(@submission.language, @submission.id, @problem.test_cases, use_lrun=true, max_cpu_time=@problem.cpu_time, max_memory=@problem.memory)
 			@submission.verdict = (@submission.test_cases_passed == @problem.number_of_test_cases)
+			score = ((@submission.test_cases_passed/@problem.number_of_test_cases)*@problem.score).floor
+			@submission.score = score
 			@submission.save
 
-			score = ((@submission.test_cases_passed/@problem.number_of_test_cases)*@problem.score).floor
 
 			# need to updated user problem_list
 			# to reflect what happened

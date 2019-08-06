@@ -4,19 +4,17 @@
 
 <% @title=@problem.title %>
 <h3 class="text-center">Submission ID: <%= @submission.id %></h3>
-<h3 class="text-center">Problem: <%= Problem.find(@submission.problem_id).title %></h3>
+<h3 class="text-center">Problem: <%= link_to @problem.title, @problem %></h3>
 <h3 class="text-center">User: <%= User.find(@submission.user_id).name %></h3>
-<h3 class="text-center">Verdict: <%= @submission.verdict %></h3>
-<% if @submission.test_cases_passed %>
-<h3 class="text-center">Score: <%= ((@submission.test_cases_passed/@problem.number_of_test_cases)*@problem.score).floor %></h3>
-<% end %>
+<h3 class="text-center">Verdict: <div class="verdict_div" style="display: inline;"> <%= @submission.verdict %> </div></h3>
+<h3 class="text-center">Score: <div class="score_div" style="display: inline;"><%= @submission.score %></div> </h3>
 <br /><br />
 <%= render plain: @markdown.render("```#{@submission.extension}\n#{@submission.code}\n```").html_safe %>
-<p>Passed: <%= @submission.test_cases_passed %>/<%= @problem.number_of_test_cases %> Test Cases
-<br /><br />Test Case Results:<br /> <!-- Make this update with ajax -->
+<p style="display: inline;">Passed: <div class="test_cases_passed_div" style="display: inline;"> <%= @submission.test_cases_passed %></div> / <%= @problem.number_of_test_cases %> Test Cases
+<br /><br />Test Case Results:<br />
 <%= link_to "Update Results", submission_path(@submission) + "/update_results", remote: true, method: :patch %>
 <div class="result_div">
-	
+	<%= @submission.results %>
 </div>
 </p>
 
