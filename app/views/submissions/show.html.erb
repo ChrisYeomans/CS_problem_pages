@@ -12,14 +12,19 @@
 <%= render plain: @markdown.render("```#{@submission.extension}\n#{@submission.code}\n```").html_safe %>
 <p style="display: inline;">Passed: <div class="test_cases_passed_div" style="display: inline;"> <%= @submission.test_cases_passed %></div> / <%= @problem.number_of_test_cases %> Test Cases
 <br /><br />Test Case Results:<br />
-<%= link_to "Update Results", submission_path(@submission) + "/update_results", remote: true, method: :patch %>
+<%= link_to "Update Results", submission_path(@submission) + "/update_results", remote: true, method: :patch, :id => "click_me", :class => "d-none" %>
 <div class="result_div">
 	<%= @submission.results %>
 </div>
 </p>
-
+<div class="d-none done"></div>
 <% if admin_status %>
 	<%= render "manage_submission_buttons" %>
 <% end %>
-
+<script type="text/javascript">
+setInterval("get_ajax_stuff();", 2000);
+function get_ajax_stuff() {
+	document.getElementById("click_me").click()
+}
+</script>
 <% end %>

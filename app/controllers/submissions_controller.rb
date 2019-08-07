@@ -27,7 +27,6 @@ class SubmissionsController < ApplicationController
 		respond_to do |format|
 			format.js {}
 		end
-		#render js: "$('results').html('<%= j render(:partial => 'results').html_safe %>');"
 	end
 
 	def create
@@ -37,6 +36,7 @@ class SubmissionsController < ApplicationController
 		end
 		@submission.user_id = current_user.id
 		@submission.test_cases_passed = 0
+		@submission.done = false
 		@user = User.find(@submission.user_id)
 		@problem = Problem.find(@submission.problem_id)
 		@submission.extension = get_extension(@submission.language)
@@ -48,6 +48,7 @@ class SubmissionsController < ApplicationController
 				@submission.verdict = (@submission.test_cases_passed == @problem.number_of_test_cases)
 				score = ((@submission.test_cases_passed/@problem.number_of_test_cases)*@problem.score).floor
 				@submission.score = score
+				@submission.done = true
 				@submission.save
 
 				
@@ -100,6 +101,8 @@ class SubmissionsController < ApplicationController
 
 	def resubmit
 		@submission = Submission.find(params[:id])
+		@submission.done = false
+		@submission.save
 		@problem = Problem.find(@submission.problem_id)
 		@user = User.find(@submission.user_id)
 		flash[:succ] = "Re-submitting, please wait then reload the page to update results"
@@ -108,6 +111,7 @@ class SubmissionsController < ApplicationController
 			@submission.verdict = (@submission.test_cases_passed == @problem.number_of_test_cases)
 			score = ((@submission.test_cases_passed/@problem.number_of_test_cases)*@problem.score).floor
 			@submission.score = score
+			@submission.done = true
 			@submission.save
 
 
