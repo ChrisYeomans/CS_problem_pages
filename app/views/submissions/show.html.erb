@@ -22,7 +22,7 @@
 	<%= render "manage_submission_buttons" %>
 <% end %>
 <script type="text/javascript">
-var id = setInterval("get_ajax_stuff();", 2000);
+var id = setInterval("get_ajax_stuff();", 500);
 function get_ajax_stuff() {
 	document.getElementById("click_me").click()
 	if (document.getElementById("done").innerHTML == "1") {
