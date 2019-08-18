@@ -9,9 +9,8 @@ module SubmissionsHelper
 	    test_cases.split("---").each do |tc|
 	      test_case_lst  << tc.split("***")
 		end
-		puts "TEST CASE lst", test_case_lst
 
-	    # some setup stuff
+		# some setup stuff
 	    language_extension = get_extension(language)
 	    file_name = "#{submission_id}.#{language_extension}"
 	    run_command, compile_command = get_language_bits(language, file_name, submission_id)
@@ -30,7 +29,7 @@ module SubmissionsHelper
 				run_command = "lrun --basic-devices false --max-rtprio 0 --max-nfile 256 --max-nprocess 2048 --nice 0 --remount-dev false --umount-outside false --no-new-privs true --interval 0.02 --reset-env false --isolate-process true --network false --max-cpu-time #{max_cpu_time} --max-memory #{max_memory} #{run_command}"
 			end
 			test_case_lst.each do |test_case, output|
-				out = `echo '#{test_case}' | #{run_command} 2> /dev/null 3> info_#{submission_id}.txt`
+				out = `echo '#{test_case}' | #{run_command} 2> err_#{submission_id}.txt 3> info_#{submission_id}.txt`
 
 				# processing lrun run info
 				info = File.read("info_#{submission_id}.txt").split("\n")
@@ -54,7 +53,7 @@ module SubmissionsHelper
 						out_arr << "Wrong Answer"
 					end
 				end
-				system("rm info_#{submission_id}.txt")
+				system("rm info_#{submission_id}.txt err_#{submission_id}.txt")
 			end
 		else
 			out_arr << "Compile Error"
@@ -189,6 +188,6 @@ module SubmissionsHelper
 	def make_file(file_name, submission_id)
 		subm = Submission.find(submission_id)
 		text = subm.code
-		system("echo '#{text}' > #{file_name}")
+		File.open("#{file_name}", "w") { |file| file.puts "#{text}"}
 	end
 end

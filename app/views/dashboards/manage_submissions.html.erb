@@ -13,31 +13,15 @@
 				<th scope="col">User</th>
 			</tr>
 		</thead>
+		<tbody class="table_here">
 
-		<tbody>
-			<% @submissions.each do |submission| %>
-				<tr class="text-center">
-					<th scope="row" class="text-left">
-						<%= link_to submission.id, submission %>
-					</th>
-					<td scope="row">
-						<%= submission.language %>
-					</td>
-					<td scope="row">
-						<% @problem = Problem.find(submission.problem_id) %>
-						<%= link_to @problem.title, @problem %>
-					</td>
-					<td scope="row">
-						<%= submission.verdict %>
-					</td>
-					<td scope="row">
-						<% @user = User.find(submission.user_id) %>
-						<%= link_to @user.name, @user %>
-					</td>
-				</tr>
-			<% end %>
 		</tbody>
 	</table>
 </div>
+
+	<%= link_to "Update Table", "/update_submission_table", remote: true, method: :patch, :id => "click_me", :class => "d-none" %>
+<script type="text/javascript">
+document.getElementById("click_me").click()
+</script>
 
 <% end %>

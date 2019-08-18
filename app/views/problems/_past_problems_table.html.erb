@@ -1,0 +1,26 @@
+            <% @problems.each do |problem| %>
+				<% if problem.is_hidden == 0 %>
+					<tr class="text-center">
+						<th scope="row" class="text-left">
+							<%= link_to problem.title, problem_path(problem), :class => "text-success" %>
+						</th>
+						<td scope="row">
+							<%= problem.users_attempted != 0 ? problem.total_user_score*100/(problem.users_attempted*problem.score) : 0 %>%
+						</td>
+						<td scope="row">
+							<%= problem.score %>
+						</td>
+						<td scope="row">
+						<% if current_user %>
+							<% if @lst[problem.title]["got_all_points"] == 1%>
+								True
+								<% else %>
+								False
+								<% end %>
+						<% else %>
+							False
+						<% end %>
+						</td>
+					</tr>
+				<% end %>
+			<% end %>

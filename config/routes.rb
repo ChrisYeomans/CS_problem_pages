@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
   # It's funny to hear ruby talking about.... "routes"
 
-  #scope :ujs, defaults: {format: :ujs} do
-    patch '/submissions/:id/update_results' => 'submissions#results'
-  #end
-  
+  # ajax update routes
+  patch '/submissions/:id/update_results', to: 'submissions#results'
+  patch '/update_user_table', to: 'dashboards#update_user_table'
+  patch '/update_problem_table', to: 'dashboards#update_problem_table'
+  patch '/update_submission_table', to: 'dashboards#update_submission_table'
+  patch '/update_past_problems', to: 'problems#update_past_problems'
+
   # index root and get
   get '/', to: "problems#index"
   get "/index", to: 'problems#index'

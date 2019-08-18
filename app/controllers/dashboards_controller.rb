@@ -1,13 +1,22 @@
 class DashboardsController < ApplicationController
-	def manage_problems
-		@problems = Problem.all
-	end
-
-	def manage_users
+	def update_user_table
 		@users = User.order(:score).reverse_order
+		respond_to do |format|
+			format.js {}
+		end
 	end
 
-	def manage_submissions
+	def update_problem_table
+		@problems = Problem.all
+		respond_to do |format|
+			format.js {}
+		end
+	end
+
+	def update_submission_table
 		@submissions = Submission.all
+		respond_to do |format|
+			format.js {}
+		end
 	end
 end

@@ -1,0 +1,14 @@
+			<% @users.each_with_index do |user, i| %>
+				<tr class="text-center">
+					<td class="text-left">
+						<%= user.id %>. <%= link_to user.name, user_path(user), :class => "text-success" %>
+						<% if user.is_admin == 1 %>Admin<% end %>
+					</td>
+					<td>
+						<%= user.score %>
+					</td>
+					<td>
+						<%= i + 1 %>
+					</td>
+				</tr>
+			<% end %>

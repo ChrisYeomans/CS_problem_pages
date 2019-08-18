@@ -14,31 +14,14 @@
 			</tr>
 		</thead>
 
-		<tbody>
-			<% @problems.each do |problem| %>
-				<tr class="text-center">
-					<td scope="row" class="text-left">
-						<%= link_to problem.title, problem_path(problem), :class => "text-success" %>
-						<% if problem.is_current == 1 %>
-							Current Problem
-						<% end %>
-					</td>
-					<td scope="row">
-						<%= problem.users_attempted != 0 ? problem.total_user_score*100/(problem.users_attempted*problem.score) : 0 %>%
-					</td>
-					<td scope="row">
-						<%= problem.score %>
-					</td>
-					<td scope="row">
-						<% if problem.is_hidden == 1 %>
-							Hidden
-						<% else %>
-							Not Hidden
-						<% end %>
-					</td>
-				</tr>
-			<% end %>
+		<tbody class="table_here">
+
 		</tbody>
 	</table>
+
+	<%= link_to "Update Table", "/update_problem_table", remote: true, method: :patch, :id => "click_me", :class => "d-none" %>
+<script type="text/javascript">
+document.getElementById("click_me").click()
+</script>
 
 <% end %>

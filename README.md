@@ -38,7 +38,9 @@
 * Add visuals for running test cases - chris
 
 ## TODO:
-* Speed tweaks
+* Speed tweaks - ajax stuff
+* Security stuff - post reqs
+* EULA
 * Make users with the same score have the same rank
 * Come up with name
 * Add more supported languages

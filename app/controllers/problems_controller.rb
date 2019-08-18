@@ -17,6 +17,16 @@ class ProblemsController < ApplicationController
     end
   end
 
+  def update_past_problems
+    @problems = Problem.all
+    if current_user
+      @lst = JSON.parse(current_user.problem_list)
+    end
+    respond_to do |format|
+			format.js {}
+		end
+  end
+
   # The page for this loops through all the problems until
   # it find one with is_current == 1. There should only be
   # one problem like this

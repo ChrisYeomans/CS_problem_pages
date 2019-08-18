@@ -12,22 +12,11 @@
 				<th scope="col">Rank</th>
 			</tr>
 		</thead>
-		<tbody>
-			<% @users.each_with_index do |user, i| %>
-				<tr class="text-center">
-					<td class="text-left">
-						<%= user.id %>. <%= link_to user.name, user_path(user), :class => "text-success" %>
-						<% if user.is_admin == 1 %>Admin<% end %>
-					</td>
-					<td>
-						<%= user.score %>
-					</td>
-					<td>
-						<%= i + 1 %>
-					</td>
-				</tr>
-			<% end %>
+		<tbody class="table_here">
 		</tbody>
 	</table>
-
+	<%= link_to "Update Table", "/update_user_table", remote: true, method: :patch, :id => "click_me", :class => "d-none" %>
+<script type="text/javascript">
+document.getElementById("click_me").click()
+</script>
 <% end %>
