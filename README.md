@@ -33,14 +33,15 @@
 * Improve dashboard
 * Fill in dummy numbers
 * Make layout nicer, add more visual content
+* Speed tweaks - ajax stuff
+* Added sign up with github button
 
 ## IN PROGRESS: 
 * Add visuals for running test cases - chris
 
 ## TODO:
-* Speed tweaks - ajax stuff
 * Security stuff - post reqs
-* EULA
+* EULA when making a new acc
 * Make users with the same score have the same rank
 * Come up with name
 * Add more supported languages
@@ -87,7 +88,7 @@ sudo su - postgres
 createuser --interactive --pwprompt
 ```
 For role here enter your username and whatever password you want
-Also enter y when prompted Shall the new role be a superuser? (y/n)
+Also enter y when prompted ```Shall the new role be a superuser? (y/n)```
 ```bash
 exit
 ```

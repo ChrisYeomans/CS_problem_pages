@@ -3,9 +3,14 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+# Redcarpet and rouge for markdown formatting with code highlighting
 gem 'redcarpet'
 gem 'rouge'
 
+# RestClient for making post requests to APIs, OAuth stuff in this case
+gem 'rest-client'
+
+# Gravtastic for icons
 gem 'gravtastic'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -30,11 +35,14 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
+
+# Bcrypt for password encryption
 gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
+# Bootstrap cause... yeah
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  # It's funny to hear ruby talking about.... "routes"
+  # It's funny to hear ruby talking about... "routes"
 
   # ajax update routes
   patch '/submissions/:id/update_results', to: 'submissions#results'
@@ -27,6 +27,8 @@ Rails.application.routes.draw do
   get "/user/new", to: "users#new"
   post "/user/new", to: "users#new_user"
   get "/login", to: "users#login"
+  get "/gh_callback", to: "users#gh_callback"
+  get "/user/new_oath", to: "users#new_oath"
 
     # user settings
     get "/user/settings", to: "users#settings"

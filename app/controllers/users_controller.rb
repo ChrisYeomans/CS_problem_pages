@@ -9,6 +9,36 @@ end
 class UsersController < ApplicationController
   include UsersHelper
 
+  # Function used to signup with GitHub OAuth
+  def gh_callback
+
+    @GH_CLIENT_ID = ENV['GH_BASIC_CLIENT_ID']
+    @GH_CLIENT_SECRET = ENV['GH_BASIC_CLIENT_SECRET']
+    # get temporary GitHub code
+    session_code = request.env['rack.request.query_hash']['code']
+
+    # post session code
+    result = RestClient.post('https://github.com/login/oauth/access_token',
+                            {:client_id => @GH_CLIENT_ID,
+                            :client_secret => @GH_CLIENT_SECRET,
+                            :code => session_code},
+                            :accept => :json)
+
+    # getting access token from result
+    access_token = JSON.parse(result)['access_token']
+
+    # get user info
+    auth_result = JSON.parse(RestClient.get('https://api.github.com/user',
+      {:params => {:access_token => access_token}}))
+    
+    name = auth_result['login']
+    email = auth_result['email']
+    bio = auth_result['bio']
+
+    redirect_to "/user/new?name=#{name}&email=#{email}&bio=#{bio}" 
+
+  end
+
   # called by post of /user/new
   def new_user
     @user = User.new(user_params)
@@ -24,6 +54,9 @@ class UsersController < ApplicationController
   end
 
   def new
+    @GH_CLIENT_ID = ENV['GH_BASIC_CLIENT_ID']
+    @GH_CLIENT_SECRET = ENV['GH_BASIC_CLIENT_SECRET']
+
     # giving new access to User object
   	@user = User.new
   end

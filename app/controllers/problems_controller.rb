@@ -2,6 +2,7 @@ require 'redcarpet'
 require 'rouge'
 require 'rouge/plugins/redcarpet'
 require 'json'
+require 'rest-client'
 
 class CustomRender < Redcarpet::Render::HTML
   include Rouge::Plugins::Redcarpet
@@ -9,6 +10,10 @@ end
 
 class ProblemsController < ApplicationController
   include UsersHelper
+  
+  def index
+  
+  end
 
   def past_problems
     @problems = Problem.all
