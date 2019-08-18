@@ -23,7 +23,7 @@ class SubmissionsController < ApplicationController
 	def results
 		@submission = Submission.find(params[:id])
 		@problem = Problem.find(@submission.problem_id)
-		@res = @submission.results
+		@results = eval(@submission.results)
 		respond_to do |format|
 			format.js {}
 		end

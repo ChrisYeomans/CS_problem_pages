@@ -1,4 +1,4 @@
-$(".result_div").html("<%= @res %>");
+$(".result_div").html("<%= j render partial: 'result_bits'.html_safe %>");
 $(".verdict_div").html("<%= @submission.verdict %>");
 $(".score_div").html("<%= @submission.score %>");
 $(".test_cases_passed_div").html("<%= j render partial: 'test_cases_passed'.html_safe %>");

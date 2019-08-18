@@ -13,9 +13,9 @@
 <p style="display: inline;">Passed: <div class="test_cases_passed_div" style="display: inline;"> <%= @submission.test_cases_passed %></div> / <%= @problem.number_of_test_cases %> Test Cases
 <br /><br />Test Case Results:<br />
 <%= link_to "Update Results", submission_path(@submission) + "/update_results", remote: true, method: :patch, :id => "click_me", :class => "d-none" %>
-<div class="result_div">
-	<%= @submission.results %>
-</div>
+<span class="result_div">
+	
+</span>
 </p>
 <div class="d-none done" id="done"></div>
 <% if admin_status %>

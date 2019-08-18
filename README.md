@@ -33,14 +33,14 @@
 * Improve dashboard
 * Fill in dummy numbers
 * Make layout nicer, add more visual content
-* Speed tweaks - ajax stuff
+* Speed tweaks, ajax stuff
 * Added sign up with github button
+* Add visuals for running test cases 
 
 ## IN PROGRESS: 
-* Add visuals for running test cases - chris
+* Security stuff, post reqs - chris
 
 ## TODO:
-* Security stuff - post reqs
 * EULA when making a new acc
 * Make users with the same score have the same rank
 * Come up with name
@@ -52,9 +52,8 @@
 * Add dark mode
 * Add LaTeX support to problems
 * Add page for solutions and discussion of previous weeks problem
-* Make more tests
+* Make tests
 * Add live competition support
-* Make even more tests
 * Add training problems
 
 ## Supported Languages
