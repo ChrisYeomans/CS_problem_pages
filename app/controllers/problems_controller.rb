@@ -48,7 +48,7 @@ class ProblemsController < ApplicationController
   def create
 
     # Security Check
-		if (current_user.is_admin == 1)
+		if !(current_user.is_admin == 1)
 			return
     end
     
@@ -86,7 +86,7 @@ class ProblemsController < ApplicationController
   def update
 
     # Security Check
-		if (current_user.is_admin == 1)
+		if !(current_user.is_admin == 1)
 			return
     end
 
@@ -111,7 +111,7 @@ class ProblemsController < ApplicationController
   def destroy
 
     # Security Check
-		if (current_user.is_admin == 1)
+		if !(current_user.is_admin == 1)
 			return
     end
 
@@ -126,7 +126,7 @@ class ProblemsController < ApplicationController
   def make_past # make visible/make not hidden
 
     # Security Check
-		if (current_user.is_admin == 1)
+		if !(current_user.is_admin == 1)
 			return
     end
 
@@ -140,7 +140,7 @@ class ProblemsController < ApplicationController
   def make_current
 
     # Security Check
-		if (current_user.is_admin == 1)
+		if !(current_user.is_admin == 1)
 			return
     end
 
@@ -165,7 +165,7 @@ class ProblemsController < ApplicationController
   def make_not_current
 
     # Security Check
-		if (current_user.is_admin == 1)
+		if !(current_user.is_admin == 1)
 			return
     end
 
@@ -179,7 +179,7 @@ class ProblemsController < ApplicationController
   def make_hidden
 
     # Security Check
-		if (current_user.is_admin == 1)
+		if !(current_user.is_admin == 1)
 			return
     end
     

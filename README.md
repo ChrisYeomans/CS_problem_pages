@@ -58,6 +58,7 @@
 * Add LaTeX support to problems
 * Add OAuth buttons to sign-up
 * Add live competition support
+* Add discussion Forum
 
 ## Supported Languages
 * Python3

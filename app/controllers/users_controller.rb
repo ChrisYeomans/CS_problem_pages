@@ -122,7 +122,7 @@ class UsersController < ApplicationController
   def make_admin
 
     # Security Check
-		if (current_user.is_admin == 1)
+		if !(current_user.is_admin == 1)
 			return
     end
     
@@ -135,7 +135,7 @@ class UsersController < ApplicationController
   def make_not_admin
 
     # Security Check
-    if (current_user.is_admin == 1)
+    if !(current_user.is_admin == 1)
 			return
     end
 
@@ -148,7 +148,7 @@ class UsersController < ApplicationController
   def reset_password
 
     # Security Check
-    if (current_user.is_admin == 1)
+    if !(current_user.is_admin == 1)
 			return
     end
 
@@ -167,7 +167,7 @@ class UsersController < ApplicationController
   def delete_user
 
     # Security Check
-    if (current_user.is_admin == 1)
+    if !(current_user.is_admin == 1)
 			return
     end
 
@@ -179,7 +179,7 @@ class UsersController < ApplicationController
   def update_users
 
     # Security Check
-    if (current_user.is_admin == 1)
+    if !(current_user.is_admin == 1)
 			return
     end
     
