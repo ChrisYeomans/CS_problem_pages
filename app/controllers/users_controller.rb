@@ -90,6 +90,11 @@ class UsersController < ApplicationController
   def update_pw
     @user = User.find(params[:id])
 
+    # Security Check
+		if !((current_user.id == @user.id) || (current_user.is_admin == 1))
+			return
+		end
+
     if @user.update_attributes(user_params)
       flash[:succ] = "Password changed successfully"
       redirect_to @user
@@ -101,6 +106,11 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
+    # Security Check
+		if !((current_user.id == @user.id) || (current_user.is_admin == 1))
+			return
+		end
+
     if @user.update_attributes(user_params)
       flash[:succ] = "Saved data successfully"
       redirect_to @user
@@ -110,6 +120,12 @@ class UsersController < ApplicationController
   end
 
   def make_admin
+
+    # Security Check
+		if (current_user.is_admin == 1)
+			return
+    end
+    
     @user = User.find(params[:id])
     @user.is_admin = 1
     @user.save
@@ -117,6 +133,12 @@ class UsersController < ApplicationController
   end
 
   def make_not_admin
+
+    # Security Check
+    if (current_user.is_admin == 1)
+			return
+    end
+
     @user = User.find(params[:id])
     @user.is_admin = 0
     @user.save
@@ -124,6 +146,12 @@ class UsersController < ApplicationController
   end
 
   def reset_password
+
+    # Security Check
+    if (current_user.is_admin == 1)
+			return
+    end
+
     @user = User.find(params[:id])
     @user.password = "123456"
     @user.password_confirmation = "123456"
@@ -137,12 +165,24 @@ class UsersController < ApplicationController
   end
 
   def delete_user
+
+    # Security Check
+    if (current_user.is_admin == 1)
+			return
+    end
+
     @user = User.find(params[:id])
     @user.destroy
     redirect_to '/dashboard/manage_users'
   end
 
   def update_users
+
+    # Security Check
+    if (current_user.is_admin == 1)
+			return
+    end
+    
     update_users_problems
   end
 

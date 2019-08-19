@@ -86,6 +86,12 @@ class SubmissionsController < ApplicationController
 
 	def update
 		@submission = Submission.find(params[:id])
+
+		# Security Check
+		if !((current_user.id == @submission.user_id) || (current_user.is_admin == 1))
+			return
+		end
+
 		@submission.update(submission_params)
 		@submission.extension = get_extension(@submission.language)
 		@submission.save
@@ -94,6 +100,12 @@ class SubmissionsController < ApplicationController
 
 	def destroy
 		@submission = Submission.find(params[:id])
+
+		# Security Check
+		if !((current_user.id == @submission.user_id) || (current_user.is_admin == 1))
+			return
+		end
+
 		@submission.destroy
 		flash[:succ] = "Submission Destroyed"
 		redirect_to "/dashboard/manage_submissions"
@@ -101,6 +113,12 @@ class SubmissionsController < ApplicationController
 
 	def resubmit
 		@submission = Submission.find(params[:id])
+
+		# Security Check
+		if !((current_user.id == @submission.user_id) || (current_user.is_admin == 1))
+			return
+		end
+		
 		@submission.done = false
 		@submission.save
 		@problem = Problem.find(@submission.problem_id)

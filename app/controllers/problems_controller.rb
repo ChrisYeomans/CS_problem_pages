@@ -46,6 +46,12 @@ class ProblemsController < ApplicationController
   end
 
   def create
+
+    # Security Check
+		if (current_user.is_admin == 1)
+			return
+    end
+    
     @problem = Problem.new(problem_params)
     @problem.number_of_test_cases = @problem.test_cases.split('---').length
     @problem.total_user_score = 0
@@ -78,6 +84,12 @@ class ProblemsController < ApplicationController
   end
 
   def update
+
+    # Security Check
+		if (current_user.is_admin == 1)
+			return
+    end
+
     @problem = Problem.find(params[:id])
     @problem.update(problem_params)
     @problem.number_of_test_cases = @problem.test_cases.split('---').length
@@ -97,6 +109,12 @@ class ProblemsController < ApplicationController
   end
 
   def destroy
+
+    # Security Check
+		if (current_user.is_admin == 1)
+			return
+    end
+
     @problem = Problem.find(params[:id])
     @problem.destroy
     flash[:succ] = "Problem deleted"
@@ -106,6 +124,12 @@ class ProblemsController < ApplicationController
 
   # some post modification methods
   def make_past # make visible/make not hidden
+
+    # Security Check
+		if (current_user.is_admin == 1)
+			return
+    end
+
     @problem = Problem.find(params[:id])
     @problem.is_hidden = false
     @problem.save
@@ -114,6 +138,12 @@ class ProblemsController < ApplicationController
   end
 
   def make_current
+
+    # Security Check
+		if (current_user.is_admin == 1)
+			return
+    end
+
     # need to make all other problems not current
     Problem.all.each do |p|
       p.is_current = 0
@@ -133,6 +163,12 @@ class ProblemsController < ApplicationController
   end
 
   def make_not_current
+
+    # Security Check
+		if (current_user.is_admin == 1)
+			return
+    end
+
     @problem = Problem.find(params[:id])
     @problem.is_current = false
     @problem.save
@@ -141,6 +177,12 @@ class ProblemsController < ApplicationController
   end
 
   def make_hidden
+
+    # Security Check
+		if (current_user.is_admin == 1)
+			return
+    end
+    
     @problem = Problem.find(params[:id])
     @problem.is_hidden = true
     @problem.save
