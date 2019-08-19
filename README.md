@@ -37,25 +37,27 @@
 * Added sign up with github button
 * Add visuals for running test cases
 * Security stuff, post reqs
+* T&Cs when making a new acc
+* Add TOC plus TOC bar w/ cookie
+* Come up with name, MUCSS Problem Pages
 
 ## IN PROGRESS: 
-* - chris
+* Add page for solutions and discussion of previous weeks problem - chris
 
 ## TODO:
-* EULA when making a new acc
+* Graphical Improvements
 * Make users with the same score have the same rank
-* Come up with name
 * Add more supported languages
 * Make custom error pages
 * Add search bars and pagination; users, problems
-* Add TOC plus TOC bar w/ cookie
-* Add OAuth buttons to sign-up and log-in
+* Make tests
+
+## Extra Features TODO:
+* Add training problems
 * Add dark mode
 * Add LaTeX support to problems
-* Add page for solutions and discussion of previous weeks problem
-* Make tests
+* Add OAuth buttons to sign-up
 * Add live competition support
-* Add training problems
 
 ## Supported Languages
 * Python3
