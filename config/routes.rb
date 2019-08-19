@@ -42,6 +42,7 @@ Rails.application.routes.draw do
 
   # dashboard routes
   get "/dashboard", to: "dashboards#index"
+  get "/tcs", to: "dashboards#tcs"
 
     # create problem
     get "/dashboard/create_problem", to: "dashboards#create_problem"

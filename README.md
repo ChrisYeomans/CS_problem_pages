@@ -35,10 +35,11 @@
 * Make layout nicer, add more visual content
 * Speed tweaks, ajax stuff
 * Added sign up with github button
-* Add visuals for running test cases 
+* Add visuals for running test cases
+* Security stuff, post reqs
 
 ## IN PROGRESS: 
-* Security stuff, post reqs - chris
+* - chris
 
 ## TODO:
 * EULA when making a new acc
