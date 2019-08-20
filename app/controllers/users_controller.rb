@@ -42,6 +42,7 @@ class UsersController < ApplicationController
   # called by post of /user/new
   def new_user
     @user = User.new(user_params)
+    @user.bio = params[:bio]
 	  @user.is_admin = 0 # make users not admin by default
     @user.problem_list = p_list # p_list defined in UsersHelper
     @user.score = 0 # needs to be a default score to add to
@@ -79,7 +80,7 @@ class UsersController < ApplicationController
   end
 
   def settings
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def change_pw
@@ -107,16 +108,17 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     # Security Check
-		if !((current_user.id == @user.id) || (current_user.is_admin == 1))
+    if !((current_user.id == @user.id) || (current_user.is_admin == 1))
 			return
 		end
 
     if @user.update_attributes(user_params)
       flash[:succ] = "Saved data successfully"
-      redirect_to @user
     else
-      render "settings"
+      flash[:notice] = "Error saving data"
     end
+
+    redirect_to user_path(@user) + '/settings'
   end
 
   def make_admin

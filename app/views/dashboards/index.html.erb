@@ -3,35 +3,121 @@
 <% else %>
 	
 	<% @title="Dashboard" %>
-	<h1 class="text-center">Dashboard</h1>
-	<div class="container jumbotron p-5 text-center">
-		<a class="btn btn-primary" href="/dashboard/create_problem" role="button">Create Problem</a>
-		<a class="btn btn-primary" href="/dashboard/manage_problems" role="button">Manage Problems</a>
-		<a class="btn btn-primary" href="/dashboard/manage_users" role="button">Manage Users</a>
-		<a class="btn btn-primary" href="/dashboard/manage_submissions" role="button">Manage Submissions</a>
-		<br /><br />
-		<%= link_to "Update Users", "/update_users", method: :post, :class => "btn btn-primary" %>
-		<a class="btn btn-primary" href="/dashboard/manage_solutions" role="button">Manage Solutions</a>
-		<a class="btn btn-primary" href="/problem_solutions/new" role="button">Create Solution</a>
-	</div>
-	<div class="row text-center p-3">
-		<div class="col-sm-4 card-body card" style="background-color: #F0FFFF;">
-			Number of Users: <%= User.count %>
-		</div>
-		<div class="col-sm-4 card-body card" style="background-color: #F0FFFF;">
-			Average Score: <%= User.average(:score) %>
-		</div>
-		<div class="col-sm-4 card-body card" style="background-color: #F0FFFF;">
-			Number of Problems: <%= Problem.count %>
-		</div>
-	</div>
-	<div class="row text-center p-3">
-		<div class="col-sm-6 card-body card" style="background-color: #F0FFFF;">	 
-			Total Problem Score: <%= Problem.sum(:score) %>
-		</div>
-		<div class="col-sm-6 card-body card" style="background-color: #F0FFFF;">	 
-			Highest Score User: <%= User.maximum(:score) %> <%= User.find_by(:score => User.maximum(:score)).name %>
-		</div>
-	</div>
+	
+    <div id="wrapper">
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <div class="container-fluid">
+                    <div class="d-sm-flex justify-content-between align-items-center mb-4">
+                        <h3 class="text-dark mb-0">Dashboard</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-xl-3 mb-4">
+                            <div class="card shadow border-left-primary py-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col mr-2">
+                                            <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Number Of Users</span></div>
+                                            <div class="text-dark font-weight-bold h5 mb-0"><span><%= User.count %></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-3 mb-4">
+                            <div class="card shadow border-left-success py-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col mr-2">
+                                            <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span>Number of Problems</span></div>
+                                            <div class="text-dark font-weight-bold h5 mb-0"><span><%= Problem.count %></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-3 mb-4">
+                            <div class="card shadow border-left-info py-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col mr-2">
+                                            <div class="text-uppercase text-info font-weight-bold text-xs mb-1"><span>Average User Score</span></div>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <div class="text-dark font-weight-bold h5 mb-0 mr-3"><span><%= User.average(:score) %></span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-3 mb-4">
+                            <div class="card shadow border-left-warning py-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col mr-2">
+                                            <div class="text-uppercase text-warning font-weight-bold text-xs mb-1"><span>Highest User Score</span></div>
+                                            <div class="text-dark font-weight-bold h5 mb-0"><span><%= User.maximum(:score) %> <%= User.find_by(:score => User.maximum(:score)).name %></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col-lg-6 mb-4">
+                                    <div class="card text-white bg-primary shadow">
+                                        <div class="card-body">
+                                            <p class="m-0"><a class="text-light" href="/dashboard/create_problem">Create Problem</a></p>
+                                            <p class="text-white-50 small m-0"></p>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="m-0"><a class="text-light" href="/dashboard/manage_problems">Manage Problems</a></p>
+                                            <p class="text-white-50 small m-0"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                    <div class="card text-white bg-success shadow">
+                                        <div class="card-body">
+                                            <p class="m-0"><%= link_to "Update Users", "/update_users", method: :post, :class => "text-white" %></p>
+                                            <p class="text-white-50 small m-0"></p>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="m-0"><a class="text-light" href="/dashboard/manage_users">Manage Users</a></p>
+                                            <p class="text-white-50 small m-0"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                    <div class="card text-white bg-info shadow">
+                                        <div class="card-body">
+                                            <p class="m-0"><a class="text-light" href="/problem_solutions/new">Create Solution</a></p>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="m-0"><a class="text-light" href="/dashboard/manage_solutions">Manage Solutions</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                    <div class="card text-white bg-warning shadow">
+                                        <div class="card-body">
+                                            <p class="m-0">Manage Comments</p>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="m-0"><a class="text-light" href="/dashboard/manage_submissions">Manage Submissions</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+
 
 <% end %>

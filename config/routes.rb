@@ -38,8 +38,8 @@ Rails.application.routes.draw do
   get "/user/new_oath", to: "users#new_oath"
 
     # user settings
-    get "/user/settings", to: "users#settings"
-    post "/user/:id/settings", to: "users#update"
+    get "/users/:id/settings", to: "users#settings"
+    post "/users/:id/settings", to: "users#update"
     get "/users/:id/change_pw", to: "users#change_pw"
     post "/users/:id/change_pw", to: "users#update_pw"
 

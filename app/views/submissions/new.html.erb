@@ -1,33 +1,36 @@
-<% if (not admin_status) and (current_user.id != @submission.user_id) %>
-	<%= controller.redirect_to '/' %>
-<% else %>
-
-	<% @title="Create Submission" %>
-	<h1 class="text-center">Create Submission</h1>
-	<div class="container text-center">
-		<% if @submission %>
-	        <% @submission.errors.full_messages.each do |msg| %>
-	            <div class="alert alert-danger">
-	            	<%= msg %>
-	            </div>
-	        <% end %>
-	    <% end %>
+<% @title="Create Submission" %>
+<div class="container">
+	<% if @submission %>
+		<% @submission.errors.full_messages.each do |msg| %>
+			<div class="alert alert-danger">
+				<%= msg %>
+			</div>
+		<% end %>
+	<% end %>
+	<div class="contact-clean">
 		<%= form_for :submission, url: submissions_path do |f| %>
-			<%= f.label(:code, "Submission Code") %><br />
-			<%= f.text_area(:code, size: "100x15") %>
-			<br /><br /><br />
-			<%= f.label(:upload, "Upload File") %>
-			<%= f.file_field(:upload) %>
-			<br /><br /><br />
-			<% default = params[:prob_id] || Problem.first.id %>
-			<%= f.label(:problem_id, "Select Problem") %>
-			<%= f.select(:problem_id, Problem.all.collect {|a| [a.title, a.id]}, :selected => [Problem.find(default).title, default]) %>
-			<br />
-			<%= f.label(:language, "Select Language") %>
-			<%= f.select(:language, get_language_list) %>
-			<br /><br />
-			<%= f.submit "Submit" %>
+			<h2 class="text-center">Create Submission</h2>
+			<div class="form-group">
+				<%= f.text_area(:code, size: "100x15", placeholder: "Submission Code", class: "form-control") %>
+			</div>
+			<div class="form-group">
+				<%= f.label(:upload, "Upload File") %>
+				<%= f.file_field(:upload, class: "form-control-file") %>
+			</div>
+			<div class="form-group">
+				<% default = params[:prob_id] || Problem.first.id %>
+				<%= f.label(:problem_id, "Select Problem") %>
+				<%= f.select(:problem_id, Problem.all.collect {|a| [a.title, a.id]}, class: "form-control", :selected => [Problem.find(default).title, default]) %>
+			</div>
+			<div class="form-group">
+				<%= f.label(:language, "Select Language") %>
+				<%= f.select(:language, get_language_list, class: "form-control") %>
+			</div>
+			<div class="form-group">
+				<%= f.submit("Submit", class: "btn btn-primary") %>
+			</div>
 		<% end %>
 	</div>
+</div>
 
-<% end %>
+
