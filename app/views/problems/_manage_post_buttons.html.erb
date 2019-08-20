@@ -1,4 +1,5 @@
 <%= link_to "Edit", edit_problem_path(@problem), :class => "btn btn-primary" %>
+<%= link_to "Create Solution", "/problem_solutions/new?prob_id=#{@problem.id}", :class => "btn btn-primary" %>
 <%= link_to "Delete", problem_path(@problem),
 					method: :delete,
 					data: {confirm: "Are you sure you want to delete this post?"}, 
@@ -13,6 +14,7 @@
 					method: :post,
 					data: {confirm: "Are you sure?"}, 
 					:class => "btn btn-primary" %>
+
 <br />
 <br />
 <%= link_to "Make Current Problem", problem_path(@problem)+"/curr",

@@ -10,10 +10,6 @@ end
 
 class ProblemsController < ApplicationController
   include UsersHelper
-  
-  def index
-  
-  end
 
   def past_problems
     @problems = Problem.all
@@ -120,7 +116,6 @@ class ProblemsController < ApplicationController
     flash[:succ] = "Problem deleted"
     redirect_to problems_path
   end
-
 
   # some post modification methods
   def make_past # make visible/make not hidden

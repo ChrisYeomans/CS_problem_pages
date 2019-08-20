@@ -1,0 +1,30 @@
+<% if not admin_status %>
+	<%= controller.redirect_to '/' %>
+<% else %>
+
+    <% @title="New Solution" %>
+    <h1 class="text-center">New Solution</h1>
+    <div class="container text-center">
+        <%= form_for :problem_solution, url: problem_solutions_path do |f| %>
+
+            <% if @sol %>
+                <% @sol.errors.full_messages.each do |msg| %>
+                    <div class="alert alert-danger">
+                        <%= msg %>
+                    </div>
+                <% end %>
+            <% end %>
+
+            <%= f.label(:solution, "Solution") %><br />
+            <%= f.text_area(:solution, size: "100x15") %>
+            <br /><br />
+            <% default = params[:prob_id] || Problem.first.id %>
+            <%= f.label(:problem_id, "Select Problem") %>
+            <%= f.select(:problem_id, Problem.all.collect {|a| [a.title, a.id]}, :selected => [Problem.find(default).title, default]) %>
+            <br /><br />
+            <%= f.submit "Submit", class: "btn btn-primary" %>
+
+        <% end %>
+    </div>
+
+<% end %>

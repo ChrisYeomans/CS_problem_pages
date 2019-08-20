@@ -1,0 +1,16 @@
+<% if not admin_status %>
+	<%= controller.redirect_to '/' %>
+<% else %>
+
+    <% @title="Edit Solution" %>
+	<h1 class="text-center">Edit <%= @sol.problem.title %> Solution</h1>
+	<div class="container text-center">
+        <%= form_with model: @sol, url: problem_solution_path(@sol), method: :patch do |f| %>
+            <%= f.label(:solution, "Solution") %><br />
+            <%= f.text_area(:solution, size: "100x15") %>
+            <br /><br />
+            <%= f.submit "Submit", class: "btn btn-primary" %>
+		<% end %>
+	</div>
+
+<% end %>

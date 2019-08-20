@@ -9,4 +9,7 @@ class User < ApplicationRecord
 	validates :password, presence: true, length: { minimum: 6 }, :if => :password
 	validates :password_confirmation, presence: true, length: { minimum: 6 }, :if => :password
 	has_secure_password
+
+	has_many :submissions, :dependent => :destroy
+	has_many :comments, :dependent => :destroy
 end

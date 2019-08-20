@@ -19,7 +19,7 @@
 			<%= f.label(:upload, "Upload File") %>
 			<%= f.file_field(:upload) %>
 			<br /><br /><br />
-			<% default = params[:prob_id] || 1 %>
+			<% default = params[:prob_id] || Problem.first.id %>
 			<%= f.label(:problem_id, "Select Problem") %>
 			<%= f.select(:problem_id, Problem.all.collect {|a| [a.title, a.id]}, :selected => [Problem.find(default).title, default]) %>
 			<br />

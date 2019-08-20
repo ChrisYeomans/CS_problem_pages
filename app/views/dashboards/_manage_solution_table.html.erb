@@ -1,0 +1,11 @@
+			<% puts "Putting SOLS", @sols %>
+            <% @sols.each do |sol| %>
+				<tr class="text-center">
+					<th scope="row" class="text-left">
+						<%= link_to sol.id, sol %>
+					</th>
+					<td scope="row">
+						<%= link_to sol.problem.title, sol.problem %>
+					</td>
+				</tr>
+			<% end %>

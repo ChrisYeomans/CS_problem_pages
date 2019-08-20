@@ -1,0 +1,17 @@
+<% if not admin_status %>
+	<%= controller.redirect_to '/' %>
+<% else %>
+
+    <% @title=@sol.problem.title + " Solution" %>
+    <h2 class="text-center"><%= @sol.problem.title %> Solution</h2>
+    <div class="text-left">
+        <%= render plain: @markdown.render(@sol.solution).html_safe %>
+    </div>
+
+    <%= link_to "Edit", edit_problem_solution_path(@sol), :class => "btn btn-primary" %>
+    <%= link_to "Delete", problem_solution_path(@sol),
+					method: :delete,
+					data: {confirm: "Are you sure you want to delete this post?"}, 
+					:class => "btn btn-danger" %>
+
+<% end %>

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   patch '/update_problem_table', to: 'dashboards#update_problem_table'
   patch '/update_submission_table', to: 'dashboards#update_submission_table'
   patch '/update_past_problems', to: 'problems#update_past_problems'
+  patch '/update_solution_table', to: 'dashboards#update_solution_table'
 
   # index root and get
   get '/', to: "problems#index"
@@ -17,6 +18,12 @@ Rails.application.routes.draw do
   resources :problems
   get "/past_problems", to: "problems#past_problems"
   get "/current_problem", to: "problems#current_problem"
+
+  # problem solution routes
+  resources :problem_solutions
+
+  # comment routes
+  resources :comments
 
   # submission routes
   resources :submissions
@@ -64,5 +71,14 @@ Rails.application.routes.draw do
 
     # manage submissions
     get "/dashboard/manage_submissions", to: "dashboards#manage_submissions"
+
+    # manage comments
+    get "/user/:id/comments", to: "users#comments"
+    get "/problem_solution/:id/comments", to:  "problem_solutions#comments"
+  
+    # manage Solution Routes
+    get "/problem_solution", to: "dashboards#manage_solutions"
+    get "/dashboard/manage_solutions", to: "dashboards#manage_solutions"
+    get "/dashboard/manage_problem_solutions", to: "dashboards#manage_solutions"
 
 end

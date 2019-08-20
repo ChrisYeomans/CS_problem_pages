@@ -1,0 +1,24 @@
+<% if not admin_status %>
+	<%= controller.redirect_to '/' %>
+<% else %>
+<% @title="Manage Submissions" %>
+<div class="table-responsive-md">
+	<table class="table table-striped table-hover">
+		<thead>
+			<tr class="text-center">
+				<th scope="col" class="text-left">Solution ID</th>
+				<th scope="col">Problem</th>
+			</tr>
+		</thead>
+		<tbody class="table_here">
+
+		</tbody>
+	</table>
+</div>
+
+	<%= link_to "Update Table", "/update_solution_table", remote: true, method: :patch, :id => "click_me", :class => "d-none" %>
+<script type="text/javascript" class="dascript">
+document.getElementById("click_me").click()
+</script>
+
+<% end %>
