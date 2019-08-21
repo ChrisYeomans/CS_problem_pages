@@ -40,12 +40,15 @@
 * T&Cs when making a new acc
 * Add TOC plus TOC bar w/ cookie
 * Come up with name, MUCSS Problem Pages
+* Dashboard graphical update
+* Profile and user settings graphical update
 
 ## IN PROGRESS: 
 * Add page for solutions and discussion of previous weeks problem - chris
 
 ## TODO:
 * Graphical Improvements
+* OAuth Stuff
 * Redo searches with foriegn keys
 * Add more supported languages
 * Make custom error pages
@@ -53,15 +56,14 @@
 * Add page for per user submissions
 * Add page for per user comments
 * Add search bars and pagination; users, problems
-* Make tests
 
 ## Extra TODO:
 * Normalize db to boyce-codd
 * Add training problems
+* Make tests
 * Overhaul rank system
 * Add dark mode
 * Add LaTeX support to problems
-* Add OAuth buttons to sign-up
 * Add live competition support
 * Add discussion Forum
 

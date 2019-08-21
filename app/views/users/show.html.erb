@@ -5,7 +5,7 @@
             <div class="col-md-4 relative">
                 <div class="avatar">
                     <div class="avatar-bg center">
-                            <%= image_tag @user.gravatar_url(:rating => "PG", :default => "mm", :size => "500%"), :class => "img-responsive img-fluid" %>
+                        <%= image_tag @user.gravatar_url(:rating => "PG", :default => "mm", :size => "500%"), :class => "img-responsive img-fluid" %>
                     </div>
                 </div><small>Change Profile Picture with <a href="https://en.gravatar.com/">gravatar</a><div><br /></div></small></div>
             <div class="col-md-8 p-3">
@@ -19,10 +19,11 @@
         </div>
         <div class="row">
             <div class="col">
-                <p>Bio:<br><%= render plain: @markdown.render(@user.bio).html_safe %></p>
+                <% if !@user.bio.nil? %>
+                    <p>Bio:<br><%= render plain: @markdown.render(@user.bio).html_safe %></p>
+                <% end %>
             </div>
         </div>
-        <%= render plain: @markdown.render(@user.bio).html_safe %>
         <br /><br />
         <% if admin_status %>
 			<%= render "manage_user_buttons" %>

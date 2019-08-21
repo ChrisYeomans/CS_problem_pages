@@ -1,34 +1,47 @@
 <% @title="Signup" %>
-<h1 class="text-center">New User</h1>
-<div class="container text-center">
-	<%= form_for :user, url: user_new_path do |f| %>
-
-		<% if @user %>
-	        <% @user.errors.full_messages.each do |msg| %>
-	            <div class="alert alert-danger">
-	            	<%= msg %>
-	            </div>
-	        <% end %>
-	    <% end %>
-
-		<%= f.label(:name, "Username") %><br />
-		<%= f.text_field(:name, size: "40x2", value: params[:name]) %>
-		<br /><br />
-		<%= f.label(:email, "Email") %><br />
-		<%= f.email_field(:email, size: "40x2", value: params[:email]) %>
-		<br /><br />
-		<%= f.label(:password, "Password") %><br />
-		<%= f.password_field(:password) %>
-		<br /><br />
-	    <%= f.label(:password_confirmation, "Repeat Password") %><br />
-	    <%= f.password_field(:password_confirmation) %>
-		<br /><br />
-		<p>By making an account you agree to our <br /><a href="/tsc">Terms and Conditions</a></p>
-		<%= f.submit "Sign Me Up!", class: "btn btn-primary" %>
-
-	<% end %>
-	<br />
-	<% if (params[:name].nil? || params[:name].empty?) %>
-		<a class="btn btn-dark" href="https://github.com/login/oauth/authorize?scope=user&client_id=<%= @GH_CLIENT_ID %>"><img height="25" width="25" src="https://image.flaticon.com/icons/svg/25/25231.svg" />     Sign Up With GitHub</a>
-	<% end %>
+<div class="d-flex flex-column justify-content-center" id="login-box">
+    <div class="login-box-header">
+        <h4 style="color:rgb(139,139,139);margin-bottom:0px;font-weight:400;font-size:27px;">Signup</h4>
+    </div>
+    <div class="login-box-content">
+        <div class="fb-login box-shadow">
+            <a class="d-flex flex-row align-items-center social-login-link" href="#">
+                <i class="fab fa-facebook" style="margin-left:0px;padding-right:20px;padding-left:22px;width:56px;"></i>
+                Signup with Facebook
+            </a>
+        </div>
+        <div class="gp-login box-shadow" style="background-color: #333333;">
+            <a class="d-flex flex-row align-items-center social-login-link" style="margin-bottom:10px;" href="https://github.com/login/oauth/authorize?scope=user&client_id=<%= @GH_CLIENT_ID %>">
+                <i class="fab fa-github" style="color:rgb(255,255,255);width:56px;"></i>
+                Signup with Github
+            </a>
+        </div>
+    </div>
+    <div class="d-flex flex-row align-items-center login-box-seperator-container">
+        <div class="login-box-seperator"></div>
+        <div class="login-box-seperator-text">
+            <p style="margin-bottom:0px;padding-left:10px;padding-right:10px;font-weight:400;color:rgb(201,201,201);">or</p>
+        </div>
+        <div class="login-box-seperator"></div>
+    </div>
+    <%= form_for :user, url: user_new_path do |f| %>
+        <div class="email-login" style="background-color:#ffffff;">
+            <%= f.text_field(:name, :class => "form-control", :style => "margin-top:10px;", :placeholder => "Name") %>
+            <%= f.email_field(:email, :class => "form-control", :style => "margin-top:10px;", :placeholder => "Email") %>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <%= f.password_field(:password, :class => "password-input form-control", :style => "margin-top:10px;", :placeholder => "Password") %>
+                    </div>
+                    <div class="col">
+                        <%= f.password_field(:password_confirmation, :class => "password-input form-control", :style => "margin-top:10px;", :placeholder => "Password Confirmation") %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div id="login-box-footer" style="padding:10px 20px;padding-bottom:23px;padding-top:18px;">
+        <div class="submit-row" style="margin-bottom:8px;padding-top:0px;"><button class="btn btn-primary btn-block box-shadow" id="submit-id-submit" type="submit">Login</button>
+            <% end %>
+            <div class="d-flex justify-content-between"></div>
+        </div><small>By Making an account you agree to our<br><a href="/tcs">Terms and Conditions</a></small></div>
 </div>
