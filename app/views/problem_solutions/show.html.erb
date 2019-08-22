@@ -13,5 +13,15 @@
 					method: :delete,
 					data: {confirm: "Are you sure you want to delete this post?"}, 
 					:class => "btn btn-danger" %>
+                    <br /><br />
+    <%= link_to "Make Current Solution", problem_solution_path(@sol)+"/curr",
+					method: :post,
+					data: {confirm: "Are you sure?"}, 
+					:class => "btn btn-primary" %>
+    <%= link_to "Make Not Current Solution", problem_solution_path(@sol)+"/not_curr",
+					method: :post,
+					data: {confirm: "Are you sure?"}, 
+					:class => "btn btn-primary" %>
+
 
 <% end %>

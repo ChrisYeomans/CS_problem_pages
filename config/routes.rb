@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   # problem solution routes
   resources :problem_solutions
+  get "/current_solution", to: "problem_solutions#current_solution"
 
   # comment routes
   resources :comments
@@ -80,5 +81,7 @@ Rails.application.routes.draw do
     get "/problem_solution", to: "dashboards#manage_solutions"
     get "/dashboard/manage_solutions", to: "dashboards#manage_solutions"
     get "/dashboard/manage_problem_solutions", to: "dashboards#manage_solutions"
+    post "/problem_solutions/:id/curr", to: "problem_solutions#make_current"
+    post "/problem_solutions/:id/not_curr", to: "problem_solutions#make_not_current"
 
 end

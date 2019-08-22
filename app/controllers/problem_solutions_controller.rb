@@ -49,6 +49,51 @@ class ProblemSolutionsController < ApplicationController
         redirect_to "/dashboard/manage_problem_solutions"
     end
 
+    def current_solution
+        @markdown = Redcarpet::Markdown.new(CustomRender, md_arguments)
+        @sols = ProblemSolution.all
+    end
+
+    def make_current
+
+        # Security Check
+        if !(current_user.is_admin == 1)
+            return
+        end
+
+        # need to make all other problems not current
+        ProblemSolution.all.each do |p|
+            p.is_featured = 0
+            if p.save
+            else
+                flash[:notice] = "Error making resetting other current problem_solutions to 0"
+            end
+        end
+        @problem_solution = ProblemSolution.find(params[:id])
+        @problem_solution.is_featured = true
+        if @problem_solution.save
+            flash[:succ] = "Problem_solution is now the problem_solution of the week"
+        else
+            flash[:notice] = "Error making problem_solution the problem_solution of the week"
+        end
+            redirect_to "/dashboard/manage_problem_solutions"
+    end
+
+    def make_not_current
+
+        # Security Check
+        if !(current_user.is_admin == 1)
+            return
+        end
+
+        @problem_solution = ProblemSolution.find(params[:id])
+        @problem_solution.is_featured = false
+        @problem_solution.save
+        flash[:succ] = "Problem_solution is now not the problem_solution of the week"
+        redirect_to "/dashboard/manage_problem_solutions"
+
+    end
+
     def md_arguments
         {
             autolink: true,

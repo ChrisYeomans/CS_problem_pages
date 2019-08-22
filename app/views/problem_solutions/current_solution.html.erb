@@ -1,0 +1,12 @@
+<% @title="Solution Of The Week" %>
+<h1 class="text-center p-1">Solution Of The Week</h1>
+
+<div class="text-left p-4">
+	<% @sols.all.each do |sol| %>
+		<% if sol.is_featured == 1 %>
+			<h3><%= link_to sol.problem.title, sol.problem %> Solution</h3>
+			<%= render plain: @markdown.render(sol.solution).html_safe %>
+			<% break %>
+		<% end %>
+	<% end%>
+</div>
