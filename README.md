@@ -42,9 +42,10 @@
 * Come up with name, MUCSS Problem Pages
 * Dashboard graphical update
 * Profile and user settings graphical update
+* Added Solutions and Solution of the week
 
 ## IN PROGRESS: 
-* Add page for solutions and discussion of previous weeks problem - chris
+* Add comments to solution of the week - chris
 
 ## TODO:
 * Graphical Improvements
@@ -55,7 +56,7 @@
 * Add page for per problem submissions
 * Add page for per user submissions
 * Add page for per user comments
-* Add search bars and pagination; users, problems
+* Add search bars and pagination to users and problems
 
 ## Extra TODO:
 * Normalize db to boyce-codd
