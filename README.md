@@ -43,23 +43,27 @@
 * Dashboard graphical update
 * Profile and user settings graphical update
 * Added Solutions and Solution of the week
+* Login and signup graphical update
+* Add comments to solution of the week
 
 ## IN PROGRESS: 
-* Add comments to solution of the week - chris
+* - chris
 
 ## TODO:
-* Graphical Improvements
+* Admin forms graphical update
 * OAuth Stuff
-* Redo searches with foriegn keys
 * Add more supported languages
 * Make custom error pages
+
+## Extra TODO:
+* Add search bars and pagination to users and problems
 * Add page for per problem submissions
 * Add page for per user submissions
 * Add page for per user comments
-* Add search bars and pagination to users and problems
-
-## Extra TODO:
 * Normalize db to boyce-codd
+* Redo searches with foriegn keys
+* Add delete and edit to comments
+* Make comment submissions with AJAX
 * Add training problems
 * Make tests
 * Overhaul rank system

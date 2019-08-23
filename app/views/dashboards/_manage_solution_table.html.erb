@@ -3,6 +3,9 @@
 				<tr class="text-center">
 					<th scope="row" class="text-left">
 						<%= link_to sol.id, sol %>
+						<% if sol.is_featured == 1 %>
+							<small>Featured</small>
+						<% end %>
 					</th>
 					<td scope="row">
 						<%= link_to sol.problem.title, sol.problem %>
