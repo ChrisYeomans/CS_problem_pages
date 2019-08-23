@@ -28,7 +28,15 @@
               <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/current_problem">Problem of The Week</a>
+              <div class="dropdown">
+                <button class="btn btn-dark dropdown-toggle nav-link" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Weekly
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="/current_problem">Problem of The Week</a>
+                  <a class="dropdown-item" href="/current_solution">Solution Of The Week</a>
+                </div>
+              </div>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/past_problems">Past Problems</a>
