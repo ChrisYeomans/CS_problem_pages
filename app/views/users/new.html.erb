@@ -28,15 +28,9 @@
         <div class="email-login" style="background-color:#ffffff;">
             <%= f.text_field(:name, :class => "form-control", :style => "margin-top:10px;", :placeholder => "Name") %>
             <%= f.email_field(:email, :class => "form-control", :style => "margin-top:10px;", :placeholder => "Email") %>
-            <div class="col">
-                <div class="row">
-                    <div class="col">
-                        <%= f.password_field(:password, :class => "password-input form-control", :style => "margin-top:10px;", :placeholder => "Password") %>
-                    </div>
-                    <div class="col">
-                        <%= f.password_field(:password_confirmation, :class => "password-input form-control", :style => "margin-top:10px;", :placeholder => "Password Confirmation") %>
-                    </div>
-                </div>
+            <div class="form-inline">
+                <%= f.password_field(:password, :class => "password-input form-control", :style => "margin-top:10px;", :placeholder => "Password") %>
+                <%= f.password_field(:password_confirmation, :class => "password-input form-control", :style => "margin-top:10px;", :placeholder => "Password Confirmation") %>
             </div>
         </div>
     <div id="login-box-footer" style="padding:10px 20px;padding-bottom:23px;padding-top:18px;">
