@@ -48,11 +48,11 @@
 * Add page for per user comments
 
 ## IN PROGRESS: 
-* - chris
+* OAuth Stuff - chris
 
 ## TODO:
 * Admin forms graphical update
-* OAuth Stuff
+* 
 * Add more supported languages
 * Make custom error pages
 
@@ -63,7 +63,7 @@
 * Normalize db to boyce-codd
 * Redo searches with foriegn keys
 * Add delete and edit to comments
-* Make comment submissions with AJAX
+* Redo comment submissions with AJAX
 * Add training problems
 * Make tests
 * Overhaul rank system
