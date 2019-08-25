@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_22_132856) do
+ActiveRecord::Schema.define(version: 2019_08_25_155236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,8 @@ ActiveRecord::Schema.define(version: 2019_08_22_132856) do
     t.string "bio"
     t.integer "score"
     t.string "problem_list"
+    t.string "gh_oauth_key"
+    t.string "fb_oauth_key"
   end
 
 end

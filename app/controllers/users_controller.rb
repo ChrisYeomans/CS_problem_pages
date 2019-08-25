@@ -12,6 +12,43 @@ class UsersController < ApplicationController
   # Function used to signup with GitHub OAuth
   def gh_callback
 
+    access_token = get_gh_oauth_key
+    # get user info
+    auth_result = JSON.parse(RestClient.get('https://api.github.com/user',
+                              {:params => {:access_token => access_token}}))
+    
+    name = auth_result['login']
+    email = auth_result['email']
+    bio = auth_result['bio']
+    gh_id = auth_result['id']
+
+    if User.exists?(gh_oauth_key: gh_id)
+      @user = User.find_by(gh_oauth_key: gh_id)
+      log_in @user
+      redirection_loc = user_path(@user) 
+    else
+
+      @user = User.new(
+        {
+          :name => name, :email => email, :bio => bio, 
+          :password => "123456", :password_confirmation => "123456",
+          :gh_oauth_key => gh_id
+        }
+      )
+      
+      if @user.save
+        redirection_loc = user_path(@user) + "/settings"
+        flash[:succ] = "Account made, your password is currently 123456, please change it"
+      else
+        flash[:notice] = "Error"
+        redirection_loc = "/"
+      end
+    end
+
+    redirect_to redirection_loc
+  end
+
+  def get_gh_oauth_key
     @GH_CLIENT_ID = ENV['GH_BASIC_CLIENT_ID']
     @GH_CLIENT_SECRET = ENV['GH_BASIC_CLIENT_SECRET']
     # get temporary GitHub code
@@ -27,16 +64,7 @@ class UsersController < ApplicationController
     # getting access token from result
     access_token = JSON.parse(result)['access_token']
 
-    # get user info
-    auth_result = JSON.parse(RestClient.get('https://api.github.com/user',
-      {:params => {:access_token => access_token}}))
-    
-    name = auth_result['login']
-    email = auth_result['email']
-    bio = auth_result['bio']
-
-    redirect_to "/user/new?name=#{name}&email=#{email}&bio=#{bio}" 
-
+    return access_token
   end
 
   # called by post of /user/new
@@ -48,7 +76,8 @@ class UsersController < ApplicationController
     @user.score = 0 # needs to be a default score to add to
   	if @user.save
       flash[:succ] = "Successfully created a new user, please login"
-  		redirect_to "/login"
+      log_in @user
+      redirect_to @user
 	  else
 		  render 'new'
 	  end
@@ -76,32 +105,12 @@ class UsersController < ApplicationController
   end
 
   def login
+    @GH_CLIENT_ID = ENV['GH_BASIC_CLIENT_ID']
     @user = User.new
   end
 
   def settings
     @user = User.find(params[:id])
-  end
-
-  def change_pw
-    @user = User.find(params[:id])
-  end
-
-  # post of change_pw
-  def update_pw
-    @user = User.find(params[:id])
-
-    # Security Check
-		if !((current_user.id == @user.id) || (current_user.is_admin == 1))
-			return
-		end
-
-    if @user.update_attributes(user_params)
-      flash[:succ] = "Password changed successfully"
-      redirect_to @user
-    else
-      render 'change_pw'
-    end
   end
 
   def update
