@@ -20,6 +20,10 @@ class CommentsController < ApplicationController
         redirect_to "/current_solution"
     end
 
+    def show
+        @comment = Comment.find(params[:id])
+    end
+
     def comment_params
         params.permit(:body)
     end

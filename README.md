@@ -45,6 +45,7 @@
 * Added Solutions and Solution of the week
 * Login and signup graphical update
 * Add comments to solution of the week
+* Add page for per user comments
 
 ## IN PROGRESS: 
 * - chris
@@ -59,7 +60,6 @@
 * Add search bars and pagination to users and problems
 * Add page for per problem submissions
 * Add page for per user submissions
-* Add page for per user comments
 * Normalize db to boyce-codd
 * Redo searches with foriegn keys
 * Add delete and edit to comments

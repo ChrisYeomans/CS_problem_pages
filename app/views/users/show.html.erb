@@ -15,6 +15,9 @@
                 <p><%= @user.email %></p>
                 <p>Total Score: <%= @user.score %></p>
                 <p>Rank: #<%= @rank %></p>
+                <% if (not current_user.nil?) && (current_user.id == @user.id) %>
+                    <%= link_to "User Comments", user_path(@user) + "/comments" %>
+                <% end %>
             </div>
         </div>
         <div class="row">

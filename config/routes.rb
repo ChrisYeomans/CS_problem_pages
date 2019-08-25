@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
   # comment routes
   resources :comments
+  get "/users/:id/comments", to: "users#comments"
 
   # submission routes
   resources :submissions
@@ -74,8 +75,7 @@ Rails.application.routes.draw do
     get "/dashboard/manage_submissions", to: "dashboards#manage_submissions"
 
     # manage comments
-    get "/user/:id/comments", to: "users#comments"
-    get "/problem_solution/:id/comments", to:  "problem_solutions#comments"
+    get "/dashboard/manage_comments", to: "dashboards#manage_comments"
   
     # manage Solution Routes
     get "/problem_solution", to: "dashboards#manage_solutions"

@@ -1,0 +1,26 @@
+<% if not admin_status %>
+<%= controller.redirect_to '/' %>
+<% else %>
+
+    <li class="list-group-item" style="margin-bottom:6px;">
+        <div class="media">
+            <div class="media-body">
+                <div class="media" style="overflow:visible;">
+                    <div><%= image_tag @comment.user.gravatar_url(:rating => "PG", :default => "mm", :size => "25px"), :class => "mr-3 img-responsive img-fluid" %></div>
+                    <div class="media-body" style="overflow:visible;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>
+                                    <%= link_to @comment.user.name, @comment.user %> <%= @comment.body %> <br>
+                                    Problem Solution: <%= link_to @comment.problem_solution.problem.title, @comment.problem_solution %><br />
+                                    <small class="text-muted"><%= @comment.created_at %></small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+
+<% end %>

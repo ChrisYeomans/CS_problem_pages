@@ -188,6 +188,10 @@ class UsersController < ApplicationController
     update_users_problems
   end
 
+  def comments
+    @user = User.find(params[:id])
+  end
+
   def user_params
     params.require(:user).permit(:name, :email, :password, :is_admin, :password_confirmation, :bio)
   end

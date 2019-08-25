@@ -1,4 +1,4 @@
-<% if (not current_user) || (current_user.id != @user.id) %>
+<% if ((not current_user) || (current_user.id != @user.id)) %>
 	<% controller.redirect_to '/' %>
 <% else %>
 	
