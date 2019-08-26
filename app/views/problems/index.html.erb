@@ -1,2 +1,9 @@
 <% @title="CS problem Pages" %>
 <h1>Hello World</h1>
+<% if @user %>
+    <% @user.errors.full_messages.each do |msg| %>
+        <div class="alert alert-danger">
+            <%= msg %>
+        </div>
+    <% end %>
+<% end %>

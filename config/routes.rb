@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   post "/user/new", to: "users#new_user"
   get "/login", to: "users#login"
   get "/gh_callback", to: "users#gh_callback"
-  get "/user/new_oath", to: "users#new_oath"
+  get "/fb_callback", to: "users#fb_callback"
 
     # user settings
     get "/users/:id/settings", to: "users#settings"
