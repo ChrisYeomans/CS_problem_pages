@@ -16,6 +16,7 @@ class UsersController < ApplicationController
       log_in @user
       redirection_loc = user_path(@user)
     else
+      # TODO: make the name generation better
       @user = User.new(
         {
           :name => User.last.id+10, :email => nil, 

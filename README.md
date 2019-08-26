@@ -46,18 +46,18 @@
 * Login and signup graphical update
 * Add comments to solution of the week
 * Add page for per user comments
+* OAuth Stuff
 
 ## IN PROGRESS: 
-* OAuth Stuff - chris
+* Admin forms graphical update - chris
 
 ## TODO:
-* Admin forms graphical update
-* 
 * Add more supported languages
 * Make custom error pages
 
 ## Extra TODO:
 * Add search bars and pagination to users and problems
+* Add "connect with" button to profile setting for oauth stuff
 * Add page for per problem submissions
 * Add page for per user submissions
 * Normalize db to boyce-codd
