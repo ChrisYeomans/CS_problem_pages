@@ -6,6 +6,11 @@
 		<% if problem.is_current == 1 %>
 			<h3><%= problem.title %></h3>
 			<%= render plain: @markdown.render(problem.body).html_safe %>
+			<% if current_user %>
+				<% @default=problem.title %> 
+				<%= link_to "Make Submission", "/submissions/new?prob_id=#{problem.id}", :class => "btn btn-success" %>
+				<br /><br />
+			<% end %>
 			<% break %>
 		<% end %>
 	<% end%>

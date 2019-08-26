@@ -1,3 +1,16 @@
+<script>
+function fb_login_fn() {
+    FB.login(function(response) {
+        console.log(response)
+        if (response.authResponse) {
+            lnk = document.getElementById("fb_link");
+            lnk.href = `/fb_callback?uid=${response.authResponse.userID}`;
+            lnk.click();
+        }
+    })
+}
+</script>
+<a class="d-none", id="fb_link" href=""></a>
 <% @title="Signup" %>
 <div class="d-flex flex-column justify-content-center" id="login-box">
     <div class="login-box-header">
@@ -5,7 +18,7 @@
     </div>
     <div class="login-box-content">
         <div class="fb-login box-shadow">
-            <a class="d-flex flex-row align-items-center social-login-link" href="#">
+            <a class="d-flex flex-row align-items-center social-login-link" onclick="fb_login_fn()" href="">
                 <i class="fab fa-facebook" style="margin-left:0px;padding-right:20px;padding-left:22px;width:56px;"></i>
                 Signup with Facebook
             </a>

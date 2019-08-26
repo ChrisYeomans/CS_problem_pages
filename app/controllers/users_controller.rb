@@ -21,13 +21,15 @@ class UsersController < ApplicationController
         {
           :name => User.last.id+10, :email => nil, 
           :password => "123456", :password_confirmation => "123456",
-          :fb_oauth_key => [params[:uid]]
+          :fb_oauth_key => params[:uid], :is_admin => 0,
+          :score => 0
         }
       )
 
       if @user.save
         redirection_loc = user_path(@user) + "/settings"
         log_in @user
+        update_users
         flash[:succ] = "Account made, your password is currently 123456, please change it"
       else
         flash[:notice] = "Error"
@@ -35,9 +37,9 @@ class UsersController < ApplicationController
         redirection_loc = "/"
       end
 
-      redirect_to redirection_loc
     end
-  
+
+    redirect_to redirection_loc
   end
 
   # Function used to signup with GitHub OAuth
@@ -63,12 +65,15 @@ class UsersController < ApplicationController
         {
           :name => name, :email => email, :bio => bio, 
           :password => "123456", :password_confirmation => "123456",
-          :gh_oauth_key => gh_id
+          :gh_oauth_key => gh_id, :is_admin => 0,
+          :score => 0
         }
       )
       
       if @user.save
         redirection_loc = user_path(@user) + "/settings"
+        log_in @user
+        update_users
         flash[:succ] = "Account made, your password is currently 123456, please change it"
       else
         flash[:notice] = "Error"
@@ -219,12 +224,6 @@ class UsersController < ApplicationController
   end
 
   def update_users
-
-    # Security Check
-    if !(current_user.is_admin == 1)
-			return
-    end
-    
     update_users_problems
   end
 

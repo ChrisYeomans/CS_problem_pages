@@ -19,7 +19,7 @@ function fb_login_fn() {
             <h4 style="color:rgb(139,139,139);margin-bottom:0px;font-weight:400;font-size:27px;">Login</h4>
         </div>
         <div class="login-box-content">
-            <div class="fb-login box-shadow"><a class="d-flex flex-row align-items-center social-login-link" onclick="fb_login_fn()" href="#"><i class="fab fa-facebook" style="margin-left:0px;padding-right:20px;padding-left:22px;width:56px;"></i>Login with Facebook</a></div>
+            <div class="fb-login box-shadow"><a class="d-flex flex-row align-items-center social-login-link" onclick="fb_login_fn()" href=""><i class="fab fa-facebook" style="margin-left:0px;padding-right:20px;padding-left:22px;width:56px;"></i>Login with Facebook</a></div>
             <div class="gp-login box-shadow" style="background-color: #333333;"><a class="d-flex flex-row align-items-center social-login-link" style="margin-bottom:10px;" href="https://github.com/login/oauth/authorize?scope=user&client_id=<%= @GH_CLIENT_ID %>"><i class="fab fa-github" style="color:rgb(255,255,255);width:56px;"></i>Login with Github</a></div>
         </div>
         <div class="d-flex flex-row align-items-center login-box-seperator-container">
@@ -30,7 +30,7 @@ function fb_login_fn() {
             <div class="login-box-seperator"></div>
         </div>
         <div style="background-color:#ffffff;" class="p-3">
-            <%= f.text_field(:name, :class => "form-control", :style => "margin-top:10px;", :placeholder => "Name", :minlength => "6") %>
+            <%= f.text_field(:name, :class => "form-control", :style => "margin-top:10px;", :placeholder => "Name", :minlength => "2") %>
             <%= f.password_field(:password, :type => "password", :class => "password-input form-control", :style => "margin-top:10px;", :placeholder => "Password") %>
         </div>
         <div
