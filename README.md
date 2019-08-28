@@ -47,9 +47,10 @@
 * Add comments to solution of the week
 * Add page for per user comments
 * OAuth Stuff
+* Admin forms graphical update
 
 ## IN PROGRESS: 
-* Admin forms graphical update - chris
+*  - chris
 
 ## TODO:
 * Add more supported languages

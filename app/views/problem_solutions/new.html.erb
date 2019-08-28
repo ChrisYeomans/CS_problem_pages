@@ -14,14 +14,14 @@
                     </div>
                 <% end %>
             <% end %>
-
-            <%= f.label(:solution, "Solution") %><br />
-            <%= f.text_area(:solution, size: "100x15") %>
-            <br /><br />
+            <div class="form-group">    
+                <%= f.text_area(:solution, size: "100x15", :placeholder => "Solution", :class => "form-control") %>
+            </div>
             <% default = params[:prob_id] || Problem.first.id %>
-            <%= f.label(:problem_id, "Select Problem") %>
-            <%= f.select(:problem_id, Problem.all.collect {|a| [a.title, a.id]}, :selected => [Problem.find(default).title, default]) %>
-            <br /><br />
+            <div class="form-group">
+                <%= f.label(:problem_id, "Select Problem") %>
+                <%= f.select(:problem_id, Problem.all.collect {|a| [a.title, a.id]}, :selected => [Problem.find(default).title, default], :class => "form-control") %>   
+            </div>
             <%= f.submit "Submit", class: "btn btn-primary" %>
 
         <% end %>
