@@ -50,11 +50,11 @@
 * Admin forms graphical update
 
 ## IN PROGRESS: 
-*  - chris
+* Make custom error pages - chris
 
 ## TODO:
 * Add more supported languages
-* Make custom error pages
+* 
 
 ## Extra TODO:
 * Add search bars and pagination to users and problems
