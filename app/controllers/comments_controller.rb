@@ -8,14 +8,10 @@ class CommentsController < ApplicationController
             end
         end
         @comment = Comment.new(comment_params.merge(:problem_solution_id => @ps_id, :user_id => current_user.id))
-        puts @comment.inspect
         if @comment.save
             flash[:succ] = "Comment created"
         else
             flash[:notice] = "Error creating comment"
-            @comment.errors.full_messages.each do |msg|
-                puts msg
-            end
         end
         redirect_to "/current_solution"
     end

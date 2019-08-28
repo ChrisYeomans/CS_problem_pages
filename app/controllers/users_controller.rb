@@ -33,7 +33,6 @@ class UsersController < ApplicationController
         flash[:succ] = "Account made, your password is currently 123456, please change it"
       else
         flash[:notice] = "Error"
-        puts @user.errors.full_messages
         redirection_loc = "/"
       end
 
@@ -134,7 +133,6 @@ class UsersController < ApplicationController
     @ordered_users.each_with_index do |u, i|
       if u.id.to_i == params[:id].to_i
         @rank = i + 1
-        puts "doing rank", @rank
         break
       end
     end  
