@@ -176,12 +176,12 @@ module SubmissionsHelper
 			"rust" => {
 				"extension" => "rs",
 				"run_command" => "./#{submission_id}.out",
-				"compile_command" => "rustc -O --crate-type bin --edition=2018 #{filename} -o #{submission_id}.out"
+				"compile_command" => "rustc -O --crate-type bin --edition=2018 #{file_name} -o #{submission_id}.out"
 			},
 			"v" => {
 				"extension" => "v",
 				"run_command" => "./#{submission_id}.out",
-				"compile_command" => "v -prod #{filename} -o #{submission_id}.out"
+				"compile_command" => "v -prod #{file_name} -o #{submission_id}.out"
 			}
 		}
 	end
