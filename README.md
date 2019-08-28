@@ -48,13 +48,12 @@
 * Add page for per user comments
 * OAuth Stuff
 * Admin forms graphical update
+* Make custom error pages
 
 ## IN PROGRESS: 
-* Make custom error pages - chris
+* Add more supported languages - chris
 
 ## TODO:
-* Add more supported languages
-* 
 
 ## Extra TODO:
 * Add search bars and pagination to users and problems
