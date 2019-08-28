@@ -49,11 +49,10 @@
 * OAuth Stuff
 * Admin forms graphical update
 * Make custom error pages
+* Add more supported languages
 
 ## IN PROGRESS: 
-* Add more supported languages - chris
-
-## TODO:
+* Write tests - chris
 
 ## Extra TODO:
 * Add search bars and pagination to users and problems
@@ -66,7 +65,6 @@
 * Add delete and edit to comments
 * Redo comment submissions with AJAX
 * Add training problems
-* Make tests
 * Overhaul rank system
 * Add dark mode
 * Add LaTeX support to problems
