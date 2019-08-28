@@ -71,6 +71,9 @@
 * Add live competition support
 * Add discussion Forum
 
+## Tests Done
+* Sign Up
+
 ## Supported Languages
 * Python3
 * Python
