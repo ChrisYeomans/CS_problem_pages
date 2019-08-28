@@ -7,12 +7,16 @@ module SubmissionsHelper
 		# '***'
 		test_case_lst = []
 	    test_cases.split("---").each do |tc|
-	      test_case_lst  << tc.split("***")
+	      test_case_lst << tc.split("***")
 		end
 
 		# some setup stuff
-	    language_extension = get_extension(language)
-	    file_name = "#{submission_id}.#{language_extension}"
+		language_extension = get_extension(language)
+		if language_extension == "java"
+			file_name = "j#{submission_id}.#{language_extension}"
+		else
+			file_name = "#{submission_id}.#{language_extension}"
+		end
 	    run_command, compile_command = get_language_bits(language, file_name, submission_id)
 		make_file(file_name, submission_id)
 		compiled = true
@@ -45,6 +49,7 @@ module SubmissionsHelper
 					# this removes weird hidden characters
 					output = output.strip().split(' ').map(&:strip).join(' ')
 					out = out.strip().split(' ').map(&:strip).join(' ')
+					puts "				RESULT HERE", out, output
 
 					if out.strip() == output.strip()
 						test_cases_passed += 1
@@ -116,32 +121,32 @@ module SubmissionsHelper
 			"java6" => {
 				"extension" => "java",
 				"run_command" => "java #{file_name}",
-				"compile_command" =>"javac --release 6 #{file_name} 1> /dev/null 2>&1"
+				"compile_command" =>"javac --release 6 -Xlint:-options #{file_name} 1> /dev/null 2>&1"
 			},
 			"java7" => {
 				"extension" => "java",
 				"run_command" => "java #{file_name}",
-				"compile_command" =>"javac --release 7 #{file_name} 1> /dev/null 2>&1"
+				"compile_command" =>"javac --release 7 -Xlint:-options #{file_name} 1> /dev/null 2>&1"
 			},
 			"java8" => {
 				"extension" => "java",
 				"run_command" => "java #{file_name}",
-				"compile_command" =>"javac --release 8 #{file_name} 1> /dev/null 2>&1"
+				"compile_command" =>"javac --release 8 -Xlint:-options #{file_name} 1> /dev/null 2>&1"
 			},
 			"java9" => {
 				"extension" => "java",
 				"run_command" => "java #{file_name}",
-				"compile_command" =>"javac --release 9 #{file_name} 1> /dev/null 2>&1"
+				"compile_command" =>"javac --release 9 -Xlint:-options #{file_name} 1> /dev/null 2>&1"
 			},
 			"java10" => {
 				"extension" => "java",
 				"run_command" => "java #{file_name}",
-				"compile_command" =>"javac --release 10 #{file_name} 1> /dev/null 2>&1"
+				"compile_command" =>"javac --release 10 -Xlint:-options #{file_name} 1> /dev/null 2>&1"
 			},
 			"java11" => {
 				"extension" => "java",
 				"run_command" => "java #{file_name}",
-				"compile_command" =>"javac --release 11 #{file_name} 1> /dev/null 2>&1"
+				"compile_command" =>"javac --release 11 -Xlint:-options #{file_name} 1> /dev/null 2>&1"
 			},
 			"c" => {
 				"extension" => "c",
@@ -199,5 +204,10 @@ module SubmissionsHelper
 		subm = Submission.find(submission_id)
 		text = subm.code
 		File.open("#{file_name}", "w") { |file| file.puts "#{text}"}
+	end
+
+	def javaify(code, id)
+		code["public class main"] = "public class j#{id}"
+		return code
 	end
 end

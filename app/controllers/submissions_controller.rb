@@ -23,7 +23,11 @@ class SubmissionsController < ApplicationController
 	def results
 		@submission = Submission.find(params[:id])
 		@problem = Problem.find(@submission.problem_id)
-		@results = eval(@submission.results)
+		if !@submission.results.nil?
+			@results = eval(@submission.results)
+		else
+			@results = []
+		end
 		respond_to do |format|
 			format.js {}
 		end
@@ -43,6 +47,11 @@ class SubmissionsController < ApplicationController
 
 		flash[:succ] = "Submitted please wait then reload to update results"
 		if @submission.save
+			# for java main class guff
+			if @submission.extension == "java"
+				@submission.code = javaify(@submission.code, @submission.id)
+				@submission.save
+			end
 			Thread.new do
 				@submission.test_cases_passed, @submission.results = test_cases(@submission.language, @submission.id, @problem.test_cases, use_lrun=true, max_cpu_time=@problem.cpu_time, max_memory=@problem.memory)
 				@submission.verdict = (@submission.test_cases_passed == @problem.number_of_test_cases)
