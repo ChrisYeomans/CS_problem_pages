@@ -58,4 +58,26 @@ class UsersTest < ApplicationSystemTestCase
 
     assert_text "Signup"
   end
+
+  test "logging in a regular user" do
+    visit "/login"
+
+    fill_in "Name", with: "bob"
+    fill_in "Password", with: "123456"
+
+    find('#submit-id-submit', :visible => true).click
+
+    assert_text "bob"
+  end
+
+  test "logging in an admin user" do
+    visit "/login"
+
+    fill_in "Name", with: "admin"
+    fill_in "Password", with: "123456"
+
+    find('#submit-id-submit', :visible => true).click
+
+    assert_text "admin"
+  end
 end
