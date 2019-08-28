@@ -170,8 +170,18 @@ module SubmissionsHelper
 			},
 			"go" => {
 				"extension" => "go",
-				"run_command" => "go build #{file_name}",
-				"compile_command" => "./#{file_name}"
+				"run_command" => "./#{submission_id}.out",
+				"compile_command" => "go build #{file_name} -o #{submission_id}.out"
+			},
+			"rust" => {
+				"extension" => "rs",
+				"run_command" => "./#{submission_id}.out",
+				"compile_command" => "rustc -O --crate-type bin --edition=2018 #{filename} -o #{submission_id}.out"
+			},
+			"v" => {
+				"extension" => "v",
+				"run_command" => "./#{submission_id}.out",
+				"compile_command" => "v -prod #{filename} -o #{submission_id}.out"
 			}
 		}
 	end
