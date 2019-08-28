@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class ProblemTest < ActiveSupport::TestCase
+	Rails.application.load_seed
+
 	test "problem should save with valid fields" do
 		problem = Problem.new
 		problem.title = "Hello World1234"

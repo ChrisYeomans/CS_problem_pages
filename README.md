@@ -58,6 +58,7 @@
 ## Extra TODO:
 * Add search bars and pagination to users and problems
 * Add "connect with" button to profile setting for oauth stuff
+* Make OAuth stuff better, more secure
 * Add page for per problem submissions
 * Add page for per user submissions
 * Normalize db to boyce-codd

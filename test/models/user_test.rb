@@ -30,7 +30,7 @@ class UserTest < ActiveSupport::TestCase
   	user.password = "1234abcd"
     user.password_confirmation = "1234abcd" 
   	user.email = ""
-  	assert !user.save, "User saved with empty email"
+  	assert user.save, "User not saved with empty email"
   end
 
   test "user should not save if duplicate fields" do
@@ -71,14 +71,5 @@ class UserTest < ActiveSupport::TestCase
   	user.email = "marco@gmail.com"
   	assert !user.save, "Name should be shorter than 26 letter"
   end
-
-  test "email should be within set parameters" do
-  	user = User.new
-  	user.name = "Marco"
-  	user.password = "1234abcd"
-    user.password_confirmation = "1234abcd" 
-  	user.email = "m"*100 + "@gmail.com"
-  	assert !user.save, "Email should be shorter than 100 letters"
-	end
 
 end
