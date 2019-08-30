@@ -49,7 +49,8 @@ module SubmissionsHelper
 					# this removes weird hidden characters
 					output = output.strip().split(' ').map(&:strip).join(' ')
 					out = out.strip().split(' ').map(&:strip).join(' ')
-					puts "				RESULT HERE", out, output
+					puts "				RESULT HERE", out, output, run_command
+					system("cat err_#{submission_id}.txt")
 
 					if out.strip() == output.strip()
 						test_cases_passed += 1
@@ -120,32 +121,32 @@ module SubmissionsHelper
 			},
 			"java6" => {
 				"extension" => "java",
-				"run_command" => "java #{file_name}",
+				"run_command" => "java j#{submission_id}",
 				"compile_command" =>"javac --release 6 -Xlint:-options #{file_name} 1> /dev/null 2>&1"
 			},
 			"java7" => {
 				"extension" => "java",
-				"run_command" => "java #{file_name}",
+				"run_command" => "java j#{submission_id}",
 				"compile_command" =>"javac --release 7 -Xlint:-options #{file_name} 1> /dev/null 2>&1"
 			},
 			"java8" => {
 				"extension" => "java",
-				"run_command" => "java #{file_name}",
+				"run_command" => "java j#{submission_id}",
 				"compile_command" =>"javac --release 8 -Xlint:-options #{file_name} 1> /dev/null 2>&1"
 			},
 			"java9" => {
 				"extension" => "java",
-				"run_command" => "java #{file_name}",
+				"run_command" => "java j#{submission_id}",
 				"compile_command" =>"javac --release 9 -Xlint:-options #{file_name} 1> /dev/null 2>&1"
 			},
 			"java10" => {
 				"extension" => "java",
-				"run_command" => "java #{file_name}",
+				"run_command" => "java j#{submission_id}",
 				"compile_command" =>"javac --release 10 -Xlint:-options #{file_name} 1> /dev/null 2>&1"
 			},
 			"java11" => {
 				"extension" => "java",
-				"run_command" => "java #{file_name}",
+				"run_command" => "java j#{submission_id}",
 				"compile_command" =>"javac --release 11 -Xlint:-options #{file_name} 1> /dev/null 2>&1"
 			},
 			"c" => {
@@ -176,7 +177,7 @@ module SubmissionsHelper
 			"go" => {
 				"extension" => "go",
 				"run_command" => "./#{submission_id}.out",
-				"compile_command" => "go build #{file_name} -o #{submission_id}.out"
+				"compile_command" => "go build -o #{submission_id}.out #{file_name}"
 			},
 			"rust" => {
 				"extension" => "rs",
@@ -186,7 +187,7 @@ module SubmissionsHelper
 			"v" => {
 				"extension" => "v",
 				"run_command" => "./#{submission_id}.out",
-				"compile_command" => "v -prod #{file_name} -o #{submission_id}.out"
+				"compile_command" => "v -prod -o #{submission_id}.out #{file_name}"
 			}
 		}
 	end
