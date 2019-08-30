@@ -188,6 +188,11 @@ module SubmissionsHelper
 				"extension" => "v",
 				"run_command" => "./#{submission_id}.out",
 				"compile_command" => "v -prod -o #{submission_id}.out #{file_name}"
+			},
+			"bash" => {
+				"extension" => "sh",
+				"run_command" => "sh #{file_name}",
+				"compile_command" => ""
 			}
 		}
 	end

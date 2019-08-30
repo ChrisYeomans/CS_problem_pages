@@ -573,4 +573,36 @@ class LanguagesTest < ApplicationSystemTestCase
     assert_no_text "Verdict: 0"
     assert_text "Verdict: 1"
   end
+
+  test "bash" do
+    # login as admin
+    visit "/login"
+    fill_in "Name", with: "admin"
+    fill_in "Password", with: "123456"
+    find('#submit-id-submit', :visible => true).click
+
+    # create problem
+    visit "/dashboard/create_problem"
+    fill_in "Title", with: "test #01"
+    fill_in "Problem Statement", with: "test #01 body"
+    fill_in "Test Cases", with: "***\nhello world"
+    fill_in "Max CPU Time", with: "4"
+    fill_in "Max CPU Memory", with: "512m"
+    fill_in "Score", with: "100"
+    find("#problem_is_current").set(false)
+    find("#problem_is_hidden").set(false)
+    click_on "Submit"
+
+    click_on "Make Submission"
+
+    attach_file("submission[upload]", Rails.root + "test/system/test_files/bash_test.sh")
+    select("bash", from: "submission_language")
+    click_on "Submit"
+
+    # sleep to wait for ajax
+    sleep 4
+
+    assert_no_text "Verdict: 0"
+    assert_text "Verdict: 1"
+  end
 end

@@ -1,15 +1,7 @@
 require 'test_helper'
 
 class ProblemTest < ActiveSupport::TestCase
-	Rails.application.load_seed
-
-	test "problem should save with valid fields" do
-		problem = Problem.new
-		problem.title = "Hello World1234"
-		problem.body = "Hello World! program"
-		problem.test_cases = "Hello World!"
-		assert problem.save, "Problem didnt save with valid fields"
-	end
+  Rails.application.load_seed
 
   test "problem should not save with empty fields" do
 		problem = Problem.new
