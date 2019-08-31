@@ -180,7 +180,7 @@ class LanguagesTest < ApplicationSystemTestCase
     click_on "Submit"
 
     # sleep to wait for ajax
-    sleep 4
+    sleep 5
 
     assert_no_text "Verdict: 0"
     assert_text "Verdict: 1"

@@ -1,31 +1,31 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+bob:
   name: bob
   email: bob@test.com
   password_digest: $2a$12$lbF3tCHX0Zv2/bNtlHvGHuoBRnD7xNHTBGmOl.frQ59gqKBZARvuO
   is_admin: 0
   bio: nil
   score: 0
-  problem_list: "{}"
+  problem_list: "{\"hello world\":{\"attempted\":0,\"score\":0,\"max_score\":0,\"got_all_points\":0}}"
   id: 42
 
-three:
+not_bob:
   name: not_bob
   email: not_bob@test.com
   password_digest: $2a$12$lbF3tCHX0Zv2/bNtlHvGHuoBRnD7xNHTBGmOl.frQ59gqKBZARvuO
   is_admin: 0
   bio: nil
   score: 0
-  problem_list: "{}"
+  problem_list: "{\"hello world\":{\"attempted\":0,\"score\":0,\"max_score\":0,\"got_all_points\":0}}"
   id: 41
 
-two:
+admin:
   name: admin
   email: admin@test.com
   password_digest: $2a$12$lbF3tCHX0Zv2/bNtlHvGHuoBRnD7xNHTBGmOl.frQ59gqKBZARvuO
   is_admin: 1
   bio: nil
   score: 0
-  problem_list: "{}"
+  problem_list: "{\"hello world\":{\"attempted\":0,\"score\":0,\"max_score\":0,\"got_all_points\":0}}"
   id: 43
