@@ -16,7 +16,7 @@ class SubmissionsController < ApplicationController
 
 	def show
 		@submission = Submission.find(params[:id])
-		@problem = Problem.find(@submission.problem_id)
+		@problem = @submission.problem
 		@markdown = Redcarpet::Markdown.new(CustomRender, md_arguments)
 	end
 

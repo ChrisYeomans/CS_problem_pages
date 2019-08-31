@@ -1,11 +1,11 @@
-<% if (not admin_status) and (current_user.id != @submission.user_id) %>
+<% if current_user.nil? || ((not admin_status) && (current_user.id != @submission.user_id)) %>
 	<%= controller.redirect_to '/' %>
 <% else %>
 
-<% @title=@problem.title %>
+<% @title="Show Submission" %>
 <h3 class="text-center">Submission ID: <%= @submission.id %></h3>
 <h3 class="text-center">Problem: <%= link_to @problem.title, @problem %></h3>
-<h3 class="text-center">User: <%= User.find(@submission.user_id).name %></h3>
+<h3 class="text-center">User: <% if !@submission.user.nil? %><%= @submission.user.name  %><% end %></h3>
 <h3 class="text-center">Verdict: <div class="verdict_div" style="display: inline;"> <%= @submission.verdict %> </div></h3>
 <h3 class="text-center">Score: <div class="score_div" style="display: inline;"><%= @submission.score %></div> </h3>
 <br /><br />

@@ -1,4 +1,4 @@
-<% if (not admin_status) and (current_user.id != @submission.user_id) %>
+<% if current_user.nil? || ((not admin_status) && (current_user.id != @submission.user_id)) %>
 	<%= controller.redirect_to '/' %>
 <% else %>
 

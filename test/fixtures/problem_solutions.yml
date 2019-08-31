@@ -3,7 +3,5 @@
 one:
   solution: MyText
   problem_id: 1
+  id: 69
 
-two:
-  solution: MyText
-  problem_id: 1

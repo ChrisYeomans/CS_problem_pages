@@ -7,6 +7,18 @@ one:
   is_admin: 0
   bio: nil
   score: 0
+  problem_list: "{}"
+  id: 42
+
+three:
+  name: not_bob
+  email: not_bob@test.com
+  password_digest: $2a$12$lbF3tCHX0Zv2/bNtlHvGHuoBRnD7xNHTBGmOl.frQ59gqKBZARvuO
+  is_admin: 0
+  bio: nil
+  score: 0
+  problem_list: "{}"
+  id: 41
 
 two:
   name: admin
@@ -15,3 +27,5 @@ two:
   is_admin: 1
   bio: nil
   score: 0
+  problem_list: "{}"
+  id: 43

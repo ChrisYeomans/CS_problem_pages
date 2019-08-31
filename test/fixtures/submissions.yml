@@ -1,17 +1,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  code: MyText
-  language: MyString
-  extension: MyString
+  code: print("hello World")
+  language: "python3"
+  extension: "py"
   problem_id: 1
-  user_id: 1
+  user_id: 42
   test_cases_passed: 1
-
-two:
-  code: MyText
-  language: MyString
-  extension: MyString
-  problem_id: 1
-  user_id: 1
-  test_cases_passed: 1
+  verdict: 1
+  results: "[Success]"
+  score: 100
+  done: 1
+  id: 1

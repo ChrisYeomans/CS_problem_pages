@@ -14,8 +14,9 @@
 						<%= submission.verdict %>
 					</td>
 					<td scope="row">
-						<% @user = User.find(submission.user_id) %>
-						<%= link_to @user.name, @user %>
+						<% if !submission.user.nil? %>
+							<%= link_to submission.user.name, submission.user %>
+						<% end %>
 					</td>
 				</tr>
 			<% end %>

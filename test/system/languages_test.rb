@@ -8,7 +8,7 @@ class LanguagesTest < ApplicationSystemTestCase
   # Firstly the first 2 blocks of code are always
   # the same:
   #
-  #   # login as admin
+  #   # login as regular user
   #   visit "/login"
   #   fill_in "Name", with: "admin"
   #   fill_in "Password", with: "123456"
@@ -58,7 +58,7 @@ class LanguagesTest < ApplicationSystemTestCase
 
 
   test "python3" do
-    # login as admin
+    # login as regular user
     visit "/login"
     fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
@@ -80,7 +80,7 @@ class LanguagesTest < ApplicationSystemTestCase
   end
 
   test "python2" do
-    # login as admin
+    # login as regular user
     visit "/login"
     fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
@@ -101,7 +101,7 @@ class LanguagesTest < ApplicationSystemTestCase
   end
 
   test "c" do
-    # login as admin
+    # login as regular user
     visit "/login"
     fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
@@ -122,7 +122,7 @@ class LanguagesTest < ApplicationSystemTestCase
   end
 
   test "c++11" do
-    # login as admin
+    # login as regular user
     visit "/login"
     fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
@@ -143,7 +143,7 @@ class LanguagesTest < ApplicationSystemTestCase
   end
 
   test "cpp14" do
-    # login as admin
+    # login as regular user
     visit "/login"
     fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
@@ -165,7 +165,7 @@ class LanguagesTest < ApplicationSystemTestCase
   end
 
   test "cpp17" do
-    # login as admin
+    # login as regular user
     visit "/login"
     fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
@@ -187,7 +187,7 @@ class LanguagesTest < ApplicationSystemTestCase
   end
 
   test "java6" do
-    # login as admin
+    # login as regular user
     visit "/login"
     fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
@@ -209,7 +209,7 @@ class LanguagesTest < ApplicationSystemTestCase
   end
 
   test "java7" do
-    # login as admin
+    # login as regular user
     visit "/login"
     fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
@@ -231,7 +231,7 @@ class LanguagesTest < ApplicationSystemTestCase
   end
 
   test "java8" do
-    # login as admin
+    # login as regular user
     visit "/login"
     fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
@@ -253,7 +253,7 @@ class LanguagesTest < ApplicationSystemTestCase
   end
 
   test "java9" do
-    # login as admin
+    # login as regular user
     visit "/login"
     fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
@@ -275,7 +275,7 @@ class LanguagesTest < ApplicationSystemTestCase
   end
 
   test "java10" do
-    # login as admin
+    # login as regular user
     visit "/login"
     fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
@@ -297,7 +297,7 @@ class LanguagesTest < ApplicationSystemTestCase
   end
 
   test "java11" do
-    # login as admin
+    # login as regular user
     visit "/login"
     fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
@@ -319,7 +319,7 @@ class LanguagesTest < ApplicationSystemTestCase
   end
 
   test "go" do
-    # login as admin
+    # login as regular user
     visit "/login"
     fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
@@ -341,7 +341,7 @@ class LanguagesTest < ApplicationSystemTestCase
   end
 
   test "rust" do
-    # login as admin
+    # login as regular user
     visit "/login"
     fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
@@ -363,7 +363,7 @@ class LanguagesTest < ApplicationSystemTestCase
   end
 
   test "v" do
-    # login as admin
+    # login as regular user
     visit "/login"
     fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
@@ -385,7 +385,7 @@ class LanguagesTest < ApplicationSystemTestCase
   end
 
   test "ruby" do
-    # login as admin
+    # login as regular user
     visit "/login"
     fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
@@ -407,7 +407,7 @@ class LanguagesTest < ApplicationSystemTestCase
   end
 
   test "bash" do
-    # login as admin
+    # login as regular user
     visit "/login"
     fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
