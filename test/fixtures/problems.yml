@@ -1,1 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+hello_world:
+  title: "hello world"
+  body: "hello world"
+  is_current: 0
+  is_hidden: 0
+  test_cases: "***\nhello world"
+  score: 100
+  memory: "512m"
+  cpu_time: 4
+  number_of_test_cases: 1
+  users_attempted: 0
+  total_user_score: 0
+  id: 1

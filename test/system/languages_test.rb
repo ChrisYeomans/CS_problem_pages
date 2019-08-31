@@ -26,7 +26,6 @@ class LanguagesTest < ApplicationSystemTestCase
   #   find("#problem_is_hidden").set(false)
   #   click_on "Submit"
   #
-  #   # make submissions
   #   click_on "Make Submission"
   #
   # The above code does at it says, it
@@ -61,25 +60,14 @@ class LanguagesTest < ApplicationSystemTestCase
   test "python3" do
     # login as admin
     visit "/login"
-    fill_in "Name", with: "admin"
+    fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
     find('#submit-id-submit', :visible => true).click
 
-    # create problem
-    visit "/dashboard/create_problem"
-    fill_in "Title", with: "test #01"
-    fill_in "Problem Statement", with: "test #01 body"
-    fill_in "Test Cases", with: "***\nhello world"
-    fill_in "Max CPU Time", with: "2"
-    fill_in "Max CPU Memory", with: "512m"
-    fill_in "Score", with: "100"
-    find("#problem_is_current").set(false)
-    find("#problem_is_hidden").set(false)
-    click_on "Submit"
-
-    # make submission
+    visit "/problems/1"
     click_on "Make Submission"
 
+    # make submssion
     attach_file("submission[upload]", Rails.root + "test/system/test_files/python3_test.py")
     select("python3", from: "submission_language")
     click_on "Submit"
@@ -94,23 +82,11 @@ class LanguagesTest < ApplicationSystemTestCase
   test "python2" do
     # login as admin
     visit "/login"
-    fill_in "Name", with: "admin"
+    fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
     find('#submit-id-submit', :visible => true).click
 
-    # create problem
-    visit "/dashboard/create_problem"
-    fill_in "Title", with: "test #01"
-    fill_in "Problem Statement", with: "test #01 body"
-    fill_in "Test Cases", with: "***\nhello world"
-    fill_in "Max CPU Time", with: "2"
-    fill_in "Max CPU Memory", with: "512m"
-    fill_in "Score", with: "100"
-    find("#problem_is_current").set(false)
-    find("#problem_is_hidden").set(false)
-    click_on "Submit"
-
-    # make submission
+    visit "/problems/1"
     click_on "Make Submission"
 
     attach_file("submission[upload]", Rails.root + "test/system/test_files/python2_test.py")
@@ -127,23 +103,11 @@ class LanguagesTest < ApplicationSystemTestCase
   test "c" do
     # login as admin
     visit "/login"
-    fill_in "Name", with: "admin"
+    fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
     find('#submit-id-submit', :visible => true).click
 
-    # create problem
-    visit "/dashboard/create_problem"
-    fill_in "Title", with: "test #01"
-    fill_in "Problem Statement", with: "test #01 body"
-    fill_in "Test Cases", with: "***\nhello world"
-    fill_in "Max CPU Time", with: "2"
-    fill_in "Max CPU Memory", with: "512m"
-    fill_in "Score", with: "100"
-    find("#problem_is_current").set(false)
-    find("#problem_is_hidden").set(false)
-    click_on "Submit"
-
-    # make submission
+    visit "/problems/1"
     click_on "Make Submission"
 
     attach_file("submission[upload]", Rails.root + "test/system/test_files/c_test.c")
@@ -160,23 +124,11 @@ class LanguagesTest < ApplicationSystemTestCase
   test "c++11" do
     # login as admin
     visit "/login"
-    fill_in "Name", with: "admin"
+    fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
     find('#submit-id-submit', :visible => true).click
 
-    # create problem
-    visit "/dashboard/create_problem"
-    fill_in "Title", with: "test #01"
-    fill_in "Problem Statement", with: "test #01 body"
-    fill_in "Test Cases", with: "***\nhello world"
-    fill_in "Max CPU Time", with: "2"
-    fill_in "Max CPU Memory", with: "512m"
-    fill_in "Score", with: "100"
-    find("#problem_is_current").set(false)
-    find("#problem_is_hidden").set(false)
-    click_on "Submit"
-
-    # make submissions
+    visit "/problems/1"
     click_on "Make Submission"
 
     attach_file("submission[upload]", Rails.root + "test/system/test_files/cpp11_test.cpp")
@@ -193,21 +145,11 @@ class LanguagesTest < ApplicationSystemTestCase
   test "cpp14" do
     # login as admin
     visit "/login"
-    fill_in "Name", with: "admin"
+    fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
     find('#submit-id-submit', :visible => true).click
 
-    # create problem
-    visit "/dashboard/create_problem"
-    fill_in "Title", with: "test #01"
-    fill_in "Problem Statement", with: "test #01 body"
-    fill_in "Test Cases", with: "***\nhello world"
-    fill_in "Max CPU Time", with: "2"
-    fill_in "Max CPU Memory", with: "512m"
-    fill_in "Score", with: "100"
-    find("#problem_is_current").set(false)
-    find("#problem_is_hidden").set(false)
-    click_on "Submit"
+    visit "/problems/1"
 
     click_on "Make Submission"
 
@@ -225,21 +167,11 @@ class LanguagesTest < ApplicationSystemTestCase
   test "cpp17" do
     # login as admin
     visit "/login"
-    fill_in "Name", with: "admin"
+    fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
     find('#submit-id-submit', :visible => true).click
 
-    # create problem
-    visit "/dashboard/create_problem"
-    fill_in "Title", with: "test #01"
-    fill_in "Problem Statement", with: "test #01 body"
-    fill_in "Test Cases", with: "***\nhello world"
-    fill_in "Max CPU Time", with: "2"
-    fill_in "Max CPU Memory", with: "512m"
-    fill_in "Score", with: "100"
-    find("#problem_is_current").set(false)
-    find("#problem_is_hidden").set(false)
-    click_on "Submit"
+    visit "/problems/1"
 
     click_on "Make Submission"
 
@@ -257,21 +189,11 @@ class LanguagesTest < ApplicationSystemTestCase
   test "java6" do
     # login as admin
     visit "/login"
-    fill_in "Name", with: "admin"
+    fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
     find('#submit-id-submit', :visible => true).click
 
-    # create problem
-    visit "/dashboard/create_problem"
-    fill_in "Title", with: "test #01"
-    fill_in "Problem Statement", with: "test #01 body"
-    fill_in "Test Cases", with: "***\nhello world"
-    fill_in "Max CPU Time", with: "4"
-    fill_in "Max CPU Memory", with: "512m"
-    fill_in "Score", with: "100"
-    find("#problem_is_current").set(false)
-    find("#problem_is_hidden").set(false)
-    click_on "Submit"
+    visit "/problems/1"
 
     click_on "Make Submission"
 
@@ -289,21 +211,11 @@ class LanguagesTest < ApplicationSystemTestCase
   test "java7" do
     # login as admin
     visit "/login"
-    fill_in "Name", with: "admin"
+    fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
     find('#submit-id-submit', :visible => true).click
 
-    # create problem
-    visit "/dashboard/create_problem"
-    fill_in "Title", with: "test #01"
-    fill_in "Problem Statement", with: "test #01 body"
-    fill_in "Test Cases", with: "***\nhello world"
-    fill_in "Max CPU Time", with: "4"
-    fill_in "Max CPU Memory", with: "512m"
-    fill_in "Score", with: "100"
-    find("#problem_is_current").set(false)
-    find("#problem_is_hidden").set(false)
-    click_on "Submit"
+    visit "/problems/1"
 
     click_on "Make Submission"
 
@@ -321,21 +233,11 @@ class LanguagesTest < ApplicationSystemTestCase
   test "java8" do
     # login as admin
     visit "/login"
-    fill_in "Name", with: "admin"
+    fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
     find('#submit-id-submit', :visible => true).click
 
-    # create problem
-    visit "/dashboard/create_problem"
-    fill_in "Title", with: "test #01"
-    fill_in "Problem Statement", with: "test #01 body"
-    fill_in "Test Cases", with: "***\nhello world"
-    fill_in "Max CPU Time", with: "4"
-    fill_in "Max CPU Memory", with: "512m"
-    fill_in "Score", with: "100"
-    find("#problem_is_current").set(false)
-    find("#problem_is_hidden").set(false)
-    click_on "Submit"
+    visit "/problems/1"
 
     click_on "Make Submission"
 
@@ -353,21 +255,11 @@ class LanguagesTest < ApplicationSystemTestCase
   test "java9" do
     # login as admin
     visit "/login"
-    fill_in "Name", with: "admin"
+    fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
     find('#submit-id-submit', :visible => true).click
 
-    # create problem
-    visit "/dashboard/create_problem"
-    fill_in "Title", with: "test #01"
-    fill_in "Problem Statement", with: "test #01 body"
-    fill_in "Test Cases", with: "***\nhello world"
-    fill_in "Max CPU Time", with: "4"
-    fill_in "Max CPU Memory", with: "512m"
-    fill_in "Score", with: "100"
-    find("#problem_is_current").set(false)
-    find("#problem_is_hidden").set(false)
-    click_on "Submit"
+    visit "/problems/1"
 
     click_on "Make Submission"
 
@@ -385,21 +277,11 @@ class LanguagesTest < ApplicationSystemTestCase
   test "java10" do
     # login as admin
     visit "/login"
-    fill_in "Name", with: "admin"
+    fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
     find('#submit-id-submit', :visible => true).click
 
-    # create problem
-    visit "/dashboard/create_problem"
-    fill_in "Title", with: "test #01"
-    fill_in "Problem Statement", with: "test #01 body"
-    fill_in "Test Cases", with: "***\nhello world"
-    fill_in "Max CPU Time", with: "4"
-    fill_in "Max CPU Memory", with: "512m"
-    fill_in "Score", with: "100"
-    find("#problem_is_current").set(false)
-    find("#problem_is_hidden").set(false)
-    click_on "Submit"
+    visit "/problems/1"
 
     click_on "Make Submission"
 
@@ -417,21 +299,11 @@ class LanguagesTest < ApplicationSystemTestCase
   test "java11" do
     # login as admin
     visit "/login"
-    fill_in "Name", with: "admin"
+    fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
     find('#submit-id-submit', :visible => true).click
 
-    # create problem
-    visit "/dashboard/create_problem"
-    fill_in "Title", with: "test #01"
-    fill_in "Problem Statement", with: "test #01 body"
-    fill_in "Test Cases", with: "***\nhello world"
-    fill_in "Max CPU Time", with: "4"
-    fill_in "Max CPU Memory", with: "512m"
-    fill_in "Score", with: "100"
-    find("#problem_is_current").set(false)
-    find("#problem_is_hidden").set(false)
-    click_on "Submit"
+    visit "/problems/1"
 
     click_on "Make Submission"
 
@@ -449,21 +321,11 @@ class LanguagesTest < ApplicationSystemTestCase
   test "go" do
     # login as admin
     visit "/login"
-    fill_in "Name", with: "admin"
+    fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
     find('#submit-id-submit', :visible => true).click
 
-    # create problem
-    visit "/dashboard/create_problem"
-    fill_in "Title", with: "test #01"
-    fill_in "Problem Statement", with: "test #01 body"
-    fill_in "Test Cases", with: "***\nhello world"
-    fill_in "Max CPU Time", with: "4"
-    fill_in "Max CPU Memory", with: "512m"
-    fill_in "Score", with: "100"
-    find("#problem_is_current").set(false)
-    find("#problem_is_hidden").set(false)
-    click_on "Submit"
+    visit "/problems/1"
 
     click_on "Make Submission"
 
@@ -481,21 +343,11 @@ class LanguagesTest < ApplicationSystemTestCase
   test "rust" do
     # login as admin
     visit "/login"
-    fill_in "Name", with: "admin"
+    fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
     find('#submit-id-submit', :visible => true).click
 
-    # create problem
-    visit "/dashboard/create_problem"
-    fill_in "Title", with: "test #01"
-    fill_in "Problem Statement", with: "test #01 body"
-    fill_in "Test Cases", with: "***\nhello world"
-    fill_in "Max CPU Time", with: "4"
-    fill_in "Max CPU Memory", with: "512m"
-    fill_in "Score", with: "100"
-    find("#problem_is_current").set(false)
-    find("#problem_is_hidden").set(false)
-    click_on "Submit"
+    visit "/problems/1"
 
     click_on "Make Submission"
 
@@ -513,21 +365,11 @@ class LanguagesTest < ApplicationSystemTestCase
   test "v" do
     # login as admin
     visit "/login"
-    fill_in "Name", with: "admin"
+    fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
     find('#submit-id-submit', :visible => true).click
 
-    # create problem
-    visit "/dashboard/create_problem"
-    fill_in "Title", with: "test #01"
-    fill_in "Problem Statement", with: "test #01 body"
-    fill_in "Test Cases", with: "***\nhello world"
-    fill_in "Max CPU Time", with: "4"
-    fill_in "Max CPU Memory", with: "512m"
-    fill_in "Score", with: "100"
-    find("#problem_is_current").set(false)
-    find("#problem_is_hidden").set(false)
-    click_on "Submit"
+    visit "/problems/1"
 
     click_on "Make Submission"
 
@@ -545,21 +387,11 @@ class LanguagesTest < ApplicationSystemTestCase
   test "ruby" do
     # login as admin
     visit "/login"
-    fill_in "Name", with: "admin"
+    fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
     find('#submit-id-submit', :visible => true).click
 
-    # create problem
-    visit "/dashboard/create_problem"
-    fill_in "Title", with: "test #01"
-    fill_in "Problem Statement", with: "test #01 body"
-    fill_in "Test Cases", with: "***\nhello world"
-    fill_in "Max CPU Time", with: "4"
-    fill_in "Max CPU Memory", with: "512m"
-    fill_in "Score", with: "100"
-    find("#problem_is_current").set(false)
-    find("#problem_is_hidden").set(false)
-    click_on "Submit"
+    visit "/problems/1"
 
     click_on "Make Submission"
 
@@ -577,21 +409,11 @@ class LanguagesTest < ApplicationSystemTestCase
   test "bash" do
     # login as admin
     visit "/login"
-    fill_in "Name", with: "admin"
+    fill_in "Name", with: "bob"
     fill_in "Password", with: "123456"
     find('#submit-id-submit', :visible => true).click
 
-    # create problem
-    visit "/dashboard/create_problem"
-    fill_in "Title", with: "test #01"
-    fill_in "Problem Statement", with: "test #01 body"
-    fill_in "Test Cases", with: "***\nhello world"
-    fill_in "Max CPU Time", with: "4"
-    fill_in "Max CPU Memory", with: "512m"
-    fill_in "Score", with: "100"
-    find("#problem_is_current").set(false)
-    find("#problem_is_hidden").set(false)
-    click_on "Submit"
+    visit "/problems/1"
 
     click_on "Make Submission"
 
