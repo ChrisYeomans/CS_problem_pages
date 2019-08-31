@@ -274,5 +274,91 @@ class PageAccessesTest < ApplicationSystemTestCase
     visit "/submissions/1"
     assert page.title == "Show Submission"
   end
+
+  test "users not logged in" do
+    visit "/login"
+    assert page.title == "Login"
+
+    visit "/user/new"
+    assert page.title == "Signup"
+
+    visit "/users/42"
+    assert_text "Profile"
+
+    visit "/users/42/comments"
+    assert page.title == "CS problem Pages"
+
+    visit "/users/42/settings"
+    assert page.title == "CS problem Pages"
+  end
+
+  test "users logged in regular user(owner of stuff)" do
+    visit "/login"
+    fill_in "Name", with: "bob"
+    fill_in "Password", with: "123456"
+    find('#submit-id-submit', :visible => true).click
+    assert_text "Successfully Logged in"
+
+    visit "/login"
+    assert page.title == "Login"
+
+    visit "/user/new"
+    assert page.title == "Signup"
+
+    visit "/users/42"
+    assert_text "Profile"
+
+    visit "/users/42/comments"
+    assert page.title == "User Comments"
+
+    visit "/users/42/settings"
+    assert_text "Profile"
+  end
+
+  test "users logged in regular user(not owner of stuff)" do
+    visit "/login"
+    fill_in "Name", with: "not_bob"
+    fill_in "Password", with: "123456"
+    find('#submit-id-submit', :visible => true).click
+    assert_text "Successfully Logged in"
+
+    visit "/login"
+    assert page.title == "Login"
+
+    visit "/user/new"
+    assert page.title == "Signup"
+
+    visit "/users/42"
+    assert_text "Profile"
+
+    visit "/users/42/comments"
+    assert page.title == "CS problem Pages"
+
+    visit "/users/42/settings"
+    assert page.title == "CS problem Pages"
+  end
+
+  test "users logged in admin" do
+    visit "/login"
+    fill_in "Name", with: "admin"
+    fill_in "Password", with: "123456"
+    find('#submit-id-submit', :visible => true).click
+    assert_text "Successfully Logged in"
+
+    visit "/login"
+    assert page.title == "Login"
+
+    visit "/user/new"
+    assert page.title == "Signup"
+
+    visit "/users/42"
+    assert_text "Profile"
+
+    visit "/users/42/comments"
+    assert page.title == "User Comments"
+
+    visit "/users/42/settings"
+    assert page.title == "CS problem Pages"
+  end
 end
     
