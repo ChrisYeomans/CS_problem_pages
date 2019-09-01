@@ -7,6 +7,11 @@ ruby '2.5.1'
 gem 'redcarpet'
 gem 'rouge'
 
+# OmniAuth for OAuth login buttons
+gem "omniauth"
+gem "omniauth-google-oauth2"
+gem "omniauth-facebook"
+
 # RestClient for making post requests to APIs, OAuth stuff in this case
 gem 'rest-client'
 

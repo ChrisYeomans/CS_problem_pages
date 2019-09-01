@@ -20,4 +20,14 @@ class SessionsController < ApplicationController
 		flash[:succ] = "Logged out"
 		redirect_to root_url
 	end
+
+	def oauth_create
+		@user = User.find_or_create_from_auth_hash(auth_hash) 
+		log_in @user
+		redirect_to @user
+	end
+
+	def auth_hash
+		request.env['omniauth.auth']
+	end
 end

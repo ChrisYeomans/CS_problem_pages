@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   include UsersHelper
 
   def fb_callback
+    puts params
     
     if User.exists?(fb_oauth_key: params[:uid])
       @user = User.find_by(fb_oauth_key: params[:uid])
@@ -39,6 +40,10 @@ class UsersController < ApplicationController
     end
 
     redirect_to redirection_loc
+  end
+
+  def get_fb_oauth_key
+    
   end
 
   # Function used to signup with GitHub OAuth

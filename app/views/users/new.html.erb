@@ -1,15 +1,3 @@
-<script>
-function fb_login_fn() {
-    FB.login(function(response) {
-        console.log(response)
-        if (response.authResponse) {
-            lnk = document.getElementById("fb_link");
-            lnk.href = `/fb_callback?uid=${response.authResponse.userID}`;
-            lnk.click();
-        }
-    })
-}
-</script>
 <a class="d-none", id="fb_link" href=""></a>
 <% @title="Signup" %>
 <div class="d-flex flex-column justify-content-center" id="login-box">
@@ -17,6 +5,12 @@ function fb_login_fn() {
         <h4 style="color:rgb(139,139,139);margin-bottom:0px;font-weight:400;font-size:27px;">Signup</h4>
     </div>
     <div class="login-box-content">
+        <div class="gp-login box-shadow">
+            <a class="d-flex flex-row align-items-center social-login-link" href="/auth/google_oauth2">
+                <i class="fab fa-google" style="margin-left:0px;padding-right:20px;padding-left:22px;width:56px;"></i>
+                Login with Google
+            </a>
+        </div>
         <div class="fb-login box-shadow">
             <a class="d-flex flex-row align-items-center social-login-link" onclick="fb_login_fn()" href="">
                 <i class="fab fa-facebook" style="margin-left:0px;padding-right:20px;padding-left:22px;width:56px;"></i>
