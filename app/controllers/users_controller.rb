@@ -9,43 +9,6 @@ end
 class UsersController < ApplicationController
   include UsersHelper
 
-  def fb_callback
-    puts params
-    
-    if User.exists?(fb_oauth_key: params[:uid])
-      @user = User.find_by(fb_oauth_key: params[:uid])
-      log_in @user
-      redirection_loc = user_path(@user)
-    else
-      # TODO: make the name generation better
-      @user = User.new(
-        {
-          :name => User.last.id+10, :email => nil, 
-          :password => "123456", :password_confirmation => "123456",
-          :fb_oauth_key => params[:uid], :is_admin => 0,
-          :score => 0
-        }
-      )
-
-      if @user.save
-        redirection_loc = user_path(@user) + "/settings"
-        log_in @user
-        update_users
-        flash[:succ] = "Account made, your password is currently 123456, please change it"
-      else
-        flash[:notice] = "Error"
-        redirection_loc = "/"
-      end
-
-    end
-
-    redirect_to redirection_loc
-  end
-
-  def get_fb_oauth_key
-    
-  end
-
   # Function used to signup with GitHub OAuth
   def gh_callback
 
