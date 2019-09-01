@@ -227,7 +227,7 @@ class SubmissionsTest < ApplicationSystemTestCase
     assert_no_text "Verdict: 0"
   end
 
-  test "form bomb" do
+  test "fork bomb" do
     # login as admin
     visit "/login"
     fill_in "Name", with: "admin"
