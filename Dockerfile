@@ -18,4 +18,6 @@ RUN gem update --system \
     && apt install -y nodejs
 
 # Start the application server
-ENTRYPOINT './entrypoint.sh'
+# ENTRYPOINT './entrypoint.sh'
+
+# docker run --network="host" -it csp /bin/bash

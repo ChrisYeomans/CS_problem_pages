@@ -5,6 +5,7 @@
 #   gem 'sqlite3'
 #
 default: &default
+  host: 127.0.0.1
   adapter: mysql2
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   user: chris
