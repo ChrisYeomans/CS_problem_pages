@@ -25,4 +25,4 @@ test:
 
 production:
   <<: *default
-  database: db/production
+  database: problem_pages
