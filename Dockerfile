@@ -15,9 +15,12 @@ RUN gem install bundler -v 2.0.2
 RUN gem update --system \
     && bundle install --deployment \
     && curl -sL https://deb.nodesource.com/setup_10.x | bash - \
-    && apt install -y nodejs
+    && apt install -y nodejs \
+    && git clone https://github.com/quark-zju/lrun \
+    && cd lrun && make install \
+    && usermod -aG lrun $USER
 
 # Start the application server
-# ENTRYPOINT './entrypoint.sh'
+ENTRYPOINT './entrypoint.sh'
 
-# docker run --network="host" -it csp /bin/bash
+# docker run --network="host" -it -p 8080 --enf-file=.env csp
