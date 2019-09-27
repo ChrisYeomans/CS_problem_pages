@@ -24,7 +24,8 @@ RUN gem update --system \
     fi \
     && git clone https://github.com/quark-zju/lrun \
     && cd lrun && make install \
-    && usermod -aG lrun $USER
+    && export $PATH=${PATH}:${pwd} \
+    && gpasswd -aG $USER lrun
 
 # Start the application server
 ENTRYPOINT './entrypoint.sh'
