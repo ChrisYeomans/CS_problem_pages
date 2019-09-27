@@ -1,5 +1,5 @@
 <% @title="CS problem Pages" %>
-<h1>Hello World</h1>
+<h3>Welcome to MUCSS Problem Pages</h3>
 <% if @user %>
     <% @user.errors.full_messages.each do |msg| %>
         <div class="alert alert-danger">
@@ -7,3 +7,19 @@
         </div>
     <% end %>
 <% end %>
+<br /><br />
+<p>
+    Here you will find <a href="/current_problem">weekly problems</a> 
+    to solve and <a href="current_solution">solutions</a> to the previous 
+    weeks problem.
+<p>
+<p>
+    Also here you will find all past problems if you wish to solve them. To
+    solve a problem just click "Make Submission" on the problem page and either
+    past your solution into the box provided or upload your the file containing
+    your solution and then select your language of choice.
+</p>
+<p>
+    We hope you enjoy the website and if you have any problems or feature requests
+    please contact an administrator.
+</p>
