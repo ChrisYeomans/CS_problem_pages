@@ -24,9 +24,9 @@ RUN gem update --system \
     fi \
     && git clone https://github.com/quark-zju/lrun \
     && cd lrun && make install \
-    && gpasswd -aG $USER lrun
+    && gpasswd -a lrun $USER
 
 # Start the application server
 ENTRYPOINT './entrypoint.sh'
 
-# docker run --network="host" -it -p 8080 --enf-file=.env csp
+# docker run --network="host" -it --env-file=.env csp
