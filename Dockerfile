@@ -24,7 +24,9 @@ RUN gem update --system \
     fi \
     && git clone https://github.com/quark-zju/lrun \
     && cd lrun && make install \
-    && gpasswd -a lrun $USER
+    && useradd -rm -d /home/ubuntu -s /bin/bash -g root -G lrun -u 1000 ubuntu
+
+USER ubuntu
 
 # Start the application server
 ENTRYPOINT './entrypoint.sh'
