@@ -33,4 +33,4 @@ USER ubuntu
 # Start the application server
 ENTRYPOINT './entrypoint.sh'
 
-# docker run --network="host" -it --env-file=.env csp
+# docker run --network="host" -it -d --env-file=.env csp
