@@ -26,7 +26,14 @@ RUN gem update --system \
     && cd lrun && make install \
     && useradd -rm -d /home/ubuntu -s /bin/bash -g root -G lrun -u 1000 ubuntu \
     && apt update \
-    && apt install nano
+    && apt upgrade -y \
+    && apt install nano -y \
+    && apt install python3 -y \
+    && apt install default-jdk -y \
+    && apt install software-properties-common -y \
+    && apt install build-essential -y \
+    && apt install manpages-dev -y \
+    && apt install ruby -y
 
 USER ubuntu
 

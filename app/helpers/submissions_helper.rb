@@ -114,11 +114,6 @@ module SubmissionsHelper
 				"run_command" => "python3 #{file_name}",
 				"compile_command" => ""
 			},
-			"python2" => {
-				"extension" => "py",
-				"run_command" => "python #{file_name}",
-				"compile_command" => ""
-			},
 			"java6" => {
 				"extension" => "java",
 				"run_command" => "java j#{submission_id}",
@@ -184,11 +179,11 @@ module SubmissionsHelper
 				"run_command" => "./#{submission_id}.out",
 				"compile_command" => "rustc -O --crate-type bin --edition=2018 #{file_name} -o #{submission_id}.out"
 			},
-			"v" => {
-				"extension" => "v",
-				"run_command" => "./#{submission_id}.out",
-				"compile_command" => "v -prod -o #{submission_id}.out #{file_name}"
-			},
+			#"v" => {
+			#	"extension" => "v",
+			#	"run_command" => "./#{submission_id}.out",
+			#	"compile_command" => "v -prod -o #{submission_id}.out #{file_name}"
+			#},
 			"bash" => {
 				"extension" => "sh",
 				"run_command" => "sh #{file_name}",
