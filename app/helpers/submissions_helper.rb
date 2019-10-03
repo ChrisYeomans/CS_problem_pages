@@ -204,7 +204,7 @@ module SubmissionsHelper
 	def make_file(file_name, submission_id)
 		subm = Submission.find(submission_id)
 		text = subm.code
-		File.open("#{file_name}", "w") { |file| file.puts "#{text}"}
+		File.open("storage/#{file_name}", "w+") { |file| file.puts "#{text}"}
 	end
 
 	def javaify(code, id)
