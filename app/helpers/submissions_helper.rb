@@ -36,7 +36,7 @@ module SubmissionsHelper
 				out = `echo '#{test_case}' | #{run_command} 2> storage/err_#{submission_id}.txt 3> storage/info_#{submission_id}.txt`
 
 				# processing lrun run info
-				info = File.read("info_#{submission_id}.txt").split("\n")
+				info = File.read("storage/info_#{submission_id}.txt").split("\n")
 				if info[4] != "EXITCODE 0"
 					out_arr << "Runtime Error"
 				elsif info[6] != "EXCEED   none"
@@ -50,7 +50,7 @@ module SubmissionsHelper
 					output = output.strip().split(' ').map(&:strip).join(' ')
 					out = out.strip().split(' ').map(&:strip).join(' ')
 					puts "				RESULT HERE", out, output, run_command
-					system("cat err_#{submission_id}.txt")
+					system("cat storage/err_#{submission_id}.txt")
 
 					if out.strip() == output.strip()
 						test_cases_passed += 1
@@ -59,7 +59,7 @@ module SubmissionsHelper
 						out_arr << "Wrong Answer"
 					end
 				end
-				system("rm info_#{submission_id}.txt err_#{submission_id}.txt")
+				system("rm storage/info_#{submission_id}.txt storage/err_#{submission_id}.txt")
 			end
 		else
 			out_arr << "Compile Error"
