@@ -7,5 +7,4 @@ bundle exec rake assets:precompile
 bundle exec rake db:setup
 
 # Start the server
-# bundle exec rails server -p 3001
-bash
+bundle exec rails server -p 3001
