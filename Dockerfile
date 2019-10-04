@@ -6,8 +6,6 @@ WORKDIR /application
 
 ADD . /application
 
-USER ubuntu
-
 # Start the application server
 ENTRYPOINT './entrypoint.sh'
 
