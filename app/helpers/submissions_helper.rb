@@ -66,7 +66,7 @@ module SubmissionsHelper
 		end
 
 		# leave the campsite how you found it; scout's code
-		system("rm *#{submission_id}*")
+		system("rm storage/*#{submission_id}*")
 
 		return test_cases_passed, out_arr
 	end
