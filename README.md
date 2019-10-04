@@ -20,7 +20,7 @@ Clone this repo:
 ```sh
 git clone https://github.com/ChrisYeomans/CS_problem_pages
 ```
-Set up Mariadb and and put a file named .env into the root directory of the app with the following names:
+Set up Mariadb and and put a file named .env into the root directory of the app with the following enviornment variables:
 ```sh
 db_pw=xxxxxx
 
