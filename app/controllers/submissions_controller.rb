@@ -133,7 +133,7 @@ class SubmissionsController < ApplicationController
 		@problem = Problem.find(@submission.problem_id)
 		@user = User.find(@submission.user_id)
 		flash[:succ] = "Re-submitting, please wait then reload the page to update results"
-		Thread.new do
+		#Thread.new do
 			@submission.test_cases_passed, @submission.results = test_cases(@submission.language, @submission.id, @problem.test_cases, use_lrun=true, max_cpu_time=@problem.cpu_time, max_memory=@problem.memory)
 			@submission.verdict = (@submission.test_cases_passed == @problem.number_of_test_cases)
 			score = ((@submission.test_cases_passed/@problem.number_of_test_cases)*@problem.score).floor
@@ -158,7 +158,7 @@ class SubmissionsController < ApplicationController
 			@user.problem_list = lst.to_json
 			@problem.save
 			@user.save
-		end
+		#end
 		redirect_to @submission
 	end
 

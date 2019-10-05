@@ -33,10 +33,10 @@ module SubmissionsHelper
 				run_command = "lrun --basic-devices false --max-rtprio 0 --max-nfile 256 --max-nprocess 2048 --nice 0 --remount-dev false --umount-outside false --no-new-privs true --interval 0.02 --reset-env false --isolate-process true --network false --max-cpu-time #{max_cpu_time} --max-memory #{max_memory} #{run_command}"
 			end
 			test_case_lst.each do |test_case, output|
-				out = `echo '#{test_case}' | #{run_command} 2> err_#{submission_id}.txt 3> info_#{submission_id}.txt`
+				out = `echo '#{test_case}' | #{run_command} 2> storage/err_#{submission_id}.txt 3> storage/info_#{submission_id}.txt`
 
 				# processing lrun run info
-				info = File.read("info_#{submission_id}.txt").split("\n")
+				info = File.read("storage/info_#{submission_id}.txt").split("\n")
 				if info[4] != "EXITCODE 0"
 					out_arr << "Runtime Error"
 				elsif info[6] != "EXCEED   none"
@@ -50,7 +50,7 @@ module SubmissionsHelper
 					output = output.strip().split(' ').map(&:strip).join(' ')
 					out = out.strip().split(' ').map(&:strip).join(' ')
 					puts "				RESULT HERE", out, output, run_command
-					system("cat err_#{submission_id}.txt")
+					system("cat storage/err_#{submission_id}.txt")
 
 					if out.strip() == output.strip()
 						test_cases_passed += 1
@@ -59,14 +59,14 @@ module SubmissionsHelper
 						out_arr << "Wrong Answer"
 					end
 				end
-				system("rm info_#{submission_id}.txt err_#{submission_id}.txt")
+				system("rm storage/info_#{submission_id}.txt storage/err_#{submission_id}.txt")
 			end
 		else
 			out_arr << "Compile Error"
 		end
 
 		# leave the campsite how you found it; scout's code
-		system("rm *#{submission_id}*")
+		system("rm storage/*#{submission_id}*")
 
 		return test_cases_passed, out_arr
 	end
