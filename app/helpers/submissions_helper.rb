@@ -34,7 +34,7 @@ module SubmissionsHelper
 			end
 			test_case_lst.each do |test_case, output|
 				out = `echo '#{test_case}' | #{run_command} 2> storage/err_#{submission_id}.txt 3> storage/info_#{submission_id}.txt`
-
+				
 				# processing lrun run info
 				info = File.read("storage/info_#{submission_id}.txt").split("\n")
 				if info[4] != "EXITCODE 0"
@@ -49,8 +49,6 @@ module SubmissionsHelper
 					# this removes weird hidden characters
 					output = output.strip().split(' ').map(&:strip).join(' ')
 					out = out.strip().split(' ').map(&:strip).join(' ')
-					puts "				RESULT HERE", out, output, run_command
-					system("cat storage/err_#{submission_id}.txt")
 
 					if out.strip() == output.strip()
 						test_cases_passed += 1
