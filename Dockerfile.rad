@@ -1,11 +1,14 @@
 FROM ruby:2.5.1-stretch
 
-# Change to the application's directory
-WORKDIR /application
+# Add new user
+RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 ubuntu
+USER ubuntu
+
+WORKDIR /home/ubuntu
 
 # Needed for bundle install
-ADD Gemfile /application/
-ADD Gemfile.lock /application/
+ADD Gemfile /home/ubuntu
+ADD Gemfile.lock /home/ubuntu
 
 # Get gems and other dependencies
 RUN gem install bundler -v 2.0.2 \
@@ -25,3 +28,5 @@ RUN gem install bundler -v 2.0.2 \
     && apt upgrade -y \
     && apt install nano python3 default-jdk software-properties-common \
     build-essential manpages-dev ruby -y
+
+RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 ubuntu

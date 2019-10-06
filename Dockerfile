@@ -2,9 +2,9 @@ FROM ruby:2.5.1-stretch
 FROM thefirstflame/rad
 
 # Change to the application's directory
-WORKDIR /application
+WORKDIR /home/ubuntu
 
-ADD . /application
+ADD . /home/ubuntu
 
 # Start the application server
 ENTRYPOINT './entrypoint.sh'

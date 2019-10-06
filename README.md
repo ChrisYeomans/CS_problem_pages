@@ -1,6 +1,7 @@
 # MUCSS Problem Pages
 
 ## Extra TODO:
+* Remove Periodic AJAX
 * Add search bars and pagination to users and problems
 * Add "connect with" button to profile setting for oauth stuff
 * Add page for per problem submissions
@@ -42,7 +43,7 @@ Note: the default db user is chris
 Build and run with docker and bash:
 ```sh
 docker build -t csp .
-run --network="host" -it -d --env-file=.env csp
+run --network="host" -d --env-file=.env csp
 ``` 
 
 Finally set the server up with whatever software you use for reverse proxy to 127.0.0.1:3001
