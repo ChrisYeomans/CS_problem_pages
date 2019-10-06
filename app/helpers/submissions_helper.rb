@@ -70,7 +70,7 @@ module SubmissionsHelper
 	end
 
 	def get_language_bits(language, file_name, submission_id)
-		hsh = languages_hash(file_name, submission_id)
+		hsh = languages_hash("storage/#{file_name}", submission_id)
 
 		run_command = hsh[language]["run_command"]
 		compile_command = hsh[language]["compile_command"]
