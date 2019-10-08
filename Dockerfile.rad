@@ -1,17 +1,15 @@
 FROM ruby:2.5.1-stretch
 
-# Add new user
-RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 ubuntu
-USER ubuntu
-
-WORKDIR /home/ubuntu
+WORKDIR /application
 
 # Needed for bundle install
-ADD Gemfile /home/ubuntu
-ADD Gemfile.lock /home/ubuntu
+ADD Gemfile /application
+ADD Gemfile.lock /application
 
 # Get gems and other dependencies
-RUN gem install bundler -v 2.0.2 \
+RUN apt update \
+    && apt upgrade -y \
+    && gem install bundler -v 2.0.2 \
     && gem update --system \
     && bundle install --deployment \
     && curl -sL https://deb.nodesource.com/setup_10.x | bash - \
@@ -24,9 +22,7 @@ RUN gem install bundler -v 2.0.2 \
     fi \
     && git clone https://github.com/quark-zju/lrun \
     && cd lrun && make install \
-    && apt update \
-    && apt upgrade -y \
     && apt install nano python3 default-jdk software-properties-common \
     build-essential manpages-dev ruby -y
 
-RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 ubuntu
+RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G lrun -u 1000 ubuntu
