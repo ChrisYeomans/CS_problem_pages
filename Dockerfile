@@ -8,6 +8,9 @@ WORKDIR /application
 
 ADD . /application
 
+# Make all the files accessible
+RUN chmod -R 777 *
+
 # Start the application server
 ENTRYPOINT './entrypoint.sh'
 
