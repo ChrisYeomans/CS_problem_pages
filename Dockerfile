@@ -9,7 +9,12 @@ ADD . /application
 # Make all the files accessible
 RUN chmod -R 777 *
 
-# Start the application server
-ENTRYPOINT './entrypoint.sh'
+RUN useradd -u 10012 -g sudo appuser
 
-# docker run --network="host" -it -d --env-file=.env csp
+USER appuser
+
+# Start the application server
+CMD ["/bin/bash", "-c", "set -e && ./entrypoint.sh"]
+
+# docker run --network="host" -it --env-file=.env --cap-add SYS_ADMIN -v /sys/fs/cgroup:/sys/fs/cgroup:ro --group-add lrun --privileged csp
+

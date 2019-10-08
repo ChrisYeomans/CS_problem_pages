@@ -4,7 +4,7 @@ echo $MASTER_KEY > config/master.key
 bundle exec rake assets:precompile
 
 # Set up db Stuff
-bundle exec rake db:setup
+# bundle exec rake db:setup
 
 # Start the server
 bundle exec rails server -p 3001
