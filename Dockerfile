@@ -1,8 +1,6 @@
 FROM ruby:2.5.1-stretch
 FROM thefirstflame/rad
 
-USER ubuntu
-
 # Change to the application's directory
 WORKDIR /application
 

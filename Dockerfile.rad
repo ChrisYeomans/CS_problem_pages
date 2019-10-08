@@ -24,5 +24,3 @@ RUN apt update \
     && cd lrun && make install \
     && apt install nano python3 default-jdk software-properties-common \
     build-essential manpages-dev ruby -y
-
-RUN usermod -a -G lrun $USER
