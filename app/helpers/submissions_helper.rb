@@ -33,7 +33,7 @@ module SubmissionsHelper
 				run_command = "lrun --basic-devices false --max-rtprio 0 --max-nfile 256 --max-nprocess 2048 --nice 0 --remount-dev false --umount-outside false --no-new-privs true --interval 0.02 --reset-env false --isolate-process true --network false --max-cpu-time #{max_cpu_time} --max-memory #{max_memory} #{run_command}"
 			end
 			test_case_lst.each do |test_case, output|
-				File.open("storage/test_#{submission_id}", "w+") { |file| file.puts "#{test_case}.strip"}
+				File.open("storage/test_#{submission_id}", "w+") { |file| file.puts "#{test_case}".strip}
 				out = `#{run_command} < storage/test_#{submission_id} 2> storage/err_#{submission_id}.txt 3> storage/info_#{submission_id}.txt`
 				
 				# processing lrun run info
