@@ -79,27 +79,6 @@ class LanguagesTest < ApplicationSystemTestCase
     assert_text "Verdict: 1"
   end
 
-  test "python2" do
-    # login as regular user
-    visit "/login"
-    fill_in "Name", with: "bob"
-    fill_in "Password", with: "123456"
-    find('#submit-id-submit', :visible => true).click
-
-    visit "/problems/1"
-    click_on "Make Submission"
-
-    attach_file("submission[upload]", Rails.root + "test/system/test_files/python2_test.py")
-    select("python2", from: "submission_language")
-    click_on "Submit"
-
-    # sleep to wait for ajax
-    sleep 1
-
-    assert_no_text "Verdict: 0"
-    assert_text "Verdict: 1"
-  end
-
   test "c" do
     # login as regular user
     visit "/login"

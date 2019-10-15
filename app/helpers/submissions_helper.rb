@@ -34,7 +34,7 @@ module SubmissionsHelper
 			end
 			test_case_lst.each do |test_case, output|
 				tc = test_case.strip.gsub /\r\n?/, "\n"
-
+				puts run_command
 				out = `echo '#{tc}' | #{run_command} 2> storage/err_#{submission_id}.txt 3> storage/info_#{submission_id}.txt`
 				
 				# processing lrun run info
@@ -114,35 +114,10 @@ module SubmissionsHelper
 				"run_command" => "python3 #{file_name}",
 				"compile_command" => ""
 			},
-			"java6" => {
-				"extension" => "java",
-				"run_command" => "java storage/j#{submission_id}",
-				"compile_command" =>"javac --release 6 -Xlint:-options #{file_name} 1> /dev/null 2>&1"
-			},
-			"java7" => {
-				"extension" => "java",
-				"run_command" => "java storage/j#{submission_id}",
-				"compile_command" =>"javac --release 7 -Xlint:-options #{file_name} 1> /dev/null 2>&1"
-			},
 			"java8" => {
 				"extension" => "java",
-				"run_command" => "java storage/j#{submission_id}",
-				"compile_command" =>"javac --release 8 -Xlint:-options #{file_name} 1> /dev/null 2>&1"
-			},
-			"java9" => {
-				"extension" => "java",
-				"run_command" => "java storage/j#{submission_id}",
-				"compile_command" =>"javac --release 9 -Xlint:-options #{file_name} 1> /dev/null 2>&1"
-			},
-			"java10" => {
-				"extension" => "java",
-				"run_command" => "java storage/j#{submission_id}",
-				"compile_command" =>"javac --release 10 -Xlint:-options #{file_name} 1> /dev/null 2>&1"
-			},
-			"java11" => {
-				"extension" => "java",
-				"run_command" => "java storage/j#{submission_id}",
-				"compile_command" =>"javac --release 11 -Xlint:-options #{file_name} 1> /dev/null 2>&1"
+				"run_command" => "java -cp storage j#{submission_id}",
+				"compile_command" =>"javac #{file_name} 1> storage/com_err 2>&1"
 			},
 			"c" => {
 				"extension" => "c",
@@ -174,11 +149,11 @@ module SubmissionsHelper
 				"run_command" => "storage/#{submission_id}.out",
 				"compile_command" => "go build -o storage/#{submission_id}.out #{file_name}"
 			},
-			"rust" => {
-				"extension" => "rs",
-				"run_command" => "storage/#{submission_id}.out",
-				"compile_command" => "rustc -O --crate-type bin --edition=2018 #{file_name} -o storage/#{submission_id}.out"
-			},
+			#"rust" => {
+			#	"extension" => "rs",
+			#	"run_command" => "storage/#{submission_id}.out",
+			#	"compile_command" => "rustc -O --crate-type bin --edition=2018 #{file_name} -o storage/#{submission_id}.out"
+			#},
 			#"v" => {
 			#	"extension" => "v",
 			#	"run_command" => "storage/#{submission_id}.out",
