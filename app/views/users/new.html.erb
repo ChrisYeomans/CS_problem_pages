@@ -1,4 +1,10 @@
-<a class="d-none", id="fb_link" href=""></a>
+<% if @user %>
+    <% @user.errors.full_messages.each do |msg| %>
+        <div class="alert alert-danger">
+            <%= msg %>
+        </div>
+    <% end %>
+<% end %>
 <% @title="Signup" %>
 <div class="d-flex flex-column justify-content-center" id="login-box">
     <div class="login-box-header">
