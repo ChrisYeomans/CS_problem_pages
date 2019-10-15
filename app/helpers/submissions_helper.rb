@@ -115,53 +115,53 @@ module SubmissionsHelper
 			},
 			"java6" => {
 				"extension" => "java",
-				"run_command" => "java j#{submission_id}",
+				"run_command" => "java storage/j#{submission_id}",
 				"compile_command" =>"javac --release 6 -Xlint:-options #{file_name} 1> /dev/null 2>&1"
 			},
 			"java7" => {
 				"extension" => "java",
-				"run_command" => "java j#{submission_id}",
+				"run_command" => "java storage/j#{submission_id}",
 				"compile_command" =>"javac --release 7 -Xlint:-options #{file_name} 1> /dev/null 2>&1"
 			},
 			"java8" => {
 				"extension" => "java",
-				"run_command" => "java j#{submission_id}",
+				"run_command" => "java storage/j#{submission_id}",
 				"compile_command" =>"javac --release 8 -Xlint:-options #{file_name} 1> /dev/null 2>&1"
 			},
 			"java9" => {
 				"extension" => "java",
-				"run_command" => "java j#{submission_id}",
+				"run_command" => "java storage/j#{submission_id}",
 				"compile_command" =>"javac --release 9 -Xlint:-options #{file_name} 1> /dev/null 2>&1"
 			},
 			"java10" => {
 				"extension" => "java",
-				"run_command" => "java j#{submission_id}",
+				"run_command" => "java storage/j#{submission_id}",
 				"compile_command" =>"javac --release 10 -Xlint:-options #{file_name} 1> /dev/null 2>&1"
 			},
 			"java11" => {
 				"extension" => "java",
-				"run_command" => "java j#{submission_id}",
+				"run_command" => "java storage/j#{submission_id}",
 				"compile_command" =>"javac --release 11 -Xlint:-options #{file_name} 1> /dev/null 2>&1"
 			},
 			"c" => {
 				"extension" => "c",
-				"run_command" => "./#{submission_id}.out",
-				"compile_command" => "gcc #{file_name} -o #{submission_id}.out 1> /dev/null 2>&1"
+				"run_command" => "storage/#{submission_id}.out",
+				"compile_command" => "gcc #{file_name} -o storage/#{submission_id}.out 1> /dev/null 2>&1"
 			},
 			"cpp11" => {
 				"extension" => "cpp",
-				"run_command" => "./#{submission_id}.out",
-				"compile_command" => "g++ #{file_name} -O2 -std=c++11 -o #{submission_id}.out 1> /dev/null 2>&1"
+				"run_command" => "storage/#{submission_id}.out",
+				"compile_command" => "g++ #{file_name} -O2 -std=c++11 -o storage/#{submission_id}.out 1> /dev/null 2>&1"
 			},
 			"cpp14" => {
 				"extension" => "cpp",
-				"run_command" => "./#{submission_id}.out",
-				"compile_command" => "g++ #{file_name} -O2 -std=c++14 -o #{submission_id}.out 1> /dev/null 2>&1"
+				"run_command" => "storage/#{submission_id}.out",
+				"compile_command" => "g++ #{file_name} -O2 -std=c++14 -o storage/#{submission_id}.out 1> /dev/null 2>&1"
 			},
 			"cpp17" => {
 				"extension" => "cpp",
-				"run_command" => "./#{submission_id}.out",
-				"compile_command" => "g++ #{file_name} -O2 -std=c++17 -o #{submission_id}.out 1> /dev/null 2>&1"
+				"run_command" => "storage/#{submission_id}.out",
+				"compile_command" => "g++ #{file_name} -O2 -std=c++17 -o storage/#{submission_id}.out 1> /dev/null 2>&1"
 			},
 			"ruby" => {
 				"extension" => "rb",
@@ -170,17 +170,17 @@ module SubmissionsHelper
 			},
 			"go" => {
 				"extension" => "go",
-				"run_command" => "./#{submission_id}.out",
-				"compile_command" => "go build -o #{submission_id}.out #{file_name}"
+				"run_command" => "storage/#{submission_id}.out",
+				"compile_command" => "go build -o storage/#{submission_id}.out #{file_name}"
 			},
 			"rust" => {
 				"extension" => "rs",
-				"run_command" => "./#{submission_id}.out",
-				"compile_command" => "rustc -O --crate-type bin --edition=2018 #{file_name} -o #{submission_id}.out"
+				"run_command" => "storage/#{submission_id}.out",
+				"compile_command" => "rustc -O --crate-type bin --edition=2018 #{file_name} -o storage/#{submission_id}.out"
 			},
 			#"v" => {
 			#	"extension" => "v",
-			#	"run_command" => "./#{submission_id}.out",
+			#	"run_command" => "storage/#{submission_id}.out",
 			#	"compile_command" => "v -prod -o #{submission_id}.out #{file_name}"
 			#},
 			"bash" => {
