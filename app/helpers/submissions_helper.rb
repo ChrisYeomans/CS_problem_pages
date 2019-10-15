@@ -33,7 +33,8 @@ module SubmissionsHelper
 				run_command = "lrun --basic-devices false --max-rtprio 0 --max-nfile 256 --max-nprocess 2048 --nice 0 --remount-dev false --umount-outside false --no-new-privs true --interval 0.02 --reset-env false --isolate-process true --network false --max-cpu-time #{max_cpu_time} --max-memory #{max_memory} #{run_command}"
 			end
 			test_case_lst.each do |test_case, output|
-				tc = test_case.strip
+				tc = test_case.strip.gsub /\r\n?/, "\n"
+
 				out = `echo '#{tc}' | #{run_command} 2> storage/err_#{submission_id}.txt 3> storage/info_#{submission_id}.txt`
 				
 				# processing lrun run info
@@ -58,14 +59,14 @@ module SubmissionsHelper
 						out_arr << "Wrong Answer"
 					end
 				end
-				system("rm storage/info_#{submission_id}.txt storage/err_#{submission_id}.txt")
+				#system("rm storage/info_#{submission_id}.txt storage/err_#{submission_id}.txt")
 			end
 		else
 			out_arr << "Compile Error"
 		end
 
 		# leave the campsite how you found it; scout's code
-		system("rm storage/*#{submission_id}*")
+		#system("rm storage/*#{submission_id}*")
 
 		return test_cases_passed, out_arr
 	end
