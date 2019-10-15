@@ -16,5 +16,6 @@ USER appuser
 # Start the application server
 CMD ["/bin/bash", "-c", "set -e && ./entrypoint.sh"]
 
-# docker run --network="host" -it --env-file=.env --cap-add SYS_ADMIN -v /sys/fs/cgroup:/sys/fs/cgroup:ro --group-add lrun --privileged --rm -d csp
+# docker run --network="host" -it --env-file=.env --cap-drop ALL -v /sys/fs/cgroup:/sys/fs/cgroup:ro --group-add lrun --privileged --rm -d csp
+
 
