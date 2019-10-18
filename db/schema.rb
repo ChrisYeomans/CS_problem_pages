@@ -10,12 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_01_185507) do
+ActiveRecord::Schema.define(version: 2019_10_15_214544) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "sqlite"
-
-  create_table "comments", force: :cascade do |t|
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.text "body"
     t.integer "problem_solution_id"
     t.integer "user_id"
@@ -23,7 +20,7 @@ ActiveRecord::Schema.define(version: 2019_09_01_185507) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "problem_solutions", force: :cascade do |t|
+  create_table "problem_solutions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.text "solution"
     t.integer "problem_id"
     t.datetime "created_at", null: false
@@ -31,7 +28,7 @@ ActiveRecord::Schema.define(version: 2019_09_01_185507) do
     t.integer "is_featured"
   end
 
-  create_table "problems", force: :cascade do |t|
+  create_table "problems", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "title"
     t.text "body"
     t.integer "is_current"
@@ -47,7 +44,7 @@ ActiveRecord::Schema.define(version: 2019_09_01_185507) do
     t.integer "users_attempted"
   end
 
-  create_table "submissions", force: :cascade do |t|
+  create_table "submissions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.text "code"
     t.string "language"
     t.string "extension"
@@ -62,7 +59,7 @@ ActiveRecord::Schema.define(version: 2019_09_01_185507) do
     t.integer "done"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password_digest"
@@ -71,7 +68,7 @@ ActiveRecord::Schema.define(version: 2019_09_01_185507) do
     t.datetime "updated_at", null: false
     t.string "bio"
     t.integer "score"
-    t.string "problem_list"
+    t.text "problem_list"
     t.string "gh_oauth_key"
     t.string "fb_oauth_key"
     t.string "gl_oauth_key"
