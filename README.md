@@ -40,10 +40,10 @@ MASTER_KEY=xxxxxx
 ```
 Note: the default db user is chris
 
-Build and run with docker and bash:
+Build and run with docker:
 ```sh
 docker build -t csp .
-run --network="host" -d --env-file=.env csp
+docker run --network="host" -it --env-file=.env --cap-drop ALL -v /sys/fs/cgroup:/sys/fs/cgroup:ro --group-add lrun --privileged --rm -d csp
 ``` 
 
 Finally set the server up with whatever software you use for reverse proxy to 127.0.0.1:3001
