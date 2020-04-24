@@ -24,7 +24,11 @@
 				<div class="form-group">
 					<% default = params[:prob_id] || Problem.first.id %>
 					<%= f.label(:problem_id, "Select Problem") %>
-					<%= f.select(:problem_id, Problem.all.collect {|a| [a.title, a.id] if a.is_hidden == 0}.compact, class: "form-control", :selected => [Problem.find(default).title, default]) %>
+					<% if admin_status %>
+						<%= f.select(:problem_id, Problem.all.collect {|a| [a.title, a.id]}, class: "form-control", :selected => [Problem.find(default).title, default]) %>
+					<% else %>
+						<%= f.select(:problem_id, Problem.all.collect {|a| [a.title, a.id] if a.is_hidden == 0}.compact, class: "form-control", :selected => [Problem.find(default).title, default]) %>
+					<% end %>
 				</div>
 				<div class="form-group">
 					<%= f.label(:language, "Select Language") %>
